@@ -78,7 +78,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hanny-y.github.io/2021/10/04/blog/" data-id="ckucdyim90000s9728dbf7s68" data-title="Hanny&#39;s first blog" class="article-share-link">Share</a>
+      <a data-url="https://hanny-y.github.io/2021/10/04/blog/" data-id="ckuce6r540000wg72bu2jcbzg" data-title="Hanny&#39;s first blog" class="article-share-link">Share</a>
       
       
       
@@ -104,7 +104,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/04/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2021/10/04/hello-world/">PA1实验报告</a>
     </h1>
   
 
@@ -112,24 +112,109 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h4 id="一、实验进度"><a href="#一、实验进度" class="headerlink" title="一、实验进度"></a>一、实验进度</h4><p>第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。</p>
+<p>第二周（截止9.26）：粗略地完成了pa1.1的前两个任务，不幸的是，没有一个指令是能正常用的。</p>
+<p>第三周（截止10.3）：在ddl的压迫下，本周是效率最高的一周。先是写完了扫描内存，当然测试也是错误的，并且在make run后出现了数不清的bug！（那种感觉！）de完1.1的bug后，开始写1.2，在经过将近三天的苦苦挣扎后，大概完成了功能，又花费了一天时间debug。编译成功后进行了第一次提交，果不其然地Rejected。国庆节静坐一天，终于通过前两个easy test。</p>
+<p>10.1晚更新：我感觉来不及了。</p>
+<p>10.2晚更新：坐牢一天的结果是意外之喜，全部accepted的了。此刻我已泪流满面。</p>
+<h4 id="二、实验过程"><a href="#二、实验过程" class="headerlink" title="二、实验过程"></a>二、实验过程</h4><p><em><strong>1.好好看报错信息</strong></em></p>
+<p>在看指南时，我的nemu在make run之后不会出现(nemu)…为此我“暗自神伤”许久，后来终于静下心来阅读了编译成功后welcome后面的字，哈哈，什么脑瘫。</p>
+<p>其实在pa0的make menuconfig环节就犯过类似的错误。当时报错信息后面明明白白写着bison，我却火急火燎地去stfw下了一堆乌七八糟的东西，并独自懵逼为什么不行。</p>
+<p><em><strong>2.偷懒的后果</strong></em></p>
+<p>承认我pa0的时候跳过了gdb和tmux的详细学习。。。所以在打印寄存器任务中，叫我参考gdb输出时，我不得不返回pa0指南学习了gdb。在与我一位高年级学姐交流的过程中，我挨了一顿善意的批评，并将tmux学习补上。在本次任务里花费了额外的时间，其实还是很可惜的。</p>
+<p>其实用虚拟机本质上也是一种偷懒吧。</p>
+<p><em><strong>3.FSC的反复R</strong></em></p>
+<p>刚开始时真的是要疯了！在RTFSC的时候就已经感到极度不适应（感觉前一学年本菜狗都没有看过这么多的代码！(x)）在花费一星期，其实也是边角料和周末的时间看完了代码，心想终于解脱的时候。发现在做任务时，健忘人仍然要反复阅读代码。。。</p>
+<p><em><strong>4.愚蠢的bug</strong></em></p>
+<p>记录一下我遇到的bug类型：</p>
+<p>(1) implicit declaration of function</p>
+<p>解决：添加声明</p>
+<p>(2) function defined but not used</p>
+<p>解决：第一步先stfw，有人给出了一种逃避的办法：告诉gdb忽略此种错误。但是我还没来得及尝试，就在解决了大括号匹配问题后消除了bug。</p>
+<p>(3) control reaches end of non-void function</p>
+<p>解决：意思是控制到达非void函数的结尾。一些本该有返回值的函数在某种情况下没有返回值。我出现这个错误的函数都是要求返回一个整型，但是在if的过程中某种情况漏掉没有考虑，和平时写代码不严谨的习惯有关吧。</p>
+<p>修改的过程居然也很艰辛，把return 0放错了位置然后所有情况都输出了0，直接暴躁了。</p>
+<p>(4)debug自问</p>
+<p>报错信息看了吗？括号匹配吗？位置对吗？变量名写对了吗（把所有的tokens都写成了token，不得不一个个改，后来发现case有的情况是可以合并写的…还有什么把str按老习惯写成astr…）函数都声明了吗？在所有情况下都有返回值吗？</p>
+<p>(5)漏掉清空tokens数组的操作</p>
+<p>这个错误真的要命，而且在某些操作的时候不会出错，但是会在执行完乘法的时候会储存上一次计算的结果，并且在这一次的操作中输出一个不那么合情合理的数字</p>
+<p><em><strong>5.不要跳过实验指南的任何一行字</strong></em></p>
+<p>info和p的实现在讲义里可以找到。</p>
+<p>10.1更新：直到第一次提交，我才发现有完善cmd_q这个必答题。哈哈，什么瞎子。</p>
+<p><em><strong>6.c语言的学习</strong></em>（截止10.2晚）</p>
+<p>大一上学期的时候，我的一个计科学长就告诉我，c语言和c++没啥区别，但在本菜狗看来，区别大大的。</p>
+<p>记录一下学到的东西。</p>
+<p>(1) printf</p>
+<p>学完这玩意，感觉以前真是被python惯坏了。</p>
+<p>主要用到的有：%d（十进制），%x（十六进制），%#x（十六进制输出前面的0x），区分%#08x和0x%08x（前一种共输出8bit，后一种共10bit，用后一种。）</p>
+<p>(2) strtok</p>
+<p>指南里给出了明确提示。</p>
+<p>作用是分解字符串，返回被分解的第一个字符串。按照fw上的指南所说，在某些情况下需要分割两次时，第一次输入字符串，第二次才将第一个参数改为NULL。但是在阅读sdb.c的某些代码(cmd_help)时，发现框架里直接使用了NULL，所以在写info的时候也这么用了，好像没有什么异常？？？stfw也没有结果。</p>
+<p>(3) sscanf</p>
+<p>好东西。</p>
+<p>从一个字符串读与指定格式相符的数据。</p>
+<p>和scanf的区别（之前只听说过scanf）：scanf用于以屏幕为输入源，sscanf是以既定的字符串为输入源。</p>
+<p>(4) strcpy和strncpy</p>
+<p>在expr的词法分析里用到。</p>
+<p>一开始尝试直接给str赋值，错了。stfw后得知字符串数组是不能先定义赋值的，而str在token已经定义，所以不能在直接给数组赋值。</p>
+<p>解决办法：1.对数组中字符逐个赋值（铁不用）</p>
+<p>​                    2.strcpy(好东西)</p>
+<p>(5) atoi</p>
+<p>在si步骤里第一次用到，当时很头大，如果是py的话会很简单，直接转化为整形就好。于是上网搜了一下，怎么把数字字符转换成整形，得到atoi。</p>
+<p>在见识过atoi的爽之后，在eval函数里也脑抽用了这个，真是方便快捷啊！但是不知道为什么不行，尤其是输出寄存器值和十六进制。</p>
+<p>后来只好DEC，HEX和REG分情况写了。</p>
+<p><em><strong>7.群内交流，受益无穷</strong></em></p>
+<p>因为有好多人写得比我快，然后出现的问题会在群内交流，像我这种吭哧吭哧落在后面的人就受益无穷啦！（感谢先驱！）比如zkr同学遇到的问题，我在试图输出一个十六进制的数时，也会因为第一个数字是0被识别为十进制然后出大错，也是在群友的帮助下顺利解决啦，前面提到的字符转整形也有人问过。</p>
+<p>10.1更新：群内有同学提出了RunTime Error的问题，今天晚上我的p指令在试图输出一个寄存器值的时候会报错，显示错误原因是“run“，群内有热心同学贴出了老师在网站上的总结，原因是没有返回0，检查了一下发现在某些情况下返回了num，修改之后修复了。剩下的问题是*和NEG的实现，预计明天可以写完。</p>
+<p>10.2更新：今天的聊天记录又帮助了苦苦坐牢的我…其实从早上到此刻写我的心得体会之前的一段时间，我提交的oj结果都是RuntimeError的死亡结果。<del>好在有人和我一样</del>,第一个问题是oj显示Segmentation fault，我进行了自行解决，在Wikipedia上查出加粗的一行字：<strong>数组访问越界也可能产生这个错误</strong>，所以目之所及的所有数组的长度都改成了1551<del>（debug想哭的心情）</del>,然后解决掉了问题。</p>
+<p>然后就是仿佛大家都会出错的Assert Fail错误，assert fail出现的原因就是存在没有考虑到的情况，所以导致了错误输出。第一个assert fail时我的错误是忽略了空格也会被识别，解决是识别到空格时通过将nr_token-1来忽略这个空格。第二个assert fail出现的原因纯属是因为粗心！在最后识别“*”和“-”时，忘记了“（”这个情况，好在还能找出来并进行修正了。</p>
+<h4 id="三、必答题"><a href="#三、必答题" class="headerlink" title="三、必答题"></a>三、必答题</h4><p><em><strong>(1)从状态机的视角理解程序运行</strong></em></p>
+<p>画出状态机：</p>
+<p>(0, x, x) -&gt; (1, 0, x) -&gt; (2, 0, 0) -&gt; (3, 0, 1) -&gt; (4, 1, 1) -&gt; (5, 1, 2) -&gt; (6, 3, 2) -&gt;…-&gt; ( 201, 4950, 100) -&gt; (202, 5050, 100)</p>
+<p>(按照要求只画出了循环最初两步和最后两步)</p>
+<p><em><strong>(2)尝试通过目录定位关注的问题</strong></em></p>
+<p>（选择的不是x86也看这个手册吗？迷糊。。。还是我又错过了什么重要的东西？）</p>
+<p>因为没有接触过selector，就上网搜索了一下选择器的概念，然后去目录里找了找相关内容</p>
+<p>通过阅读目录可以确定我要阅读的地方是：</p>
+<p>（也许是？）Chapter 7 – Multitasking</p>
+<p><em><strong>(3) 理解基础设施</strong></em></p>
+<p>我将会在调试上花费的时间是 $500\times0.9\times30\times20=270000s=75h$，</p>
+<p>如果使用简易调试器，花费的时间是$500\times0.9\times10\times20=90000s=25h$，</p>
+<p>帮助我节省了$50h$的时间。</p>
+<p><em><strong>(4)RTFM</strong></em> </p>
+<p>在riscv32的手册中查阅，我选择的手册是RISC-V-Reader-Chinese-v2p1。</p>
+<ul>
+<li><p><strong>Q:</strong> riscv32有哪几种指令格式？</p>
+<p><strong>A:</strong> p16-17</p>
+</li>
+<li><p><strong>Q:</strong> LUI 指令的行为是什么？</p>
+<p><strong>A:</strong> p19</p>
+</li>
+<li><p><strong>Q:</strong> mstatus寄存器的结构是怎么样的？</p>
+<p><strong>A:</strong> p20-22</p>
+</li>
+</ul>
+<p><em><strong>(5)shell命令</strong></em></p>
+<p>完成PA1之后，nemu/目录下的所有.c和.h的文件总共有23421行代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*[.h/.c]&quot; | xargs wc -l</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>做PA1之前框架代码有23031行代码。</p>
+<p>所以在PA1中写了390行代码。</p>
+<p>Make file改动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COUNT_LINE := $(shell find . -name &quot;*[.h/.c]&quot; | xargs wc -l)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>除去空行之外，共有20242行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*[.h/.c]&quot; | xargs grep &quot;^.&quot; | wc -l</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p><em><strong>(6)RTFM</strong></em></p>
+<p>-Wall：用于让gcc产生警告信息并全部打开。</p>
+<p>-Werror：用于让gcc将所有警告当成错误处理。</p>
+<p>作用：尽可能发现代码中的问题。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hanny-y.github.io/2021/10/04/hello-world/" data-id="ckucdyime0001s972c2cwgnvu" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://hanny-y.github.io/2021/10/04/hello-world/" data-id="ckuce6r590001wg724sanh8lv" data-title="PA1实验报告" class="article-share-link">Share</a>
       
       
       
@@ -159,7 +244,7 @@
           </li>
         
           <li>
-            <a href="/2021/10/04/hello-world/">Hello World</a>
+            <a href="/2021/10/04/hello-world/">PA1实验报告</a>
           </li>
         
       </ul>
