@@ -207,7 +207,11 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
@@ -426,6 +430,7 @@
         
         
             
+            
         
         <article class="index-post">
             <a class="abstract-title" href="/2021/10/09/IntroAI-HW1/">
@@ -433,17 +438,20 @@
                 <span class="abstract-title-text">IntroAI HW1</span>
             </a>
             <div class="abstract-content">
-                摘要本次作业使用一种推箱子游戏“Bait”，通过深度优先搜索、受限深度优先搜索和最佳优先搜索(A*) 分别自主实现推箱子游戏，并尝试理解通过 MCTS 控制游戏。本文主要介绍了前三种算法的自主实现过程，包括实验思路和具体实现，并尝试对第四种控制方式进行理解和简要介绍。
-关键词深度受限搜索;受限深度优先搜索;最佳优先搜索;蒙特卡洛树搜索;
-1    引言GVG-AI 框架是为了通用人工智能的研究开发的游戏框架，基于 VGDL（视觉游戏描述语言），能够构成多种游戏。 
-2    自主实现2.1 深度优先搜索2.1.1 算法介绍
-DFS 是一种用于遍历或搜索树或图的算法。这个算法会尽可能深的搜...
+                <h5 id="摘要"><a href="#摘要" class="headerlink" title="摘要:"></a>摘要:</h5><p>本次作业使用一种推箱子游戏“Bait”，通过深度优先搜索、受限深度优先搜索和最佳优先搜索(A*) 分别自主实现推箱子游戏，并尝试理解通过 MCTS 控制游戏。本文主要介绍了前三种算法的自主实现过程，包括实验思路和具体实现，并尝试对第四种控制方式进行理解和简要介绍。</p>
             </div>
             <!-- read more -->
             
+                <div class="abstract-read-more-button">
+                    <a href="/2021/10/09/IntroAI-HW1/">
+                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+            
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/10/09">
+                <div class="abstract-date" title="Last updated: 2021/10/10">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/10/09</span>
                 </div>
                 <!-- tags -->
@@ -479,7 +487,7 @@ DFS 是一种用于遍历或搜索树或图的算法。这个算法会尽可能�
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/10/04">
+                <div class="abstract-date" title="Last updated: 2021/10/10">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/10/04</span>
                 </div>
                 <!-- tags -->
