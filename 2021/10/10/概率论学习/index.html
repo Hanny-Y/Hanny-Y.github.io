@@ -22,12 +22,12 @@
     <meta name="description" content="记录了“概率论与数理统计”课程的学习。 教材《概率论与数理统计（浙大第四版）》">
 <meta property="og:type" content="article">
 <meta property="og:title" content="概率论学习">
-<meta property="og:url" content="https://hanny-y.github.io/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:url" content="https://hanny-y.github.io/2021/10/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hanny&#39;s Blog">
 <meta property="og:description" content="记录了“概率论与数理统计”课程的学习。 教材《概率论与数理统计（浙大第四版）》">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-10T04:33:40.000Z">
-<meta property="article:modified_time" content="2021-10-16T02:47:04.008Z">
+<meta property="article:modified_time" content="2021-10-16T08:37:28.780Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -328,7 +328,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">878</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.1k</span>Reading time: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -492,7 +492,7 @@
         <p>记录了“概率论与数理统计”课程的学习。</p>
 <p>教材《概率论与数理统计（浙大第四版）》</p>
 <span id="more"></span>
-<h4 id="讲义复盘：">讲义复盘：</h4>
+<h4 id="离散型随机变量">离散型随机变量</h4>
 <p><em><strong>随机变量：</strong></em> 实验结果用数值表示时，可以引入一个变量来表示随机事件。</p>
 <p><em><strong>离散型随机变量：</strong></em> 随机变量X的值是有限的或者无限可列的。</p>
 <p><em><strong>分布列：</strong></em> $p_k = P(X=x_k),k=1,2,…,$</p>
@@ -540,15 +540,133 @@
 <p>泊松分布：分布列为$P(X=k)=\lambda e^{-\lambda}/k!$，记为X~P($\lambda$),且$E(X)=\lambda,Var(x)=\lambda$</p>
 </li>
 </ul>
+<h4 id="连续型随机变量">连续型随机变量</h4>
+<p><em><strong>分布函数：</strong></em></p>
+<p>给定任意随机变量X和实数$x\in (-\infty, +\infty)$，函数$F(x)=P(X\leq x)$称为随机变量$X$的分布函数，分布函数的本质是概率。</p>
+<p>对任意实数$x_1&lt;x_2$，有$P(x_1&lt;X\leq x_2)=P(X\leq x_2)-P(X\leq x_1)=F(x_2)-F(x_1)$</p>
+<p>性质：</p>
+<ul>
+<li>单调性：若$x_1&lt;x_2$，则$F(x_1)\leq F(x_2)$</li>
+<li>规范性：$F(x)\in [0,1]$，且$F(-\infty)=lim_{x\rightarrow -\infty}F(x)=0,F(+\infty)=lim_{x\rightarrow +\infty}F(x)=1$</li>
+<li>右连续性：$F(x+0)=lim_{\Delta x\rightarrow0}+F(x+\Delta x)=F(x)$</li>
+<li>分布函数可以由上述性质完全刻画。</li>
+</ul>
+<p>可以用分布函数表示随机事件的概率：</p>
+<p>$P(X&lt;a)=lim_{x\rightarrow a^-}F(x)$</p>
+<p>…</p>
+<p><em><strong>概率密度函数：</strong></em></p>
+<p>设随机变量$X$的分布函数为$F(x)$，如果存在可积函数$f(x)$，使得对任意实数$x$有$F(x)=\displaystyle \int^{x}_{-\infty}{f(t)dt}$成立，则称$X$为连续型随机变量，函数$f(x)$为随机变量$X$的概率密度函数。</p>
+<p>性质：</p>
+<ul>
+<li>
+<p>概率密度函数$f(x)$满足非负性$f(x)\geq 0$和规范性$\displaystyle \int^{+\infty}_{-\infty}{f(t)dt}=1$</p>
+<p>概率密度函数可由函数的非负性和规范性完全刻画。</p>
+<p>对任意$x_1\leq x_2$，有$P(x_1&lt;X\leq x_2)=F(x_2)-F(x_1)=\displaystyle \int^{x_2}_{x_1}{f(t)dt}$</p>
+<p>概率密度的几何解释：随机变量$X$落入区间$(x_1,x_2]$的概率等于$x$轴，$x=x_1,x=x_2$和$y=f(x)$所围成的曲边梯形的面积。</p>
+</li>
+<li>
+<p>对连续随机变量X，其分布函数$F(x)$在整个实数域上连续；若$f(x)$在x点连续，则$F(x)$在$x$的点可导，且$F’(x)=f(x)$。</p>
+</li>
+<li>
+<p>对连续型随机变量$X$和常数$x\in (-\infty,+\infty)$，有$P(X=x)=0$</p>
+</li>
+</ul>
+<p><em><strong>连续随机变量的期望和方差</strong></em></p>
+<p>设连续随机变量$X$的概率密度函数为$f(x)$，若积分$\int^{+\infty}<em>{-\infty}{xf(x)dx}$绝对收敛，称$\int^{+\infty}</em>{-\infty}{xf(x)dx}$为随机变量$X$的期望，记为$E(X)$，即</p>
+<p>$E(X)=\displaystyle \int^{+\infty}_{-\infty}{tf(t)dt}$</p>
+<p>性质：</p>
+<ul>
+<li>
+<p><strong>线性关系：</strong> 对任意常数a,b和随机变量$X$，有$E(aX+b)=aE(X)+b$</p>
+<p>对常数$c_1,\cdots,c_n$和连续函数$g_1(x),\cdots,g_n(x)$，有$E(\sum_{i=1}^{n}c_ig_i(X))=\sum_{i=1}^{n}c_iE(g_i(X))$</p>
+</li>
+<li>
+<p>设随机变量$X$的密度函数为$f(x)$，且$\int^{+\infty}<em>{-\infty}{g(t)f(t)dt}$绝对可积，则$E(g(X))=\displaystyle \int^{+\infty}</em>{-\infty}{g(t)f(t)dt}$</p>
+</li>
+<li>
+<p>**Jensen不等式：**对连续随机变量$X$和凸函数$f(x)$有$f(E(X))\leq E[f(X)]$;对连续随机变量$X$和凹函数$f(x)$有$f(E(X))\geq E[f(X)]$</p>
+</li>
+<li>
+<p>对非负的随机变量$X$，有$E[X]=\int^{\infty}_{0}{P(X&gt;t)dt}$.</p>
+<ul>
+<li>
+<p>对随机变量$X$和连续函数$g(x)$，有$E(g(X))=\displaystyle \int^{+\infty}<em>{-\infty}{g(x)f(x)dx}=\displaystyle \int^{+\infty}</em>{0}{P(g(X)&gt;t)dt}$</p>
+</li>
+<li>
+<p>***方差：***设连续随机变量$X$的概率密度为$f(x)$，若$\int^{+\infty}<em>{-\infty}{(t-E(x))^2f(t)dt}$收敛，称为随机变量$X$的方差，记为$Var(X)$，即：$Var(X)=E(X-E(X))^2=\displaystyle \int^{+\infty}</em>{-\infty}{(t-E(X))^2f(t)dt}$</p>
+<p>其等价性定义为：$Var(X)=E(X-E(X))^2=E(X^2)-(E(X))^2=\int^{+\infty}<em>{-\infty}{t^2f(t)dt}-(\int^{+\infty}</em>{-\infty}{tf(t)dt})^2$</p>
+</li>
+<li>
+<p>对任意常数$a,b$和随机变量$X$，有$Var(aX+b)=a^2Var(X)$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><em><strong>常用的连续型随机变量</strong></em></p>
+<ul>
+<li>
+<p><em><strong>均匀分布</strong></em></p>
+<p>概率密度为：<br>
+$$<br>
+f(x)=\left{<br>
+\begin{aligned}<br>
+\frac{1}{b-a};;x\in[a,b] \<br>
+0   ;;;;;;;;;;;;;其他 \<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+对任意$x\in(-\infty,+\infty)$有$f(x)\geq 0$，且$\displaystyle \int^{+\infty}<em>{-\infty}{f(t)dt}=\displaystyle \int^{a}</em>{-\infty}{f(t)dt}+\displaystyle \int^{b}<em>{a}{f(t)dt}+\displaystyle \int^{+\infty}</em>{b}{f(t)dt}=\displaystyle \int^{b}_{a}{\frac{1}{b-a}dt}=1$</p>
+<p>几何解释：$X$落入$[a,b]$内任一子区间的概率与该区间的长度成正比，与该区间的位置无关。</p>
+<p>分布函数：<br>
+$$<br>
+f(x)=\left{<br>
+\begin{aligned}<br>
+0 ,x\leq a\<br>
+\frac{x-a}{b-a},a&lt;x&lt;b \<br>
+1,x\geq b \<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+期望和方差：$E(X)=\frac{a+b}{2},Var(X)=\frac{(b-a)^2}{12}$</p>
+</li>
+<li>
+<p><em><strong>指数分布</strong></em></p>
+<p>密度函数：<br>
+$$<br>
+f(x)=\left{<br>
+\begin{aligned}<br>
+\lambda e^{-\lambda x},x\geq 0 \<br>
+0,其他 \<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+一般用于时间等待等实际问题。</p>
+<p>$\displaystyle \int^{+\infty}<em>{-\infty}{f(t)dt}=\displaystyle \int^{+\infty}</em>{0}{\lambda e^{-\lambda t}dt}=[-e^{-\lambda t}]_{0}^{+\infty}=1$</p>
+<p>分布函数：</p>
+<p>当$x\leq 0$时有$F(x)=\displaystyle \int^{x}_{0}{\lambda e^{-\lambda t}dt}=1-e^{-\lambda x}$</p>
+<p>期望与方差：</p>
+<p>$E(X)=\frac{1}{\lambda},Var(X)=\frac{1}{\lambda ^2}$</p>
+<p>无记忆性：</p>
+<p>给定常数$\lambda &gt; 0$，若随机变量$X～e(\lambda)$，则对任意$s&gt;0,t&gt;0$，有$P(X&gt;s+t|X&gt;t)=P(X&gt;s)$</p>
+<p>是唯一具有无记忆性的连续型随机变量。</p>
+</li>
+<li>
+<p><em><strong>正态分布</strong></em></p>
+<p>概率密度：</p>
+<p>$f(x)=\frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{x^2}{2\sigma^2}}$</p>
+<p>标准正态分布密度函数：</p>
+<p>$f(x)=\frac{1}{\sqrt 2\pi}e^{-\frac{x^2}{2}}$</p>
+</li>
+</ul>
 
     </article>
     <!-- license -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
-            <p>Link：<a href="https://hanny-y.github.io/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/">https://hanny-y.github.io/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/</a>
-            <p>Publish date：<a href="https://hanny-y.github.io/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/">October 10th 2021, 12:33:40 pm</a>
-            <p>Update date：<a href="https://hanny-y.github.io/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/">October 16th 2021, 10:47:04 am</a>
+            <p>Link：<a href="https://hanny-y.github.io/2021/10/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%AD%A6%E4%B9%A0/">https://hanny-y.github.io/2021/10/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%AD%A6%E4%B9%A0/</a>
+            <p>Publish date：<a href="https://hanny-y.github.io/2021/10/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%AD%A6%E4%B9%A0/">October 10th 2021, 12:33:40 pm</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2021/10/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%AD%A6%E4%B9%A0/">October 16th 2021, 4:37:28 pm</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -712,7 +830,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B2%E4%B9%89%E5%A4%8D%E7%9B%98%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">讲义复盘：</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">离散型随机变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">连续型随机变量</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -787,22 +905,6 @@
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -856,7 +958,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">10/10</span>
-            <a class="archive-post-title" href="/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/">概率论学习</a>
+            <a class="archive-post-title" href="/2021/10/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%AD%A6%E4%B9%A0/">概率论学习</a>
         </li>
     
         
