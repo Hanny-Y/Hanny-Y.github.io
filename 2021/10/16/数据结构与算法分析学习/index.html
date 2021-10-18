@@ -27,7 +27,7 @@
 <meta property="og:description" content="记录了DS&amp;Alg课程的学习。 教材：《算法导论》、Jeff《算法》 目录根据zcd的ppt分类。 课堂录音，笔记选用Ipad的Goodnote记录（随缘），课后复习采用博客书写。 算法，我的爹。上课的时候，我的内心be like：“哇！好神奇！” ”原来如此。“，课后写PS和OJ的时候我的内心只剩下mmp。 探究如何用一把螺丝刀造出大火箭。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-16T11:52:59.000Z">
-<meta property="article:modified_time" content="2021-10-16T16:12:26.040Z">
+<meta property="article:modified_time" content="2021-10-18T09:10:38.221Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -328,7 +328,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                        <span>Word count: <span class="post-count word-count">3.2k</span>Reading time: <span class="post-count reading-time">15 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -744,6 +744,280 @@
 <p>因为是十进制数，所以需要十个桶就足够：$\Theta(1)$</p>
 </li>
 </ul>
+<h3 id="Trees">Trees</h3>
+<h4 id="Introduction">Introduction</h4>
+<p>a tree is either empty, or has a root connecting to the roots of zero or more non-empty subtrees.</p>
+<p>连接的、非循环的无向图。</p>
+<p>我们常使用的树是有根树。</p>
+<ul>
+<li>
+<p><em><strong>树的递归定义</strong></em></p>
+<p>A tree is either empty, or has a root r that connects to the roots of zero or more non-empty (sub)trees.</p>
+<ul>
+<li>Root of each subtree is a child of r, and r is the parent of each subtree’s root.</li>
+<li>Nodes with no children are leaves.</li>
+<li>Nodes with same parent are siblings.</li>
+<li>If a node v is on the path from r to u, then v is an ancestor of u,and u is a descendant of v.</li>
+</ul>
+</li>
+<li>
+<p><em><strong>More terminology</strong></em></p>
+<ul>
+<li>The depth of a node u is the length of the path from u to r.</li>
+<li>The height of a node u is the length of the longest path from u to one of its descendants.
+<ul>
+<li>Height of a leaf node is zero.</li>
+<li>Height of a non-leaf node is the maxheight of its children plus one.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Binary-Trees">Binary Trees</h4>
+<p>每个节点至多有两个子节点。left child and right child</p>
+<ul>
+<li>
+<p><em><strong>full binary tree</strong></em></p>
+<p>对于每个节点，要么没有子节点，要么有两个子节点。</p>
+<p>满二叉树要么只有一个根节点，要么根的两个子树都是满二叉树。</p>
+</li>
+<li>
+<p><em><strong>complete binary tree</strong></em></p>
+<p>除了最后一层每一层都有最多的节点，且最后一层尽可能的在树的左半边。</p>
+<p>可以用数组表示。</p>
+</li>
+<li>
+<p><em><strong>Perfect binary tree</strong></em></p>
+<p>所有的非叶子的节点都有两个子节点，并且所有的叶子节点都有相同的深度。</p>
+<p>ps：CLRS call perfect binary trees as complete binary trees.</p>
+</li>
+<li>
+<p><em><strong>Representing binary trees</strong></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">  Data data; <span class="comment">//保存的数据</span></span><br><span class="line">  Node *parent; <span class="comment">//父节点的指针</span></span><br><span class="line">  Node *left; <span class="comment">//指向左边子节点的指针</span></span><br><span class="line">  Node *right; <span class="comment">//指向右边子节点的指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><em><strong>Representing general trees</strong></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">  Data data;</span><br><span class="line">  Node *parent;</span><br><span class="line">  Node *firstChild; <span class="comment">//指向从左往右的第一个子节点的指针</span></span><br><span class="line">  Node *nextSibling; <span class="comment">//节点本身下一个兄弟节点的指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Tree-Traversal">Tree Traversal</h4>
+<ul>
+<li>
+<p><em><strong>Preorder traversal</strong></em></p>
+<p>从根部节点开始访问，然后访问子节点下的子树。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PreorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  Visit(r) <span class="comment">//访问root</span></span><br><span class="line">  <span class="keyword">for</span> (each child u of r)</span><br><span class="line">    PreorderTrav(u) <span class="comment">//对子节点下子树进行递归</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><em><strong>Postorder traversal</strong></em></p>
+<p>先访问子节点下的子树，然后访问根部节点。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PostorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  <span class="keyword">for</span> (each child u of r)</span><br><span class="line">    PostorderTrav(u)</span><br><span class="line">  Visit(r)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><em><strong>Inorder traversal</strong></em></p>
+<p>先访问左子节点下的子树，接着访问根部节点，最后访问右边子节点下的子树。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">InorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  InorderTrav(r.left)</span><br><span class="line">  Visit(r)</span><br><span class="line">  InorderTrav(r.right)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Complexity-of-recursive-traversal">Complexity of recursive traversal</h4>
+<ul>
+<li>
+<p><em><strong>Time complexity</strong></em></p>
+<p>$\Theta(n)$ to process every node.</p>
+</li>
+<li>
+<p><em><strong>Space complexity</strong></em></p>
+<p>$O(n)$ as the most depth of call stack is $\Theta(n)$</p>
+</li>
+</ul>
+<h4 id="Directory-Listing">Directory Listing</h4>
+<p>Application of preorder traversal.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ListDir(obj, depth):</span><br><span class="line"><span class="keyword">if</span> (obj != <span class="literal">NULL</span>)</span><br><span class="line">  PrintName(obj,depth)</span><br><span class="line">  <span class="keyword">if</span> (IsDirectory(obj))</span><br><span class="line">    <span class="keyword">for</span> (each obj in directory)</span><br><span class="line">      ListDir(obj,depth+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Iterative-tree-traversal">Iterative tree traversal</h3>
+<p>simulate the recursive process with the help of a <strong>stack</strong>.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Frame</span> &#123;</span></span><br><span class="line">  Node *node;</span><br><span class="line">  <span class="keyword">bool</span> visit; <span class="comment">//设定bool值记录是否被访问过</span></span><br><span class="line">  Frame(Node* n,<span class="keyword">bool</span> v) &#123;</span><br><span class="line">    node = n;</span><br><span class="line">    visit = v;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PreorderTravIter(root):</span><br><span class="line">Stack s</span><br><span class="line">s.push(Frame(root,<span class="literal">false</span>))</span><br><span class="line"><span class="keyword">while</span> (!s.empty())</span><br><span class="line">  f = s.pop()</span><br><span class="line">  <span class="keyword">if</span> (f.node != <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">if</span> (f.visit)</span><br><span class="line">      Visit(f.node)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">for</span> (each child u of f.node)</span><br><span class="line">        s.push(Frame(u,<span class="literal">false</span>))</span><br><span class="line">      s.push(Frame(f.node,<span class="literal">true</span>))</span><br><span class="line">        </span><br><span class="line">InorderTravIter(root):</span><br><span class="line">Stack s</span><br><span class="line">s.push(Frame(root,<span class="literal">false</span>))</span><br><span class="line"><span class="keyword">while</span> (!s.empty())</span><br><span class="line">  f = s.pop()</span><br><span class="line">  <span class="keyword">if</span> (f.node != <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">if</span> (f.visit)</span><br><span class="line">      Visit(f.node)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      s.push(Frame(f.node-&gt;right,<span class="literal">false</span>))</span><br><span class="line">      s.push(Frame(f.node,<span class="literal">true</span>))</span><br><span class="line">      s.push(Frame(f.node-&gt;left,<span class="literal">false</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><em><strong>Time complexity</strong></em></p>
+<p>$\Theta(n)$</p>
+</li>
+<li>
+<p><em><strong>Space complexity</strong></em></p>
+<p>$O(n)$</p>
+<p>录音</p>
+</li>
+</ul>
+<h4 id="Level-order-traversal-of-trees">Level-order traversal of trees</h4>
+<p>联想归并排序：Iterative MergeSort is somewhat like a level-order traversal of the recursion tree, but bottom-up…</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LevelorderTrav(r):</span><br><span class="line">Queue q</span><br><span class="line">q.add(r)</span><br><span class="line"><span class="keyword">while</span> (!q.empty())</span><br><span class="line">  node = q.remove()</span><br><span class="line">  <span class="keyword">if</span> (node != <span class="literal">NULL</span>)</span><br><span class="line">    Visit(node)</span><br><span class="line">    q.add(node-&gt;left)</span><br><span class="line">    q.add(node-&gt;right)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><em><strong>Time complexity</strong></em></p>
+<p>$\Theta(n)$</p>
+</li>
+<li>
+<p><em><strong>Space comlexity</strong></em></p>
+<p>$\Theta(n)$ in the worst case.</p>
+</li>
+</ul>
+<h3 id="Search-Trees">Search Trees</h3>
+<h4 id="Set-ADT">Set ADT</h4>
+<p>used to represent a set of elements with (usually distinct) key values.</p>
+<p>Each element has a <em>key</em> field and a <em>data</em> field.</p>
+<ul>
+<li>
+<p><em><strong>Operation</strong></em></p>
+<ul>
+<li>Search(S, k): Find an element in S with key value k.</li>
+<li>Insert(S, x): Add x to S. (What if element with same key exists?)</li>
+<li>Remove(S, x): Remove element x from S, assuming x is in S.</li>
+<li>Remove(S, k): Remove element with key value k from S.</li>
+</ul>
+<p>如果是有序元素：</p>
+<ul>
+<li>Min(S)\Max(S): Find minimum/maximum element in S.</li>
+<li>Successor(S, x) or Successor(S, k): Find smallest element in S that is larger than x.key (or key k).</li>
+<li>Predecessor(S, x) or Predecessor(S, k): Find largest element in S that is smaller than x.key (or key k).</li>
+</ul>
+</li>
+</ul>
+<h4 id="Binary-Search-Tree">Binary Search Tree</h4>
+<p>每个节点存储一个元素且满足BST propertity。</p>
+<h4 id="Search-in-BST">Search in BST</h4>
+<p>有一个BST根部节点$x$和key $k$，如何通过$k$找到一个元素。</p>
+<ul>
+<li>如果$x.key = k$就直接返回$x$</li>
+<li>如果$x.key&gt;k$就在$x.left$下的子树下进行递归。</li>
+<li>如果$x.key&lt;k$就在$x.right$下的子树下进行递归。</li>
+</ul>
+<p>是一个尾递归的过程，所以可以用迭代表示出来。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">BSTSearch(x,k):</span><br><span class="line"><span class="keyword">if</span> (x==<span class="literal">NULL</span> <span class="keyword">or</span> x.key==k) <span class="comment">//根部为空或者就是要找的元素</span></span><br><span class="line">  <span class="keyword">return</span> x</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (x.key&gt;k) <span class="comment">//根据BST property选择一边进行递归</span></span><br><span class="line">  <span class="keyword">return</span> BSTSearch(x.left,k)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="keyword">return</span> BSTSearch(x.right,k)</span><br><span class="line">  </span><br><span class="line">BSTSearchIter(x,k):</span><br><span class="line"><span class="keyword">while</span> (x!=<span class="literal">NULL</span> <span class="keyword">and</span> x.key!=k)</span><br><span class="line">  <span class="keyword">if</span> (x.key&gt;k)</span><br><span class="line">    x = x.left</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    x = x.right</span><br><span class="line"><span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><em><strong>Complexity</strong></em></p>
+<p>$\Theta(h)$ where ℎ is the height of the BST.</p>
+<ul>
+<li>
+<p>How large can h be in an n-node BST?</p>
+<p>$\Theta(n)$ When BST is like a path\line.</p>
+</li>
+<li>
+<p>How small can h be in an n-node BST?</p>
+<p>$\Theta(logn)$ When BST is well-balanced.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Min-and-Max-in-BST">Min and Max in BST</h4>
+<ul>
+<li>
+<p><em><strong>Find a min</strong></em></p>
+<p>向左走到底。</p>
+</li>
+<li>
+<p><em><strong>Find a max</strong></em></p>
+<p>向右走到底。</p>
+</li>
+<li>
+<p><em><strong>Time complexity</strong></em></p>
+<p>$\Theta(h)$ In the worst case.</p>
+</li>
+</ul>
+<h4 id="Successor-in-BST">Successor in BST</h4>
+<ul>
+<li>
+<p><em><strong>BSTSuccessor(x)</strong></em></p>
+<p>Find the smallest element in the BST with key value larger than x.key.</p>
+<ul>
+<li>
+<p>如果右边子树非空，右边子树中最小的元素就是结果。</p>
+</li>
+<li>
+<p>如果右边子树为空，结果就是离x最近而且左子节点也是x祖先节点的祖先节点。</p>
+</li>
+<li>
+<pre><code class="language-c">BSTSuccessor(x):
+if (x.right!=NULL)
+  return BSTMin(x.right)
+y = x.parent
+while (y!=NULL and y.right==x)
+  x = y
+  y = y.parent
+return y
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>Time complexity</strong></em></p>
+<p>$\Theta(h)$ in the worst case.</p>
+</li>
+</ul>
+<h4 id="Insert-in-BST">Insert in BST</h4>
+<ul>
+<li>
+<p><em><strong>BSTInsert(T, z)</strong></em></p>
+<p>搜索在叶子结点处结束，将z作为叶子结点的左右子节点。</p>
+</li>
+<li>
+<p><em><strong>Time complexity</strong></em></p>
+<p>$\Theta(h)$</p>
+</li>
+</ul>
+<h4 id="Remove-in-BST">Remove in BST</h4>
+<ul>
+<li>
+<p><em><strong>BSTRemove(T, z)</strong></em></p>
+<ul>
+<li>
+<p>Case 1: z没有子节点。</p>
+<p>直接移除z节点。($\Theta(1)$)</p>
+</li>
+<li>
+<p>Case 2: z只有一个子节点。</p>
+<p>Elevate subtree rooted at z’s single child to take z’s position.($O(h)$)</p>
+</li>
+<li>
+<p>Case 3: z有两个子节点。</p>
+<ul>
+<li>Case a: z的右节点的左节点为空</li>
+<li>Case b: z的右节点的左节点非空</li>
+</ul>
+<p>Replace node z with min value node in subtree rooted at z.rigℎt.</p>
+<p>Replace node z with <strong>BSTSuccessor(z)</strong></p>
+<p>BSTSuccessor(z) can be: r if r.left=NULL; BSTMin(r.left) if r.left≠NULL</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Height-of-BST">Height of BST</h4>
+<p>The expected height of a randomly built BST is O(logn).</p>
+<h4 id="Treap">Treap</h4>
+<p>A Treap is a binary tree in which each node has a key value, and a priority value.</p>
+<ul>
+<li>
+<p>The key values must satisfy the BST-property</p>
+<p>左边小于右边。</p>
+</li>
+<li>
+<p>The priority values must satisfy the MinHeap-property</p>
+<p>顶部最小。</p>
+</li>
+<li>
+<p><em><strong>Insert in Treap</strong></em></p>
+<ul>
+<li>给待添加节点分配随机权重。</li>
+<li>根据BST-property插入节点。</li>
+<li>维护Min-heap的性质</li>
+</ul>
+</li>
+<li>
+<p><em><strong>Remove in Treap</strong></em></p>
+<ul>
+<li>将节点下沉直到成为叶子节点。</li>
+<li>移除叶子。</li>
+</ul>
+</li>
+</ul>
 
     </article>
     <!-- license -->
@@ -752,7 +1026,7 @@
             <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
             <p>Link：<a href="https://hanny-y.github.io/2021/10/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/">https://hanny-y.github.io/2021/10/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/</a>
             <p>Publish date：<a href="https://hanny-y.github.io/2021/10/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/">October 16th 2021, 7:52:59 pm</a>
-            <p>Update date：<a href="https://hanny-y.github.io/2021/10/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/">October 17th 2021, 12:12:26 am</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2021/10/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/">October 18th 2021, 5:10:38 pm</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -911,7 +1185,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sorting"><span class="toc-number">1.</span> <span class="toc-text">Sorting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Characteristics-of-sorting-algorithms"><span class="toc-number">1.1.</span> <span class="toc-text">Characteristics of sorting algorithms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Selection-Sort"><span class="toc-number">1.2.</span> <span class="toc-text">Selection Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bubble-Sort"><span class="toc-number">1.3.</span> <span class="toc-text">Bubble Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Quick-Sort"><span class="toc-number">1.4.</span> <span class="toc-text">Quick Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Upper-bound-and-Lower-bond"><span class="toc-number">1.5.</span> <span class="toc-text">Upper bound and Lower bond</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bucket-Sort"><span class="toc-number">1.6.</span> <span class="toc-text">Bucket Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Radix-Sort"><span class="toc-number">1.7.</span> <span class="toc-text">Radix Sort</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sorting"><span class="toc-number">1.</span> <span class="toc-text">Sorting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Characteristics-of-sorting-algorithms"><span class="toc-number">1.1.</span> <span class="toc-text">Characteristics of sorting algorithms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Selection-Sort"><span class="toc-number">1.2.</span> <span class="toc-text">Selection Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bubble-Sort"><span class="toc-number">1.3.</span> <span class="toc-text">Bubble Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Quick-Sort"><span class="toc-number">1.4.</span> <span class="toc-text">Quick Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Upper-bound-and-Lower-bond"><span class="toc-number">1.5.</span> <span class="toc-text">Upper bound and Lower bond</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bucket-Sort"><span class="toc-number">1.6.</span> <span class="toc-text">Bucket Sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Radix-Sort"><span class="toc-number">1.7.</span> <span class="toc-text">Radix Sort</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trees"><span class="toc-number">2.</span> <span class="toc-text">Trees</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Introduction"><span class="toc-number">2.1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Trees"><span class="toc-number">2.2.</span> <span class="toc-text">Binary Trees</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tree-Traversal"><span class="toc-number">2.3.</span> <span class="toc-text">Tree Traversal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Complexity-of-recursive-traversal"><span class="toc-number">2.4.</span> <span class="toc-text">Complexity of recursive traversal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Directory-Listing"><span class="toc-number">2.5.</span> <span class="toc-text">Directory Listing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterative-tree-traversal"><span class="toc-number">3.</span> <span class="toc-text">Iterative tree traversal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Level-order-traversal-of-trees"><span class="toc-number">3.1.</span> <span class="toc-text">Level-order traversal of trees</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Search-Trees"><span class="toc-number">4.</span> <span class="toc-text">Search Trees</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-ADT"><span class="toc-number">4.1.</span> <span class="toc-text">Set ADT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Search-Tree"><span class="toc-number">4.2.</span> <span class="toc-text">Binary Search Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search-in-BST"><span class="toc-number">4.3.</span> <span class="toc-text">Search in BST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Min-and-Max-in-BST"><span class="toc-number">4.4.</span> <span class="toc-text">Min and Max in BST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Successor-in-BST"><span class="toc-number">4.5.</span> <span class="toc-text">Successor in BST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Insert-in-BST"><span class="toc-number">4.6.</span> <span class="toc-text">Insert in BST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remove-in-BST"><span class="toc-number">4.7.</span> <span class="toc-text">Remove in BST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Height-of-BST"><span class="toc-number">4.8.</span> <span class="toc-text">Height of BST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Treap"><span class="toc-number">4.9.</span> <span class="toc-text">Treap</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
