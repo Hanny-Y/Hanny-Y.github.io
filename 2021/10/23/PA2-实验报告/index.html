@@ -19,22 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="因为老师的声音太催眠，所以果断选择在正课划水，课后自学。（狗头 教材：《数据库原理、编程与性能》">
+    <meta name="description" content="实验进度 10.23：开始艰难地RTFSC，这到底在讲什么？我要做什么？？？ 10.26:尝试做点什么 实验过程 RTFSC 在~&#x2F;ics2021&#x2F;nemu&#x2F;include&#x2F;cpu中   Operand   IFDEF #ifdef预处理程序指令检查宏是否由#define定义。 如果是，则执行代码，否则#else代码执行(如果存在)。 在定义结构体时进行宏定义，其作用域从定义处开始直至文件结束。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库学习">
-<meta property="og:url" content="https://hanny-y.github.io/2021/10/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="PA2 实验报告">
+<meta property="og:url" content="https://hanny-y.github.io/2021/10/23/PA2-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="Hanny&#39;s Blog">
-<meta property="og:description" content="因为老师的声音太催眠，所以果断选择在正课划水，课后自学。（狗头 教材：《数据库原理、编程与性能》">
+<meta property="og:description" content="实验进度 10.23：开始艰难地RTFSC，这到底在讲什么？我要做什么？？？ 10.26:尝试做点什么 实验过程 RTFSC 在~&#x2F;ics2021&#x2F;nemu&#x2F;include&#x2F;cpu中   Operand   IFDEF #ifdef预处理程序指令检查宏是否由#define定义。 如果是，则执行代码，否则#else代码执行(如果存在)。 在定义结构体时进行宏定义，其作用域从定义处开始直至文件结束。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-11T01:31:17.000Z">
-<meta property="article:modified_time" content="2021-10-27T15:56:32.256Z">
+<meta property="article:published_time" content="2021-10-23T12:27:59.000Z">
+<meta property="article:modified_time" content="2021-10-26T00:59:42.405Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>数据库学习 · Hanny&#39;s Blog</title>
+    <title>PA2 实验报告 · Hanny&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -263,7 +263,7 @@
                 <a href="/">Hanny&#39;s Blog</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">数据库学习</a>
+                <a href="#" class="post-name">PA2 实验报告</a>
             </div>
         </div>
     
@@ -309,7 +309,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                数据库学习
+                PA2 实验报告
             <!-- 404 -->
             
         </h1>
@@ -328,13 +328,13 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.8k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                        <span>Word count: <span class="post-count word-count">665</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2021/10/11</span>
+                    <span class="post-intro-time">2021/10/23</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -489,140 +489,92 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>因为老师的声音太催眠，所以果断选择在正课划水，课后自学。（狗头</p>
-<p>教材：《数据库原理、编程与性能》</p>
-<span id="more"></span>
-<h3 id="Ch-1-数据库概论">Ch.1 数据库概论</h3>
-<h4 id="数据库用户">数据库用户</h4>
+        <h4 id="实验进度">实验进度</h4>
+<p>10.23：开始艰难地RTFSC，这到底在讲什么？我要做什么？？？</p>
+<p>10.26:尝试做点什么</p>
+<h4 id="实验过程">实验过程</h4>
+<h5 id="RTFSC">RTFSC</h5>
+<p><strong>在~/ics2021/nemu/include/cpu中</strong></p>
 <ul>
 <li>
-<p>最终用户：从键盘输入要查询的信息要求数据库打印（诸如你我）</p>
-<ul>
-<li>临时用户——通过SQL（数据库标准查询语言）访问DBMS的用户</li>
-<li>初级用户——通过菜单访问DBMS的用户</li>
-</ul>
-</li>
-<li>
-<p>应用程序员——编写菜单程序的程序员</p>
-</li>
-<li>
-<p>数据库管理员——管理DBMS的专家</p>
-</li>
-</ul>
-<p><em><strong>我们的目标，成为一个资深临时用户，一个好的应用程序员或者一个DBA。</strong></em></p>
-<h3 id="Ch-2-关系模型">Ch.2 关系模型</h3>
-<h4 id="CAP数据库">CAP数据库</h4>
-<p>由CUSTOMERS,AGENTS,PRODUCTS组成</p>
-<p>CUSTOMERS中的顾客用cid属性作为唯一标识，顾客向代理商（aid）要求购买商品（pid）。每次订货都会在表ORDERS中增加一条订单记录，用ordno唯一标识该记录。</p>
-<h4 id="数据库各部分的命名">数据库各部分的命名</h4>
-<ul>
-<li>表、列、行</li>
-<li>关系（对应表）、元组（对应行）、属性（对应列）</li>
-</ul>
-<p>用表的列名指代该表的属性，用表的行来指代表中的元组。</p>
-<p>数据库是表或者关系的集合。</p>
-<p>表的标题是表的列名的集合，它出现在表的最上部，位于表的第一行，元组的上面。表T的标题用Head(T)标记。</p>
-<p>如：Head(CUSTOMERS)=cid name city discnt</p>
-<p>表的标题也被称为关系模式，组成关系的属性的集合。</p>
-<p>表的行集合，元组集合称为表的内容，表的行数称为表的基数。</p>
-<p>表名以及表的标题是表长期存在的属性，而表的行集合在数量和详细值方面相对而言是时常变化的。</p>
-<h6 id="域和数据类型">域和数据类型</h6>
-<p>空表的结构必须预先声明。</p>
-<p>表中的列必须有特定的类型。</p>
-<p>表T的属性A的取值范围是在集合D上，称D为域。</p>
-<p>域一般被定义为可以被用作表的属性值的常数的集合，在某些编程语言中对应于一些特定的枚举类型。大多数数据库系统都支持小数位数的显式精确度。而不支持有枚举集合组成的类型。</p>
-<p>给表的列加上一个特定类型的意义：对声明在该类型上的两个不同的列的值进行比较。如果类型不同，数据库系统可能会拒绝在不同类型的列之间进行比较。</p>
-<h6 id="表和关系">表和关系</h6>
-<p><em><strong>笛卡儿积</strong></em></p>
-<p>现在关系是一种数学结构，被定义为一个笛卡尔积的子集。表是CP的一个子集，所有行都包含在CP所表示的元组的集合中。且表有时是一个真子集。称符合条件的笛卡尔积重的元素为相关的。表中的每一行都与不同的列上的值相关联，表中的行的完整的集合才被称为一个关系。</p>
-<p>通常不轻易改变列即标题。行可以随时被增加和删除。</p>
-<h6 id="关系规则">关系规则</h6>
+<p><em><strong>Operand</strong></em></p>
 <ul>
 <li>
-<p>第一范式规则：在定义的表中，关系模型坚持不允许含有多值属性（有时称为重复字段）和含有内部结构（比如记录类型）的列。遵守这样规则的表被称为第一范式。</p>
-<p>第一范式规则同时也要求任何列的值都必须是简单类型，不允许包含内部结构。不允许是结构类型。</p>
+<p>IFDEF</p>
+<p><code>#ifdef</code>预处理程序指令检查宏是否由<code>#define</code>定义。 如果是，则执行代码，否则<code>#else</code>代码执行(如果存在)。</p>
+<p>在定义结构体时进行宏定义，其作用域从定义处开始直至文件结束。</p>
 </li>
 <li>
-<p>只能基于内容存取行规则：我们只可以通过行的内容即每一行中所存在的属性值来检测列。</p>
-<p>说明了行是没有次序之分的。列同是。</p>
-</li>
-<li>
-<p>行唯一性规则：要求关系中的任何两个元组的值在同一时刻不能是完全相同的</p>
+<pre><code class="language-c"> rtlreg_t *preg; //直接指向那些已经存在的RTL寄存器
+    word_t imm; //无符号立即数
+    sword_t simm; //有符号立即数
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ***Decode***</span><br><span class="line"></span><br><span class="line">  这个结构体用于存放在执行一条指令过程中的译码和执行信息, 包括指令的PC, 执行方式, 以及操作数的信息.</span><br><span class="line">  </span><br><span class="line">  ```c</span><br><span class="line">  //一个名为Decode的重要的结构</span><br><span class="line">  typedef struct Decode &#123;</span><br><span class="line">    vaddr_t pc; // 指令的pc</span><br><span class="line">    vaddr_t snpc; // static next pc；和dnpc的区别？</span><br><span class="line">    vaddr_t dnpc; // dynamic next pc</span><br><span class="line">    void (*EHelper)(struct Decode *); //指令的执行方式</span><br><span class="line">    Operand dest, src1, src2; // 操作数</span><br><span class="line">    ISADecodeInfo isa; //存放译码信息</span><br><span class="line">    IFDEF(CONFIG_ITRACE, char logbuf[128]);</span><br><span class="line">  &#125; Decode;</span><br></pre></td></tr></table></figure>
+
+</code></pre>
 </li>
 </ul>
-<h6 id="键、超键和空值">键、超键和空值</h6>
-<p>超键：表中的任意两行数据在该列集合上都有唯一的值。</p>
-<p>键：组成键的列的集合中再也没有子集也是表的超键。</p>
-<p><em><strong>表的键：</strong></em></p>
-<p>给定一个表T，标题$Head(T)=A_1…A_n$。表T的一个键，有时也称为候选键，是具有以下特征的一组属性的集合$K=A_{i1}\cdots A_{ik}$：</p>
-<ol>
-<li>如果u,v是T中的两个不同的元组，根据设计者的意图u[K]不等于v[K]；这就是说，集合K中必定存在至少一个列$A_{im}$使得$u[A_{im}]\neq v[A_{im}]$</li>
-<li>没有K的真子集H具有特征1。</li>
-</ol>
-<p>条件一说明行u在属性集K上的值是唯一的。称满足1而不满足条件二的属性集为超键。键就是一个超键。</p>
-<p>表在某一时刻的内容无法告诉我们表中的键是什么，因为键和设计者的意图有关</p>
-<p><em><strong>每个表都至少有一个键。</strong></em>（证明好难呜呜）</p>
-<p><em><strong>表的主键：</strong></em></p>
-<p>表T的主键是被数据库设计者选择出来作为表T中特定行的唯一性标识符的候选键。通常主键标识符被用来作为别的表中的引用。</p>
-<p>空值（NULL value）：未知的或者尚未定义的。表的主键不能包含空值。</p>
-<p><em><strong>实体完整性规则：</strong></em></p>
-<p>表T中的任何行在主键列的取值都不允许为空值。</p>
-<h6 id="关系代数">关系代数</h6>
-<p>集合运算</p>
-<p><em><strong>兼容表：</strong></em> 如果R和S有着相同的标题即Head®=Head(S)，而且属性是从相同的域中选择并且具有相同的含义，则R和S是兼容的。</p>
-<ul>
-<li>并、交和差运算：必须是兼容表;$R\cup S,R\cap S,R-S,$</li>
-<li>赋值和别名：将旧表R的内容赋给新表S：$S(B_1,\cdots B_n):=R(A_1,\cdots,A_n)$（可以保存表达式的中间结果）</li>
-<li>乘积运算：表R和S的乘积是标题$Head(T)=R.A_1\cdots R.A_nS.B_1\cdots B_n$的表T</li>
+</li>
 </ul>
-<p>自然关系运算</p>
+<p><strong>在nemu/src/isa/riscv-32/include/isa-def.h中</strong></p>
 <ul>
 <li>
-<p>投影运算：取出特定一列</p>
-</li>
-<li>
-<p>选择运算：S where C；AND，OR，NOT连接符</p>
-</li>
-<li>
-<p>关系代数优先级：投影&gt;选择&gt;乘积&gt;连接、除法&gt;交&gt;并、差</p>
-</li>
-<li>
-<p>连接运算</p>
-</li>
-<li>
-<p>除运算；给定两个表T和S，$Head(T)=A_1\cdots A_n$且$Head(S)=B_1\cdots B_n$。如果R是通过R=TxS定义的那么有T=R/S成立。</p>
+<p><em><strong>ISADecodeInfo</strong></em></p>
+<p>对ISA相关的信息进行抽象。</p>
+<p>Struct内有union instr，instr内部的struct有i, s, u, 除了这些struct还有一个val数。</p>
+<p>用uint32_t数的形式对信息进行抽象。</p>
 </li>
 </ul>
-<h6 id="运算依赖">运算依赖</h6>
-<ol>
-<li>R和S是两个兼容表，$Head®=Head(S)=A_1\cdots A_n$。交运算可以被减运算重新定义为：$A\cap B=A-(A-B)$</li>
-<li>给定两个表R和S，$Head®=A_1\cdots A_nB_1\cdots B_k,Head(S)=B_1\cdots B_kC_1\cdots C_m$，其中$n,k,m\geq 0$，R和S的连接可以用积、选择、投影运算以及赋值算子重写。</li>
-<li>除法可以用投影、乘积和差表达。</li>
-</ol>
-<h3 id="Ch-3-基本SQL查询语言">Ch.3 基本SQL查询语言</h3>
-<h4 id="引言">引言</h4>
-<h4 id="创建数据库">创建数据库</h4>
-<ol>
-<li>得到计算机系统的账号</li>
-<li>短语出现在[]中时，表示该短语是可选的。对主键的定义是可选的。</li>
-<li>竖杠｜被用来表示在许多可能的短语之间的一种选择。</li>
-</ol>
-<h4 id="简单的Select语句">简单的Select语句</h4>
-<p>Select语句导致了以下几个（概念性的）步骤。</p>
-<ol>
-<li>计算出出现在FROM后面的表之间的笛卡尔积。</li>
-<li>实施由WHERE后面的条件规定的选择操作。</li>
-<li>将出现在选择列表中的属性投影成结果表。</li>
-</ol>
+<p><strong>在nemu/src/cpu/cpu-exe.c中</strong></p>
+<ul>
+<li>
+<p><em><strong>fetch_decode()</strong></em></p>
+<p>先把当前的PC保存到<code>s</code>的成员<code>pc</code>和<code>snpc</code>中, 其中<code>s-&gt;pc</code>就是当前指令的PC, 而<code>s-&gt;snpc</code>则是下一条指令的PC, 这里的<code>snpc</code>是&quot;static next PC&quot;的意思.</p>
+</li>
+</ul>
+<p><strong>在decode.c中</strong></p>
+<ul>
+<li>
+<p><em><strong>isa_fetch_decode</strong></em></p>
+<p>会随着取指的过程修改<code>s-&gt;snpc</code>的值, 使得从<code>isa_fetch_decode()</code>返回后<code>s-&gt;snpc</code>正好为下一条指令的PC.</p>
+<p>返回一个编号<code>idx</code>, 用于对<code>g_exec_table</code>这一数组进行索引</p>
+<p><code>g_exec_table</code>是一个函数指针的数组, 数组中的每个元素都会指向一个用于模拟指令执行的函数, 我们把这样的函数称为&quot;执行辅助函数&quot;(execution helper function). 通过<code>idx</code>索引这个数组, 可以找到与一条指令相匹配的执行辅助函数, 并把它记录到<code>s-&gt;EHelper</code>中</p>
+</li>
+</ul>
+<p><strong>在cpu-exe.c中</strong></p>
+<ul>
+<li>
+<p><em><strong>fetch_decode_exec_updatepc()</strong></em></p>
+<p>接受一个<code>Decode</code>类型的结构体指针<code>s</code></p>
+<p>然后代码会调用<code>isa_fetch_decode()</code>函数</p>
+<p>会调用刚才记录到<code>s-&gt;EHelper</code>的执行辅助函数, 来模拟指令执行的真正操作. 最后会更新PC, 让PC指向下一条指令.</p>
+</li>
+</ul>
+<p><strong>在ifetch.h中</strong></p>
+<ul>
+<li>
+<p><em><strong>instr_fetch(vaddr_t pc, int len)</strong></em></p>
+<p>负责取指令的工作.</p>
+<p>会根据参数<code>len</code>来调用<code>vaddr_ifetch()</code></p>
+<ul>
+<li>
+<p><em><strong>vaddr_ifetch()</strong></em></p>
+<p>通过<code>paddr_read()</code>来访问物理内存中的内容</p>
+</li>
+<li>
+<p>取指操作的本质只不过就是一次内存的访问而已</p>
+</li>
+</ul>
+</li>
+</ul>
 
     </article>
     <!-- license -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
-            <p>Link：<a href="https://hanny-y.github.io/2021/10/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">https://hanny-y.github.io/2021/10/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</a>
-            <p>Publish date：<a href="https://hanny-y.github.io/2021/10/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">October 11th 2021, 9:31:17 am</a>
-            <p>Update date：<a href="https://hanny-y.github.io/2021/10/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">October 27th 2021, 11:56:32 pm</a>
+            <p>Link：<a href="https://hanny-y.github.io/2021/10/23/PA2-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">https://hanny-y.github.io/2021/10/23/PA2-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/</a>
+            <p>Publish date：<a href="https://hanny-y.github.io/2021/10/23/PA2-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">October 23rd 2021, 8:27:59 pm</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2021/10/23/PA2-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">October 26th 2021, 8:59:42 am</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -630,17 +582,12 @@
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2021/10/12/Lab1%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" title="Lab1实验记录">
-                    <div class="nextTitle">Lab1实验记录</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/" title="概率论学习">
-                    <div class="prevTitle">概率论学习</div>
+                <a href="/2021/10/21/%E4%BD%A0%E8%A6%81%E5%83%8F%E5%96%9C%E6%AC%A2%E7%94%9C%E4%B8%80%E6%A0%B7%E5%96%9C%E6%AC%A2%E8%8B%A6/" title="你要像喜欢甜一样喜欢苦">
+                    <div class="prevTitle">你要像喜欢甜一样喜欢苦</div>
                 </a>
             
         </li>
@@ -786,7 +733,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">Ch.1 数据库概论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.</span> <span class="toc-text">数据库用户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-2-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">Ch.2 关系模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CAP%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">CAP数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%84%E9%83%A8%E5%88%86%E7%9A%84%E5%91%BD%E5%90%8D"><span class="toc-number">2.2.</span> <span class="toc-text">数据库各部分的命名</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9F%9F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">域和数据类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A1%A8%E5%92%8C%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">表和关系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%A7%84%E5%88%99"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">关系规则</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%AE%E3%80%81%E8%B6%85%E9%94%AE%E5%92%8C%E7%A9%BA%E5%80%BC"><span class="toc-number">2.2.0.4.</span> <span class="toc-text">键、超键和空值</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">2.2.0.5.</span> <span class="toc-text">关系代数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E4%BE%9D%E8%B5%96"><span class="toc-number">2.2.0.6.</span> <span class="toc-text">运算依赖</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-3-%E5%9F%BA%E6%9C%ACSQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="toc-number">3.</span> <span class="toc-text">Ch.3 基本SQL查询语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">3.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84Select%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.3.</span> <span class="toc-text">简单的Select语句</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%9B%E5%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">实验进度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#RTFSC"><span class="toc-number">2.1.</span> <span class="toc-text">RTFSC</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
