@@ -19,22 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="摘要: 本次作业使用一种推箱子游戏“Bait”，通过深度优先搜索、受限深度优先搜索和最佳优先搜索(A*) 分别自主实现推箱子游戏，并尝试理解通过 MCTS 控制游戏。本文主要介绍了前三种算法的自主实现过程，包括实验思路和具体实现，并尝试对第四种控制方式进行理解和简要介绍。">
+    <meta name="description" content="在因pa2生存艰难之余对即将到来的硬核算法期中进行一些徒劳的复习。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IntroAI HW1">
-<meta property="og:url" content="https://hanny-y.github.io/2021/10/09/IntroAIHW1/index.html">
+<meta property="og:title" content="DS&amp;ALG期中复习">
+<meta property="og:url" content="https://hanny-y.github.io/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hanny&#39;s Blog">
-<meta property="og:description" content="摘要: 本次作业使用一种推箱子游戏“Bait”，通过深度优先搜索、受限深度优先搜索和最佳优先搜索(A*) 分别自主实现推箱子游戏，并尝试理解通过 MCTS 控制游戏。本文主要介绍了前三种算法的自主实现过程，包括实验思路和具体实现，并尝试对第四种控制方式进行理解和简要介绍。">
+<meta property="og:description" content="在因pa2生存艰难之余对即将到来的硬核算法期中进行一些徒劳的复习。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-09T13:18:06.000Z">
-<meta property="article:modified_time" content="2021-10-10T02:22:14.085Z">
+<meta property="article:published_time" content="2021-11-03T01:26:04.000Z">
+<meta property="article:modified_time" content="2021-11-03T02:33:07.925Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>IntroAI HW1 · Hanny&#39;s Blog</title>
+    <title>DS&amp;ALG期中复习 · Hanny&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -263,7 +263,7 @@
                 <a href="/">Hanny&#39;s Blog</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">IntroAI HW1</a>
+                <a href="#" class="post-name">DS&ALG期中复习</a>
             </div>
         </div>
     
@@ -309,7 +309,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                IntroAI HW1
+                DS&ALG期中复习
             <!-- 404 -->
             
         </h1>
@@ -328,13 +328,13 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">2.1k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
+                        <span>Word count: <span class="post-count word-count">959</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2021/10/09</span>
+                    <span class="post-intro-time">2021/11/03</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -489,61 +489,106 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h5 id="摘要">摘要:</h5>
-<p>本次作业使用一种推箱子游戏“Bait”，通过深度优先搜索、受限深度优先搜索和最佳优先搜索(A*) 分别自主实现推箱子游戏，并尝试理解通过 MCTS 控制游戏。本文主要介绍了前三种算法的自主实现过程，包括实验思路和具体实现，并尝试对第四种控制方式进行理解和简要介绍。</p>
+        <p>在因pa2生存艰难之余对即将到来的硬核算法期中进行一些徒劳的复习。</p>
 <span id="more"></span>
-<h5 id="关键词">关键词:</h5>
-<p>深度受限搜索;受限深度优先搜索;最佳优先搜索;蒙特卡洛树搜索;</p>
-<h3 id="1引言">1	引言</h3>
-<p>GVG-AI 框架是为了通用人工智能的研究开发的游戏框架，基于 VGDL（视觉游戏描述语言），能够构成多种游戏。</p>
-<h3 id="2自主实现">2	自主实现</h3>
-<h4 id="2-1-深度优先搜索">2.1 深度优先搜索</h4>
-<p><em><strong>2.1.1 算法介绍</strong></em></p>
-<p>DFS 是一种用于遍历或搜索树或图的算法。这个算法会尽可能深的搜索树的分支。当节点 v 的所在边都 己被探寻过，搜索将回溯到发现节点 v 的那条边的起始节点。这一过程一直进行到已发现从源节点可达的所 有节点为止。如果还存在未被发现的节点，则选择其中一个作为源节点并重复以上过程，整个进程反复进行 直到所有节点都被访问为止。</p>
-<p>DFS 的实现较为简单，直接进行搜索，将可行的动作都保存到 all_path 中，在 act 函数中，每次返回一个 动作即可。在本次任务中犯的错误是，要输出动作的下标一开始没有初始化，后来修正。</p>
-<p>用 DFS 尝试了后面几关的内容，可以通过第二和第三关。</p>
-<p><em><strong>2.1.2 代码变量及函数介绍</strong></em></p>
-<p>略</p>
-<p><em><strong>2.1.3 主要代码</strong></em></p>
-<p>略</p>
-<h4 id="2-2-受限深度优先搜索">2.2 受限深度优先搜索</h4>
-<p><em><strong>2.2.1 算法介绍</strong></em></p>
-<p>DFS 设定一个最大深度 limitDepth，当搜索深度大于 limitDepth 的时候立即回溯，放弃当前搜索路径，转而去探索其他节点，从而避免了在无穷状态空间中陷入深度无限的分支。</p>
-<p>在任务 2 中，主功能函数 limitDepthSearch 主要用于返回一个代价值，而最小代价值是通过每一步的代价比较得出的最小值。代价值的计算采用了一个较为简单的启发函数，即为 avatar 到 key 的距离与 key 到 goal 的距离之和。在主功能函数中，所有的子情况都应该有相应的返回值，所以经过考虑，设置了一个很大的数 字 10000 作为任务失败的返回值，将 0 作为任务成功的返回值，如果在一个状态下搜索深度已经达到已定的最大值，此时 esValue 函数计算预计代价值并作为函数结果返回到 act 函数里与当前最小代价值进行比较，如 果比最小代价值小则更新最小代价值，最后 act 得到代价值最小的动作并返回。</p>
-<p>最初的最大搜索深度设置为 20，无法通过第一关，所以进行了缩小范围，发现最大可行值为 7，恰好可 以通过第一关，但无法通过后面的关卡。</p>
-<p><em><strong>2.2.2 代码变量及函数</strong></em></p>
-<p>略</p>
-<p><em><strong>2.2.3 主要代码</strong></em></p>
-<p>略</p>
-<h4 id="2-3-最佳优先搜索-A">2.3 最佳优先搜索(A*)</h4>
-<p><em><strong>2.3.1 算法介绍</strong></em></p>
-<p>Astar是一种图遍历和路径搜索算法，由于其完备性、最优性和最优效率，它经常被用于计算机科学的许多领域。Astar是一种知情搜索算法，或最佳优先搜索，这意味着它是根据加权图制定的：从图的特定起始节点开始，它旨在找到具有最小的给定目标节点的路径成本（最短行驶距离、最短时间等）。它通过维护源自起始节点的路径树并一次一条边扩展这些路径直到满足其终止标准来实现这一点。在其主循环的每次迭代中，A* 需要确定要扩展的路径。它是根据路径的成本和将路径一直延伸到目标所需的成本估计来实现的。具体来说，A* 选择最小化的路径 f(n)=g(n)+h(n)，其中 n 是路径上的下一个节点，g ( n )是从起始节点到 n 的路径成本，而 h ( n )是一个启发式函数，用于估计从 n 到目标的最便宜路径的成本。当 A* 选择扩展的路径是从起点到目标的路径时，或者没有符合扩展条件的路径时，A* 终止。启发式函数是特定于问题的。如果启发式函数是可接受的，这意味着它永远不会高估达到目标的实际成本，A* 保证返回从开始到目标的最小成本路径。</p>
-<p>在任务三中，主要利用了一个优先队列 open_node 来存储相关节点（开放集），对于节点的成本分手中有钥匙和手中没有钥匙两种情况在物体之间曼哈顿距离之和的基础上构造了启发函数，如果已经拿到了钥匙，成本为精灵到目标点的曼哈顿距离加上执行动作的额外成本，如果还没有拿到钥匙，则要在上述基础上再加上精灵到钥匙位置的距离。接下来对 open_node 进行遍历，选取成本最低的 node 加入到过去走过的状态中，如果已经历过该状态，进行一定更新。</p>
-<p>针对不同的地图也尝试了不同的搜索深度，当最大深度为 32 时，将时间设置为6000 可以通过前三关。</p>
-<p><em><strong>2.3.2 代码主要函数及变量</strong></em></p>
-<p>略</p>
-<p><em><strong>2.3.3 主要代码</strong></em></p>
-<p>略</p>
-<h4 id="2-4-蒙特卡洛树搜索">2.4 蒙特卡洛树搜索</h4>
-<p>蒙特卡洛树搜索是一种用于某些决策过程的启发式搜索算法。</p>
-<p>一般说来，蒙特卡洛树搜索的每个循环包括四个步骤：</p>
-<p>1.选择：从根节点 R 开始，连续向下选择子节点至叶子节点 L。下文将给出一种选择子节点的方法，让游戏树向最优的方向扩展，这是蒙特卡洛树搜索的精要所在。</p>
-<p>2.扩展：除非任意一方的输赢使得游戏在 L 结束，否则创建一个或多个子节点并选取其中一个节点 C。</p>
-<p>3.仿真：在从节点 C 开始，用随机策略进行游戏。</p>
-<p>4.反向传播：使用随机游戏的结果，更新从 C 到 R 的路径上的节点信息。</p>
-<p>在本次任务四中，已实现的代码中，首先将最初的状态录入根节点，接着对树中已有的节点进行拓展，从根部开始，如果该节点还有子节点处在未被拓展的状态，则拓展子节点，若已全部拓展，则进入 uctvalue 最大的子节点直到其有子节点未被拓展。对于将要被拓展的节点，在该节点的子节点中进行随机选择，并将此节点加入蒙特卡洛树，加入树以后，若还未达到最大搜索深度则在当前可执行的动作中随机选择并执行直到游戏结束或者达到最大搜索深度并返回 value 值。接着对该节点进行向上回溯，计算 totValue。最后返回的 act应该是一个 mostVisited 的节点且价值最高的操作。</p>
-<h3 id="3结束语">3	结束语</h3>
-<p>在本次作业中，我完成了 DepthFirstSearch 通过了前三关，LimitDepthSearch 完成第一关，A*完成前三关的测试，并基本上理解了 MCTS 方法控制精灵的原理。通过本次作业，我对于四种搜索方法的原理，应用以及它们之间的优缺点有了更加清晰的认知。</p>
-<p><strong>致谢</strong> 	在此,我们向对本文的工作给予支持和建议的同行,尤其是南京大学人工智能学院俞扬教授、在搜索方法应用方面提供了更细致的解释的南京大学软件学院 W姓学长表示感谢。</p>
+<h3 id="作业回顾">作业回顾</h3>
+<h4 id="ProblemSet-1">ProblemSet 1</h4>
+<h5 id="P1-循环不变式">P1 循环不变式</h5>
+<ul>
+<li>
+<p>要想证明BubbleSort确实对原先的元素进行了排序，我们就还要证明经过排序的数组中的元素都是原数组中的元素。</p>
+</li>
+<li>
+<p>循环不变式性质：</p>
+<p>初始化：循环的第一次迭代前，它为真。</p>
+<p>保持：如果循环的每一次迭代前它为真，那么下次迭代前它仍为真。</p>
+<p>终止：在循环终止时，不变式为我们提供一个有用的性质，该性质有助于证明算法是正确的。</p>
+</li>
+<li>
+<p>如何寻找循环不变式：</p>
+<p>算法是一步一步执行的，如果每一步（包括初始和结束）都满足同一个条件，那么这个条件就是要找的循环不变式。</p>
+<p>每一层循环都有不同的循环不变式，要注意每一次循环改变了什么，达成了什么目的。</p>
+</li>
+<li>
+<p>循环不变式的证明：</p>
+<p>（basis）在第一次迭代前，不变式成立</p>
+<p>（inductive step）假设在某一次循环前成立的，那么在本次循环之后，性质仍然保持。</p>
+<p>（termination）程序可以终止而且可以得到想要的结果。</p>
+</li>
+</ul>
+<h5 id="P2-计算时间复杂度">P2 计算时间复杂度</h5>
+<ul>
+<li>简单的迭代的复杂度还是容易计算的。</li>
+<li>一个简单的循环不变式的证明。</li>
+</ul>
+<h5 id="P3-4-一些渐近的练习">P3/4 一些渐近的练习</h5>
+<ul>
+<li>
+<p>复习笔记后得到常用的关系（记得背）</p>
+<p>常量© &lt;$loglogn$ &lt; 对数$logn$ &lt; $log^2n$ &lt; $\sqrt n$&lt;线性$n$ &lt; $nlogn$ &lt; $n^2$ &lt; $n^3(n^c)$ &lt;. $2^n$ &lt; $n!$</p>
+<p>Ps: 若$c\geq 1$，大于线性；若$c\leq 1$，则小于线性。</p>
+</li>
+<li>
+<p>如果出现非常见的：</p>
+<ul>
+<li>
+<p>定义法：根据渐近符号的定义</p>
+</li>
+<li>
+<p>极限法：$\lim _{n\rightarrow \infty}\frac{f(n)}{g(n)}$</p>
+<p>=0, 表明$f(n)\in O(g(n))$</p>
+<p>=c, 表明$f(n)\in \Theta(g(n))$</p>
+<p>=$\infty$，表明$f(n)\in \Omega(g(n))$</p>
+</li>
+<li>
+<p>取对数法（有用但是笨蛋hanny还没有掌握）：</p>
+<p>$log_a(MN)=log_aM + log_aN$</p>
+<p>得到一般的和的形式后即可舍去低阶项。</p>
+<ul>
+<li>针对复合乘积</li>
+<li>一次取对数后，还可以选择性使用整体替代法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>作业里出现的一个$e^n$，其&lt;&lt;$n!$</p>
+</li>
+</ul>
+<h5 id="P5-用一个数组实现两个栈（共享栈）">P5 用一个数组实现两个栈（共享栈）</h5>
+<ul>
+<li>
+<p>主要思路：</p>
+<p>维护两个指针$p_1$和$p_2$，分别指向两个栈的栈顶。在一开始的时候，$p_1$指向数组的0号位置，$p_2$指向数组的n+1号位置。进行push操作时，一个栈向左扩充一个栈向右扩充，当两栈的栈顶相遇时则溢出。进行pop操作时，两栈分别向两边缩减直到回到初始位置。</p>
+</li>
+<li>
+<p>这种题画个图结合一下数据结构特性要解应当不难，栈的特性就是后进先出，可以联想一堆叠在一起的椅子。</p>
+</li>
+</ul>
+<h5 id="P6-用两个先进先出队列实现一个栈">P6 用两个先进先出队列实现一个栈</h5>
+<ul>
+<li>
+<p>主要思路：</p>
+<p>设置P、Q为两个先进先出队列，进行push操作就是将新元素加入到P队列中。进行pop操作就是不断将P中的元素拿出来放到Q中直到P中只剩一个元素。删除P中的最后一个元素（根据FIFO和栈各自的特性该元素即为实现的栈的栈顶）。最后将Q中的元素拿出来再全部放到P中去。</p>
+</li>
+<li>
+<p>队列的操作有：Enqueue和Dequeue</p>
+</li>
+</ul>
+<h5 id="P7-随机队列">P7 随机队列</h5>
+<ul>
+<li>题意：实现一个特殊的队列，remove操作是随机选取元素删除。题目看着唬人，其实水题。</li>
+<li>遇到这种看上去创新的题目，把题目好好读下来就好啦。记得看有没有正确性证明的要求什么的。</li>
+</ul>
 
     </article>
     <!-- license -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
-            <p>Link：<a href="https://hanny-y.github.io/2021/10/09/IntroAIHW1/">https://hanny-y.github.io/2021/10/09/IntroAIHW1/</a>
-            <p>Publish date：<a href="https://hanny-y.github.io/2021/10/09/IntroAIHW1/">October 9th 2021, 9:18:06 pm</a>
-            <p>Update date：<a href="https://hanny-y.github.io/2021/10/09/IntroAIHW1/">October 10th 2021, 10:22:14 am</a>
+            <p>Link：<a href="https://hanny-y.github.io/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/">https://hanny-y.github.io/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/</a>
+            <p>Publish date：<a href="https://hanny-y.github.io/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/">November 3rd 2021, 9:26:04 am</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/">November 3rd 2021, 10:33:07 am</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -551,17 +596,12 @@
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2021/10/10/10.10%E6%A6%82%E7%8E%87%E8%AE%BA%E5%A4%8D%E4%B9%A0/" title="概率论学习">
-                    <div class="nextTitle">概率论学习</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2021/10/04/PA1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="PA1实验报告">
-                    <div class="prevTitle">PA1实验报告</div>
+                <a href="/2021/10/28/riscv32%E6%89%8B%E5%86%8C%E9%98%85%E8%AF%BB/" title="riscv32手册阅读">
+                    <div class="prevTitle">riscv32手册阅读</div>
                 </a>
             
         </li>
@@ -594,6 +634,21 @@
     <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
     
     <!-- Mathjax -->
+    
+        
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+
+
     
 </main>
 
@@ -692,7 +747,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">2.</span> <span class="toc-text">关键词:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E5%BC%95%E8%A8%80"><span class="toc-number"></span> <span class="toc-text">1	引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%87%AA%E4%B8%BB%E5%AE%9E%E7%8E%B0"><span class="toc-number"></span> <span class="toc-text">2	自主实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">2.1 深度优先搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%8F%97%E9%99%90%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">2.2 受限深度优先搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E6%9C%80%E4%BD%B3%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-A"><span class="toc-number"></span> <span class="toc-text">2.3 最佳优先搜索(A*)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A0%91%E6%90%9C%E7%B4%A2"><span class="toc-number"></span> <span class="toc-text">2.4 蒙特卡洛树搜索</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number"></span> <span class="toc-text">3	结束语</span></a>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.</span> <span class="toc-text">作业回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-1"><span class="toc-number">1.1.</span> <span class="toc-text">ProblemSet 1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E5%BE%AA%E7%8E%AF%E4%B8%8D%E5%8F%98%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">P1 循环不变式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">P2 计算时间复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-4-%E4%B8%80%E4%BA%9B%E6%B8%90%E8%BF%91%E7%9A%84%E7%BB%83%E4%B9%A0"><span class="toc-number">1.1.3.</span> <span class="toc-text">P3&#x2F;4 一些渐近的练习</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E7%94%A8%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0%E4%B8%A4%E4%B8%AA%E6%A0%88%EF%BC%88%E5%85%B1%E4%BA%AB%E6%A0%88%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">P5 用一个数组实现两个栈（共享栈）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E7%94%A8%E4%B8%A4%E4%B8%AA%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%A0%88"><span class="toc-number">1.1.5.</span> <span class="toc-text">P6 用两个先进先出队列实现一个栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E9%9A%8F%E6%9C%BA%E9%98%9F%E5%88%97"><span class="toc-number">1.1.6.</span> <span class="toc-text">P7 随机队列</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
