@@ -19,20 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="index">
-<meta property="og:url" content="https://hanny-y.github.io/index/index.html">
+    <meta name="description" content="摘自黄宇《算法设计与分析》、ppt by bad bad zcd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法——最短路径问题">
+<meta property="og:url" content="https://hanny-y.github.io/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hanny&#39;s Blog">
+<meta property="og:description" content="摘自黄宇《算法设计与分析》、ppt by bad bad zcd">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-10T12:46:39.000Z">
-<meta property="article:modified_time" content="2021-10-10T12:46:39.156Z">
+<meta property="article:published_time" content="2021-12-11T12:31:35.000Z">
+<meta property="article:modified_time" content="2021-12-12T04:06:13.581Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>index · Hanny&#39;s Blog</title>
+    <title>算法——最短路径问题 · Hanny&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -223,6 +225,8 @@
         }
     </script>
     
+        <body class="post-body">
+    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -252,6 +256,17 @@
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">Hanny&#39;s Blog</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">算法——最短路径问题</a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
@@ -278,24 +293,71 @@
 
 
 
+    height:50vh;
+
 ">
     
     <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+                算法——最短路径问题
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+                
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">820</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2021/12/11</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -427,15 +489,82 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        
+        <p>摘自黄宇《算法设计与分析》、ppt by bad bad zcd</p>
+<span id="more"></span>
+<h4 id="最短路径问题">最短路径问题</h4>
+<p><strong>Q：</strong> 给出一张地图，从点s到t的最短路径是什么？</p>
+<p>考虑一张图和给边赋值的函数，找出权值最小的路径。</p>
+<p><em>要考虑的问题有：</em></p>
+<ul>
+<li>权值（可以看作开销）不一定只是边的长度。</li>
+<li>可以是有向图，则$w(u,v)\neq w(v,u)$是可能成立的。</li>
+<li>权值可以是负数。</li>
+<li>不可以有负循环。</li>
+</ul>
+<h4 id="单位带权值图中的单源最短路径问题">单位带权值图中的单源最短路径问题</h4>
+<p>按层遍历？先访问distance值为d的节点，然后访问d+1的。</p>
+<p>简单来说就是用BFS。</p>
+<h4 id="带正权值图中的单源最短路径问题">带正权值图中的单源最短路径问题</h4>
+<p>随机的正权值。</p>
+<p>在前面的算法的基础上延伸：</p>
+<p>在边上构造一些虚拟的点使得图成为单位带权图。</p>
+<p>然后用BFS。</p>
+<p>问题：当每条边的权值相差太大的时候开销太大。</p>
+<p>解决：跳过添加虚拟节点的过程。</p>
+<ul>
+<li>想象我们给每个节点都设置了闹钟</li>
+<li>源节点的闹钟在时间为0的时候响</li>
+<li>当u的闹钟响的时候，对于边（u，v），更新v的闹钟为$min{T_v,T_v+w(u,v)}$</li>
+</ul>
+<p>以上过程其实就是在模仿BFS的过程。</p>
+<p>在任何时间，$T_u$的值是对u点到s点的距离的估计。并且$T_u\geq dist(s,u)$</p>
+<h4 id="Dijkstra’s-algorithm">Dijkstra’s algorithm</h4>
+<p>上面提到的使用闹钟的方法👆</p>
+<p><em>要怎么实现闹钟这一功能？</em></p>
+<p>最短路径树。</p>
+<p>（similar to bfs）</p>
+<p><em>用一个优先队列（如二叉堆）</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">DijkstraSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">Build priority <span class="built_in">queue</span> Q based on dist <span class="comment">//alarm</span></span><br><span class="line"><span class="keyword">while</span> (!Q.empty())</span><br><span class="line">  u = Q.ExtractMin() <span class="comment">//逻辑上最小的闹钟对应的节点</span></span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br><span class="line">      Q.DecreaseKey(v)</span><br></pre></td></tr></table></figure>
+<p>正确性：证明类似于BFS。</p>
+<p>时间复杂性：$O((n+m)logn)$</p>
+<h4 id="相关推论">相关推论</h4>
+<p><strong>Q：</strong> 如何确定扩展到哪个点？</p>
+<p>考虑一条从s经过u到v的最短路径。</p>
+<ul>
+<li>
+<p>$dist(s,v)=dist(s,u)+w(u,v)$<br>
+因此最短路径存在最优子结构（最短路径的子路径也一定是最短的）。</p>
+</li>
+<li>
+<p>$dist(s,v)&gt;dist(s,u)$<br>
+因为我们目前考虑的图的边的权值都为正。</p>
+</li>
+</ul>
+<p><strong>A：</strong> 找到d值更新后最小的那个值</p>
+<p>通过优先队列实现。</p>
+<h4 id="负权值最短路径问题">负权值最短路径问题</h4>
+<p>为什么Dijkstra不管用了？</p>
+<p>“Shortest path from s to any node v must pass exclusively through nodes that are closer than v” no longer holds!</p>
+<p><em><strong>Algorithm: simply Update all edges, for  n-1 times!</strong></em></p>
+<h5 id="The-Bellman-Ford-Algorithm">The Bellman-Ford Algorithm</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BellmanFordSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">repeat n<span class="number">-1</span> times:</span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br></pre></td></tr></table></figure>
+<p>如果有负循环？</p>
+<p>After n−1 repetitions of “Update all edges”,some node v still has v.dist&gt;u.dist+w(u,v)。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">  <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">    <span class="keyword">return</span> “Negative Cycle”</span><br></pre></td></tr></table></figure>
+<h4 id="DAG中的单源最短路径">DAG中的单源最短路径</h4>
+<p>按照拓扑顺序（用DFS计算）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DAGSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">Run DFS to obtain topological order</span><br><span class="line"><span class="keyword">for</span> (each node u in topological order)</span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br></pre></td></tr></table></figure>
+<h5 id="应用：">应用：</h5>
+<p>Computing Critical Path</p>
+
     </article>
     <!-- license -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
-            <p>Link：<a href="https://hanny-y.github.io/index/index.html">https://hanny-y.github.io/index/index.html</a>
-            <p>Publish date：<a href="https://hanny-y.github.io/index/index.html">October 10th 2021, 8:46:39 pm</a>
-            <p>Update date：<a href="https://hanny-y.github.io/index/index.html">October 10th 2021, 8:46:39 pm</a>
+            <p>Link：<a href="https://hanny-y.github.io/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">https://hanny-y.github.io/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</a>
+            <p>Publish date：<a href="https://hanny-y.github.io/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">December 11th 2021, 8:31:35 pm</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">December 12th 2021, 12:06:13 pm</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -445,6 +574,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2021/12/11/DS-ALG-OJ2/" title="DS&ALG OJ2">
+                    <div class="prevTitle">DS&ALG OJ2</div>
+                </a>
             
         </li>
     </ul>
@@ -476,6 +610,21 @@
     <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
     
     <!-- Mathjax -->
+    
+        
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+
+
     
 </main>
 
@@ -559,6 +708,23 @@
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">最短路径问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%BD%8D%E5%B8%A6%E6%9D%83%E5%80%BC%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">单位带权值图中的单源最短路径问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%AD%A3%E6%9D%83%E5%80%BC%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">带正权值图中的单源最短路径问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dijkstra%E2%80%99s-algorithm"><span class="toc-number">4.</span> <span class="toc-text">Dijkstra’s algorithm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%8E%A8%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">相关推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%9F%E6%9D%83%E5%80%BC%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">负权值最短路径问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Bellman-Ford-Algorithm"><span class="toc-number">6.1.</span> <span class="toc-text">The Bellman-Ford Algorithm</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DAG%E4%B8%AD%E7%9A%84%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84"><span class="toc-number">7.</span> <span class="toc-text">DAG中的单源最短路径</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%EF%BC%9A"><span class="toc-number">7.1.</span> <span class="toc-text">应用：</span></a></li></ol></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -933,6 +1099,8 @@
         <!-- CNZZ -->
         
         <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20210823" async></script>
         
         <!-- mermaid -->
         
