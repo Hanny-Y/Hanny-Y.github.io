@@ -19,18 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hanny&#39;s Blog">
-<meta property="og:url" content="https://hanny-y.github.io/index.html">
+    <meta name="description" content="摘自黄宇《算法设计与分析》、ppt by zcd、CLRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法——所有点对的最短路径问题">
+<meta property="og:url" content="https://hanny-y.github.io/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hanny&#39;s Blog">
+<meta property="og:description" content="摘自黄宇《算法设计与分析》、ppt by zcd、CLRS">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-21T07:50:19.000Z">
+<meta property="article:modified_time" content="2021-12-21T13:54:28.154Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>Hanny&#39;s Blog</title>
+    <title>算法——所有点对的最短路径问题 · Hanny&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -221,10 +225,10 @@
         }
     </script>
     
-        <body class="home-body">
+        <body class="post-body">
     
         <!-- header -->
-        <header class="header header-mobile index-header">
+        <header class="header header-mobile">
     <!-- top read progress line -->
     <div class="header-element">
         <div class="read-progress"></div>
@@ -252,10 +256,21 @@
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">Hanny&#39;s Blog</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">算法——所有点对的最短路径问题</a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
-        <footer class="footer-fixed index-footer-fixed">
+        <footer class="footer-fixed">
     <!-- back to top button -->
     <div class="footer-fixed-element">
         
@@ -285,17 +300,17 @@
     <!-- 主页  -->
     
         
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                Hanny's Blog
-            <!-- 文章页  -->
+                算法——所有点对的最短路径问题
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -303,12 +318,46 @@
             <!-- 主页副标题  -->
             
                 
-                    Be kind and have courage.
-                
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.1k</span>Reading time: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2021/12/21</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -438,444 +487,141 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main index-page">
+                <main class="main post-page">
+    <article class="article-entry">
+        <p>摘自黄宇《算法设计与分析》、ppt by zcd、CLRS</p>
+<span id="more"></span>
+<h4 id="问题定义">问题定义</h4>
+<p>Given a graph G=(V,E) and a weight function w, for every pair (u,v)∈V×V, find a shortest path from u to v.</p>
+<p>将单源问题扩展为针对每一个点对的问题。</p>
+<h4 id="每个点来一次单源最短路径？">每个点来一次单源最短路径？</h4>
+<p><strong>对每一个点都跑一次单源最短路径的算法。</strong></p>
+<p>效果：</p>
+<p>Positive-weight Graphs: Repeating Dijkstra gives $O(n^3lgn)$<br>
+Arbitrary-weight Graphs: Repeating Bellman-Ford gives $O(n^4)$</p>
+<p>为了让第二种情形更快的幼稚的想法：保持最小权值的边，将所有的权值改为正值。（Naive！）</p>
+<p>最短路径仍然有可能改变。</p>
+<p>更好的做法：for every path from u to v, w ̂ change it by same amount!</p>
+<p>w (u,v)=ℎ(u)+w(u,v)−ℎ(v)</p>
+<p>Imagine ℎ(u) is entry gift and ℎ(v) is exit tax for traveling through (u,v)</p>
+<p>Let ℎ(u)=dist(z,u) for some fixed z∈V, then problem emerges, it is possible that we cannot find such z that reaches every node！</p>
+<p>解决：从外部引进一个节点z，其通往图中每一个点的边的权值要设为0.</p>
+<p>这样我们得到一个新的图$H$。</p>
+<h4 id="Johnson’s-algorithm">Johnson’s algorithm</h4>
+<p>👆的做法基本上就是Johnson’s algorithm的思路产生过程。</p>
+<p>Strategy: modify edge weights without changing shortest path, so that Dijkstra’s algorithm can work.</p>
+<p>Reweight edges: w '(u,v)=dist(z,u)+w(u,v)−dist(z,v)≥0<br>
+For node pairs in G, addition of z does not create new shortest path.<br>
+For node pairs in G, a path is shortest under w iff this path is shortest under w ’</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">JohnsonAPSP(G):</span><br><span class="line">Create H=(V+&#123;z&#125;,E+&#123;(z,v)|v∈V&#125;) with w(z,v)=<span class="number">0</span> <span class="comment">//添加新节点的新图</span></span><br><span class="line">Bellman-FordSSSP(H,z) to obtain distH <span class="comment">//此时图里还是有负边，所以还是用贝尔曼福德，计算一下每个点的dist</span></span><br><span class="line"><span class="keyword">for</span> (each edge (u,v) in H.E)</span><br><span class="line">  w’(u,v) = distH(z,u)+w(u,v)-distH(z,v) <span class="comment">// 按新策略更改dist</span></span><br><span class="line"><span class="keyword">for</span> (each node u in G.V)</span><br><span class="line">  DijkstraSSSP(G,u) with w’ to obtain distG,w’ <span class="comment">//对原图中的节点按照新的dist用Dijkstra，得到原图此时的dist</span></span><br><span class="line">  <span class="keyword">for</span> (each node v in G.V)</span><br><span class="line">    distG(u,v) = distG,w’(u,v)+distH(z,v)-distH(z,u) <span class="comment">//更新dist</span></span><br></pre></td></tr></table></figure>
+<p>Johnson’s algorithm combines Dijkstra and Bellman-Ford,resulting a runtime of $O(n^3lgn)$, for arbitrary weight graphs.</p>
+<h4 id="递归解决？">递归解决？</h4>
+<p>Cycle in the graph can make the recursion never ends!</p>
+<p>Introduce an additional parameter in the recurrence:<br>
+dist(u, v, l): shortest path from u to v that uses at most l edges.</p>
+<ul>
+<li>Evaluate this recurrence easily in a “bottom-up” fashion!
+<ul>
+<li>dist(⋅,⋅,0) are easy to compute, given input graph.</li>
+<li>dist(⋅,⋅,1) are easy to compute, if dist(⋅,⋅,0) are known.</li>
+<li>dist(⋅,⋅,l+1) are easy to compute, if dist(⋅,⋅,l) are known.</li>
+<li>dist(⋅,⋅,n−1) are what we want!</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RecursiveAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> (u=v) then dist[u,v,<span class="number">0</span>]=<span class="number">0</span> </span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">0</span>]=INF <span class="comment">//递归式子的前两行</span></span><br><span class="line"><span class="keyword">for</span> (l=<span class="number">1</span> to n<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v) <span class="comment">//针对u，面向包括u自身在内的所有点</span></span><br><span class="line">      dist[u,v,l] = dist[u,v,l<span class="number">-1</span>] </span><br><span class="line">      <span class="keyword">for</span> (each edge (x,v) going to v)</span><br><span class="line">        <span class="keyword">if</span> (dist[u,v,l] &gt; dist[u,x,l<span class="number">-1</span>] + w(x,v))</span><br><span class="line">          dist[u,v,l] = dist[u,x,l<span class="number">-1</span>]+w(x,v) <span class="comment">//更新最小值</span></span><br></pre></td></tr></table></figure>
+<p>Running time is $O(n^4)$</p>
+<p>This recursion is like “1 and l−1 split” in divide-and-conquer.<br>
+How about “l/2 and l/2 split”?</p>
+<p>Start with dist(⋅,⋅,1), then double l each time, until $2^⌈lgn⌉$</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FasterRecursiveAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then dist[u,v,<span class="number">1</span>]=w(u,v)</span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">1</span>]=INF</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span> to Ceil(lg(n)))</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      dist[u,v,i] = INF</span><br><span class="line">      <span class="keyword">for</span> (each node x)</span><br><span class="line">        <span class="keyword">if</span> (dist[u,v,i] &gt; dist[u,x,i<span class="number">-1</span>] + dist[x,v,i<span class="number">-1</span>])</span><br><span class="line">          dist[u,v,i] = dist[u,x,i<span class="number">-1</span>] + dist[x,v,i<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p><em><strong>Better</strong></em></p>
+<p>Strategy: recuse on the set of node the shortest paths use.(Previous algorithms recuse on # of edges the shortest paths use.)<br>
+Number nodes arbitrarily: $x_1,x_2,⋯,x_n$;<br>
+Define dist(u,v,r) be length of shortest path from u to v, s.t. only nodes in V_r can be intermediate nodes in paths.Let π(u,v,r) be such a shortest path.</p>
+<h4 id="The-Floyd-Warshall-Algorithm">The Floyd-Warshall Algorithm</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FloydWarshallAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then dist[u,v,<span class="number">0</span>]=w(u,v)</span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">0</span>]=INF</span><br><span class="line"><span class="keyword">for</span> (r=<span class="number">1</span> to n)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      dist[u,v,r] = dist[u,v,r<span class="number">-1</span>]</span><br><span class="line">      <span class="keyword">if</span> (dist[u,v,r] &gt; dist[u,xr,r<span class="number">-1</span>] + dist[xr,v,r<span class="number">-1</span>])</span><br><span class="line">        dist[u,v,r] = dist[u,xr,r<span class="number">-1</span>] + dist[xr,v,r<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p>Running time is $n^3$</p>
+<h4 id="Application">Application</h4>
+<h5 id="Compute-Transitive-Closure">Compute Transitive Closure</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FloydWarshallTransitiveClosure(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then t[u,v,<span class="number">0</span>] = TRUE</span><br><span class="line">  <span class="keyword">else</span> t[u,v,<span class="number">0</span>] = FALSE</span><br><span class="line"><span class="keyword">for</span> (r=<span class="number">1</span> to n)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      t[u,v,r] = t[u,v,r<span class="number">-1</span>]</span><br><span class="line">      <span class="keyword">if</span> (t[u,xr,r<span class="number">-1</span>] AND t[xr,v,r<span class="number">-1</span>])</span><br><span class="line">        t[u,v,r] = TRUE</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license -->
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/01/02/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                
-                <span class="abstract-title-text">算法——动态规划</span>
-            </a>
-            <div class="abstract-content">
-                
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/01/02">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/01/02</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+        <div class="license-wrapper">
+            <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
+            <p>Link：<a href="https://hanny-y.github.io/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">https://hanny-y.github.io/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</a>
+            <p>Publish date：<a href="https://hanny-y.github.io/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">December 21st 2021, 3:50:19 pm</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">December 21st 2021, 9:54:28 pm</a>
+            <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
-        
-        
-        
-        
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
             
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/01/02/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="算法——动态规划">
+                    <div class="nextTitle">算法——动态规划</div>
+                </a>
             
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">
-                
-                <span class="abstract-title-text">算法——所有点对的最短路径问题</span>
-            </a>
-            <div class="abstract-content">
-                <p>摘自黄宇《算法设计与分析》、ppt by zcd、CLRS</p>
-            </div>
-            <!-- read more -->
+        </li>
+        <li class="previous">
             
-                <div class="abstract-read-more-button">
-                    <a href="/2021/12/21/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2021/12/13/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="概率论与数理统计期末复习">
+                    <div class="prevTitle">概率论与数理统计期末复习</div>
+                </a>
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/12/21">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/21</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+        </li>
+    </ul>
+    <!-- comment -->
     
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/12/13/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/">
-                
-                <span class="abstract-title-text">概率论与数理统计期末复习</span>
-            </a>
-            <div class="abstract-content">
-                <p>要问我怎么前面的文档还没写完就期末复习了？</p>
-<p>我怎么知道！焯！！！</p>
-<p>但是可以保证发了sample solution的作业一定会订正。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/12/13/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/12/13">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/13</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">
-                
-                <span class="abstract-title-text">算法——最短路径问题</span>
-            </a>
-            <div class="abstract-content">
-                <p>摘自黄宇《算法设计与分析》、ppt by bad bad zcd</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/12/11/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/12/12">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/11</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/12/11/DS-ALG-OJ2/">
-                
-                <span class="abstract-title-text">DS&amp;ALG OJ2</span>
-            </a>
-            <div class="abstract-content">
-                1.Range Sum of Multiset（BST）
-题目解读
-利用二叉搜索树实现一种新的数据结构multiset：
-支持以下操作：
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
 
-$0$ $x$, 往$S$中插入$(x+lans)$ mod $mod$
-$1$ $x$, 计算$(x+lans)$ mod $mod$，如果结果已经在$S$中则输出并将其删除，如果结果不在$S$中就输出0
-$2$ $l,r$，输出$S$中大于$(l+lans)$ mod $mod$ 且小于等于$(r+lans)$ mod $mod$的数之和，并且更新$lans$
 
-与BST结合起来的理解：
-暂时还没有理解，弱鸡打开了第二题并试图解决。
-2.Pali...
-            </div>
-            <!-- read more -->
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/12/15">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/11</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
     
         
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/11/29/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%95%86%E8%B5%9B%E7%BB%8F%E5%8E%86/">
-                
-                <span class="abstract-title-text">第一次商赛经历</span>
-            </a>
-            <div class="abstract-content">
-                <p>2021联合利华&amp;可爱多未来领袖商业联盟挑战赛</p>
-<p>LetYouScream小组，选择的是方向一，关于多元化营销的消费场景的打造。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/11/29/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%95%86%E8%B5%9B%E7%BB%8F%E5%8E%86/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/11/30">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/11/29</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/11/28/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9B%BE%E5%92%8C%E5%9B%BE%E9%81%8D%E5%8E%86/">
-                
-                <span class="abstract-title-text">算法——图和图遍历</span>
-            </a>
-            <div class="abstract-content">
-                <p>源自黄宇书、zcd ppt</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/11/28/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9B%BE%E5%92%8C%E5%9B%BE%E9%81%8D%E5%8E%86/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/12/02">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/11/28</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/11/18/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%B9%B3%E6%91%8A%E5%88%86%E6%9E%90/">
-                
-                <span class="abstract-title-text">算法——平摊分析</span>
-            </a>
-            <div class="abstract-content">
-                <p>源自：CLRS、黄宇《算法设计与分析》</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/11/18/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%B9%B3%E6%91%8A%E5%88%86%E6%9E%90/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/11/18">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/11/18</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/">
-                
-                <span class="abstract-title-text">DS&amp;ALG期中复习</span>
-            </a>
-            <div class="abstract-content">
-                <p>在因pa2生存艰难之余对即将到来的硬核算法期中进行一些徒劳的复习。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/11/03/DS-ALG%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/11/07">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/11/03</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2021/10/28/riscv32%E6%89%8B%E5%86%8C%E9%98%85%E8%AF%BB/">
-                
-                <span class="abstract-title-text">riscv32手册阅读</span>
-            </a>
-            <div class="abstract-content">
-                <p>由于PA2需要，阅读一些riscv手册。</p>
-<p>时间紧迫，先从中文版开始阅读，后续会阅读官方手册。</p>
-            </div>
-            <!-- read more -->
-            
-                <div class="abstract-read-more-button">
-                    <a href="/2021/10/28/riscv32%E6%89%8B%E5%86%8C%E9%98%85%E8%AF%BB/">
-                        <span style="margin-right: 0.2rem;">READ ARTICLE</span>
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2021/10/28">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/10/28</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-    <!-- paginator  -->
-    
-        <nav class="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">NEXT &gt;</a>
-        </nav>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+
+
     
 </main>
 
                 <!-- profile -->
-                
-                    <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/Hanny.jpg />
-    <div class="profile-name">Hannydeer</div>
-    
-        <div class="profile-signature">
-            Have fun!
-        </div>
-    
-    
-        <div class="profile-social">
-            
-    
-        
-            
-                <a href="mailto:hannydeer7077@gmail.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/Hanny-Y" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-        </div>
-    
-    
-    
-        <div class="profile-link-item">
-            <a href="/about" class="about-me">
-                
-                ABOUT ME
-            </a>
-        </div>
-    
-    
-    
-</div>
-
                 
             </div>
             <footer class="footer footer-unloaded">
@@ -955,6 +701,23 @@ $2$ $l,r$，输出$S$中大于$(l+lans)$ mod $mod$ 且小于等于$(r+lans)$ mod
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">问题定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E7%82%B9%E6%9D%A5%E4%B8%80%E6%AC%A1%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">每个点来一次单源最短路径？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Johnson%E2%80%99s-algorithm"><span class="toc-number">3.</span> <span class="toc-text">Johnson’s algorithm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">递归解决？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Floyd-Warshall-Algorithm"><span class="toc-number">5.</span> <span class="toc-text">The Floyd-Warshall Algorithm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Application"><span class="toc-number">6.</span> <span class="toc-text">Application</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Compute-Transitive-Closure"><span class="toc-number">6.1.</span> <span class="toc-text">Compute Transitive Closure</span></a></li></ol></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -1401,6 +1164,8 @@ $2$ $l,r$，输出$S$中大于$(l+lans)$ mod $mod$ 且小于等于$(r+lans)$ mod
         <!-- CNZZ -->
         
         <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20210823" async></script>
         
         <!-- mermaid -->
         
