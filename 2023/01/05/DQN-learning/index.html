@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://hanny-y.github.io/2023/01/05/DQN-learning/2.png">
 <meta property="og:image" content="https://hanny-y.github.io/2023/01/05/DQN-learning/3.png">
 <meta property="article:published_time" content="2023-01-04T17:44:00.000Z">
-<meta property="article:modified_time" content="2023-01-05T13:00:58.427Z">
+<meta property="article:modified_time" content="2023-01-05T13:42:12.527Z">
 <meta property="article:author" content="Hannydeer">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hanny-y.github.io/2023/01/05/DQN-learning/1.png">
@@ -332,7 +332,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.7k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.8k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -503,15 +503,18 @@
 <p>在神经网络中，我们可以将状态和动作都作为输入然后得到该状态下执行该动作得到的Q值，也可以将状态作为输入通过神经网络得到该状态下执行所有动作可以得到的Q值的一个空间，然后依据Q-learning的原则选取拥有最大Q值的动作。</p>
 <p>通常情况下DQN是处理state连续，action离散的情况（比如CartPole小车平衡木）</p>
 <p>以CartPole为例的话，大致的神经网络如下：</p>
-<p><img src="/2023/01/05/DQN-learning/1.png" alt="."></p>
+<p><img src="/2023/01/05/DQN-learning/1.png" alt="2"></p>
 <p>可以看到输入小车的四个状态（分别都为连续值），最终可以得到采取两个行动的两个Q值。</p>
 <p>这样一来Q-learning的类似思想就可以应用到更多的情况中。</p>
 <h4 id="神经网络的训练">神经网络的训练</h4>
 <p>和Q表格一样，神经网络计算的Q值也是需要更新的。</p>
-<p>首先我们会到达一个状态，比方说是s1，这个时候我们会通过某种policy（比如greedy）选取一个动作a1进行执行，执行过后进入状态s2。</p>
-<p>这个时候通过神经网络计算出s2状态下动作的Q值，选取较大的那一个作为Q估计，同时将Q估计乘以gamma的值加上执行a1得到的reward作为一个Q现实，计算两者的误差并进行反向传递实现更新。</p>
-<p><img src="/2023/01/05/DQN-learning/2.png" alt="."></p>
-<p><img src="/2023/01/05/DQN-learning/3.png" alt="."></p>
+<p>首先我们会到达一个状态，比方说是s1，通过神经网络得到s1状态下的动作的Q值，这个时候我们会通过某种policy（比如greedy）选取一个动作a1进行执行，这个Q(s1,a1)就是Q估计，执行过后进入状态s2。</p>
+<p>这个时候通过神经网络计算出s2状态下动作的Q值，选取较大的那一个乘以gamma的值加上执行a1得到的reward作为一个Q估计。</p>
+<p><img src="/2023/01/05/DQN-learning/2.png" alt=","></p>
+<p>在具体的实现中，我们需要如上图的两个网络，当前值和目标值网络，当前值网络需要时刻更新而目标值网络有特定的更新频率。原因可以参考：<a target="_blank" rel="noopener" href="https://cuyu.github.io/machine%20learning/2018/11/16/About-DQN">https://cuyu.github.io/machine learning/2018/11/16/About-DQN</a></p>
+<p>得到Q估计和Q现实后计算两者的误差进行反向传递。</p>
+<p>全部过程图：</p>
+<p><img src="/2023/01/05/DQN-learning/3.png" alt="1"></p>
 <h4 id="记忆库">记忆库</h4>
 <p>这个记忆库用于让神经网络学习以前的经历，存储神经网络的学习资料，每一次更新都会从记忆库随机抽取记忆进行学习。</p>
 <p>这么做的优点是打乱了经历的相关性，提高更新效率。</p>
@@ -550,7 +553,7 @@
             <p>Author：<a href="https://hanny-y.github.io">Hannydeer</a>
             <p>Link：<a href="https://hanny-y.github.io/2023/01/05/DQN-learning/">https://hanny-y.github.io/2023/01/05/DQN-learning/</a>
             <p>Publish date：<a href="https://hanny-y.github.io/2023/01/05/DQN-learning/">January 5th 2023, 1:44:00 am</a>
-            <p>Update date：<a href="https://hanny-y.github.io/2023/01/05/DQN-learning/">January 5th 2023, 9:00:58 pm</a>
+            <p>Update date：<a href="https://hanny-y.github.io/2023/01/05/DQN-learning/">January 5th 2023, 9:42:12 pm</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
