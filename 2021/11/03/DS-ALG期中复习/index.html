@@ -491,45 +491,58 @@
     <article class="article-entry">
         <p>在因pa2生存艰难之余对即将到来的硬核算法期中进行一些徒劳的复习。</p>
 <span id="more"></span>
-
-<h3 id="作业回顾"><a href="#作业回顾" class="headerlink" title="作业回顾"></a>作业回顾</h3><h4 id="ProblemSet-1"><a href="#ProblemSet-1" class="headerlink" title="ProblemSet 1"></a>ProblemSet 1</h4><h5 id="P1-循环不变式"><a href="#P1-循环不变式" class="headerlink" title="P1 循环不变式"></a>P1 循环不变式</h5><ul>
-<li><p>要想证明BubbleSort确实对原先的元素进行了排序，我们就还要证明经过排序的数组中的元素都是原数组中的元素。</p>
+<h3 id="作业回顾">作业回顾</h3>
+<h4 id="ProblemSet-1">ProblemSet 1</h4>
+<h5 id="P1-循环不变式">P1 循环不变式</h5>
+<ul>
+<li>
+<p>要想证明BubbleSort确实对原先的元素进行了排序，我们就还要证明经过排序的数组中的元素都是原数组中的元素。</p>
 </li>
-<li><p>循环不变式性质：</p>
+<li>
+<p>循环不变式性质：</p>
 <p>初始化：循环的第一次迭代前，它为真。</p>
 <p>保持：如果循环的每一次迭代前它为真，那么下次迭代前它仍为真。</p>
 <p>终止：在循环终止时，不变式为我们提供一个有用的性质，该性质有助于证明算法是正确的。</p>
 </li>
-<li><p>如何寻找循环不变式：</p>
+<li>
+<p>如何寻找循环不变式：</p>
 <p>算法是一步一步执行的，如果每一步（包括初始和结束）都满足同一个条件，那么这个条件就是要找的循环不变式。</p>
 <p>每一层循环都有不同的循环不变式，要注意每一次循环改变了什么，达成了什么目的。</p>
 </li>
-<li><p>循环不变式的证明：</p>
+<li>
+<p>循环不变式的证明：</p>
 <p>（basis）在第一次迭代前，不变式成立</p>
 <p>（inductive step）假设在某一次循环前成立的，那么在本次循环之后，性质仍然保持。</p>
 <p>（termination）程序可以终止而且可以得到想要的结果。</p>
 </li>
 </ul>
-<h5 id="P2-计算时间复杂度"><a href="#P2-计算时间复杂度" class="headerlink" title="P2 计算时间复杂度"></a>P2 计算时间复杂度</h5><ul>
+<h5 id="P2-计算时间复杂度">P2 计算时间复杂度</h5>
+<ul>
 <li>简单的迭代的复杂度还是容易计算的。</li>
 <li>一个简单的循环不变式的证明。</li>
 </ul>
-<h5 id="P3-x2F-4-一些渐近的练习"><a href="#P3-x2F-4-一些渐近的练习" class="headerlink" title="P3&#x2F;4 一些渐近的练习"></a>P3&#x2F;4 一些渐近的练习</h5><ul>
-<li><p>复习笔记后得到常用的关系（记得背）</p>
-<p>常量(c) &lt;$loglogn$ &lt; 对数$logn$ &lt; $log^2n$ &lt; $\sqrt n$&lt;线性$n$ &lt; $nlogn$ &lt; $n^2$ &lt; $n^3(n^c)$ &lt;. $2^n$ &lt; $n!$</p>
+<h5 id="P3-4-一些渐近的练习">P3/4 一些渐近的练习</h5>
+<ul>
+<li>
+<p>复习笔记后得到常用的关系（记得背）</p>
+<p>常量© &lt;$loglogn$ &lt; 对数$logn$ &lt; $log^2n$ &lt; $\sqrt n$&lt;线性$n$ &lt; $nlogn$ &lt; $n^2$ &lt; $n^3(n^c)$ &lt;. $2^n$ &lt; $n!$</p>
 <p>Ps: 若$c\geq 1$，大于线性；若$c\leq 1$，则小于线性。</p>
 </li>
-<li><p>如果出现非常见的：</p>
+<li>
+<p>如果出现非常见的：</p>
 <ul>
-<li><p>定义法：根据渐近符号的定义</p>
+<li>
+<p>定义法：根据渐近符号的定义</p>
 </li>
-<li><p>极限法：$\lim _{n\rightarrow \infty}\frac{f(n)}{g(n)}$</p>
-<p>&#x3D;0, 表明$f(n)\in O(g(n))$</p>
-<p>&#x3D;c, 表明$f(n)\in \Theta(g(n))$</p>
-<p>&#x3D;$\infty$，表明$f(n)\in \Omega(g(n))$</p>
+<li>
+<p>极限法：$\lim _{n\rightarrow \infty}\frac{f(n)}{g(n)}$</p>
+<p>=0, 表明$f(n)\in O(g(n))$</p>
+<p>=c, 表明$f(n)\in \Theta(g(n))$</p>
+<p>=$\infty$，表明$f(n)\in \Omega(g(n))$</p>
 </li>
-<li><p>取对数法（有用但是笨蛋hanny还没有掌握）：</p>
-<p>$log_a(MN)&#x3D;log_aM + log_aN$</p>
+<li>
+<p>取对数法（有用但是笨蛋hanny还没有掌握）：</p>
+<p>$log_a(MN)=log_aM + log_aN$</p>
 <p>得到一般的和的形式后即可舍去低阶项。</p>
 <ul>
 <li>针对复合乘积</li>
@@ -538,305 +551,390 @@
 </li>
 </ul>
 </li>
-<li><p>作业里出现的一个$e^n$，其&lt;&lt;$n!$</p>
+<li>
+<p>作业里出现的一个$e^n$，其&lt;&lt;$n!$</p>
 </li>
 </ul>
-<h5 id="P5-用一个数组实现两个栈（共享栈）"><a href="#P5-用一个数组实现两个栈（共享栈）" class="headerlink" title="P5 用一个数组实现两个栈（共享栈）"></a>P5 用一个数组实现两个栈（共享栈）</h5><ul>
-<li><p>主要思路：</p>
+<h5 id="P5-用一个数组实现两个栈（共享栈）">P5 用一个数组实现两个栈（共享栈）</h5>
+<ul>
+<li>
+<p>主要思路：</p>
 <p>维护两个指针$p_1$和$p_2$，分别指向两个栈的栈顶。在一开始的时候，$p_1$指向数组的0号位置，$p_2$指向数组的n+1号位置。进行push操作时，一个栈向左扩充一个栈向右扩充，当两栈的栈顶相遇时则溢出。进行pop操作时，两栈分别向两边缩减直到回到初始位置。</p>
 </li>
-<li><p>这种题画个图结合一下数据结构特性要解应当不难，栈的特性就是后进先出，可以联想一堆叠在一起的椅子。</p>
+<li>
+<p>这种题画个图结合一下数据结构特性要解应当不难，栈的特性就是后进先出，可以联想一堆叠在一起的椅子。</p>
 </li>
 </ul>
-<h5 id="P6-用两个先进先出队列实现一个栈"><a href="#P6-用两个先进先出队列实现一个栈" class="headerlink" title="P6 用两个先进先出队列实现一个栈"></a>P6 用两个先进先出队列实现一个栈</h5><ul>
-<li><p>主要思路：</p>
+<h5 id="P6-用两个先进先出队列实现一个栈">P6 用两个先进先出队列实现一个栈</h5>
+<ul>
+<li>
+<p>主要思路：</p>
 <p>设置P、Q为两个先进先出队列，进行push操作就是将新元素加入到P队列中。进行pop操作就是不断将P中的元素拿出来放到Q中直到P中只剩一个元素。删除P中的最后一个元素（根据FIFO和栈各自的特性该元素即为实现的栈的栈顶）。最后将Q中的元素拿出来再全部放到P中去。</p>
 </li>
-<li><p>队列的操作有：Enqueue和Dequeue</p>
+<li>
+<p>队列的操作有：Enqueue和Dequeue</p>
 </li>
 </ul>
-<h5 id="P7-随机队列"><a href="#P7-随机队列" class="headerlink" title="P7 随机队列"></a>P7 随机队列</h5><ul>
+<h5 id="P7-随机队列">P7 随机队列</h5>
+<ul>
 <li>题意：实现一个特殊的队列，remove操作是随机选取元素删除。题目看着唬人，其实水题。</li>
 <li>遇到这种看上去创新的题目，把题目好好读下来就好啦。记得看有没有正确性证明的要求什么的。</li>
 </ul>
-<h4 id="ProblemSet-2"><a href="#ProblemSet-2" class="headerlink" title="ProblemSet 2"></a>ProblemSet 2</h4><h5 id="P1-逆序链表-amp-双向链表"><a href="#P1-逆序链表-amp-双向链表" class="headerlink" title="P1 逆序链表&amp;双向链表"></a>P1 逆序链表&amp;双向链表</h5><ul>
-<li><p>逆序链表（那种平时看着简单考试懵逼的水题）</p>
+<h4 id="ProblemSet-2">ProblemSet 2</h4>
+<h5 id="P1-逆序链表-双向链表">P1 逆序链表&amp;双向链表</h5>
+<ul>
+<li>
+<p>逆序链表（那种平时看着简单考试懵逼的水题）</p>
 <p>主要思路：</p>
 <p>拿一个空指针next，指针tmp。先把当前元素的下一个元素的指针存到tmp里，把next赋给元素的下一个元素指针，将当前指针再赋给next，这样当前指针就可以从前面的元素变成被next指针所指的下一个元素。</p>
 </li>
-<li><p>双向链表（第一次写完全不会写）<br>题意：课上讲过的双向链表指的是有一个prev指针还有一个next指针，这一题只给了一个np指针，把课上讲的两个指针搓在了一起：$x.np&#x3D;x.prev\bigoplus x.next$。</p>
-<p>主要思路：写作业的时候不会写是因为逻辑这块学的不好（学了也忘了）因为如果已经知道np的值，那么只要知道next或prev中的一个就可以知道另外一个。重要事实：$x.next&#x3D;x.np\bigoplus x.prev$，而我们已经可以知道链表head元素的prev一定是0，则head.np就是指向下一个元素的指针。而对于接下来的元素而言，prev和np都是已知的，也就可以计算出next的值访问下一个元素。</p>
+<li>
+<p>双向链表（第一次写完全不会写）<br>
+题意：课上讲过的双向链表指的是有一个prev指针还有一个next指针，这一题只给了一个np指针，把课上讲的两个指针搓在了一起：$x.np=x.prev\bigoplus x.next$。</p>
+<p>主要思路：写作业的时候不会写是因为逻辑这块学的不好（学了也忘了）因为如果已经知道np的值，那么只要知道next或prev中的一个就可以知道另外一个。重要事实：$<a target="_blank" rel="noopener" href="http://x.next=x.np">x.next=x.np</a>\bigoplus x.prev$，而我们已经可以知道链表head元素的prev一定是0，则head.np就是指向下一个元素的指针。而对于接下来的元素而言，prev和np都是已知的，也就可以计算出next的值访问下一个元素。</p>
 <p>感觉自己链表指针这一块一直学的不是很好。</p>
 <p>出错原因：链表不能直接访问第i个元素。</p>
 <p>正确的伪代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Insertion(x, i)</span><br><span class="line"><span class="comment">//Require Linked list L, node x, index i;</span></span><br><span class="line"><span class="comment">//Ensure Linked list L with node x inserted at the i-th position.</span></span><br><span class="line">  <span class="comment">//头指针赋给cur，表示从头开始</span></span><br><span class="line">	prev = <span class="number">0</span>, cur = L.head, cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">//链表不能直接访问第i个元素,使用cnt进行遍历</span></span><br><span class="line">	<span class="keyword">while</span> cnt &lt; i <span class="keyword">do</span></span><br><span class="line">		nxt = cur-&gt;np ^ prev; <span class="comment">//计算cur指向的node的next</span></span><br><span class="line">		prev = cur, cur = nxt; <span class="comment">//将当前node作为前一个node，将下一个设置为当前node</span></span><br><span class="line">		cnt++;</span><br><span class="line">	x.np = prev ^ cur; <span class="comment">//此时prev指向第i-1个节点，cur指向第i个节点，也就是插入后的第i+1个节点</span></span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">1</span> then L.head = &amp;x; <span class="comment">//如果要插入到头节点的位置，直接把指向x的指针赋给头指针</span></span><br><span class="line">	<span class="comment">//要改变第i-1个节点和第i+1个节点的np值</span></span><br><span class="line">	<span class="keyword">if</span> prev != <span class="number">0</span> then prev-&gt;np = prev-&gt;np ^ prev ^ &amp;x;</span><br><span class="line">	<span class="keyword">if</span> cur != <span class="number">0</span> then cur-&gt;np = cur-&gt;np ^ prev ^ &amp;x;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Deletion(i)</span><br><span class="line"><span class="comment">//Require Linked List L and index i;</span></span><br><span class="line"><span class="comment">//Ensure Linked List L with the i-th position removed.</span></span><br><span class="line">	prev = <span class="number">0</span>, cur = L.head, cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> cnt &lt; i <span class="keyword">do</span></span><br><span class="line">		nxt = prev ^ cur;</span><br><span class="line">		prev = cur, cur = nxt;</span><br><span class="line">		cnt++;</span><br><span class="line">	nxt = cur-&gt;np ^ prev</span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">1</span> then L.head = nxt;</span><br><span class="line">	<span class="keyword">if</span> prev != <span class="number">0</span> then prev-&gt;np = prev-&gt;np ^ cur ^ nxt;</span><br><span class="line">	<span class="keyword">if</span> nxt != <span class="number">0</span> then nxt-&gt;np = nxt-&gt;np ^ cur ^ prev;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Deletion(i)</span><br><span class="line"><span class="comment">//Require Linked List L and index i;</span></span><br><span class="line"><span class="comment">//Ensure Linked List L with the i-th position removed.</span></span><br><span class="line">	prev = <span class="number">0</span>, cur = L.head, cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> cnt &lt; i <span class="keyword">do</span></span><br><span class="line">		nxt = prev ^ cur;</span><br><span class="line">		prev = cur, cur = nxt;</span><br><span class="line">		cnt++;</span><br><span class="line">	nxt = cur-&gt;np ^ prev</span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">1</span> then L.head = nxt;</span><br><span class="line">	<span class="keyword">if</span> prev != <span class="number">0</span> then prev-&gt;np = prev-&gt;np ^ cur ^ nxt;</span><br><span class="line">	<span class="keyword">if</span> nxt != <span class="number">0</span> then nxt-&gt;np = nxt-&gt;np ^ cur ^ prev;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="P2-最大栈"><a href="#P2-最大栈" class="headerlink" title="P2 最大栈"></a>P2 最大栈</h5><ul>
+<h5 id="P2-最大栈">P2 最大栈</h5>
+<ul>
 <li>最大栈和一般的栈的差别就在于最大栈可以记忆栈中最大的元素。在作业里我选择使用两个栈的形式，再添加一个额外的栈用来记忆最大元素，但是助教判错的理由是：重复元素处理错误，我细细品味了一下自己的代码，感觉可能是在pop的时候栈b的移除元素比较麻烦。</li>
 <li>sample solution中给出的思路是把栈中最大的元素和栈中的元素打包作为一个整体。保证栈顶组合的第二个元素是栈中的最大元素。当要加入一个元素的时候，就把这个元素和栈顶组合中的第二个元素比较，如果更大就和自己本身打包加入栈，如果更小就和这个元素打包加入栈。在进行pop时，弹出栈顶元素，再返回栈顶组合的第一个元素。</li>
 </ul>
-<h5 id="P3-从中缀表达式到后缀表达式"><a href="#P3-从中缀表达式到后缀表达式" class="headerlink" title="P3 从中缀表达式到后缀表达式"></a>P3 从中缀表达式到后缀表达式</h5><ul>
+<h5 id="P3-从中缀表达式到后缀表达式">P3 从中缀表达式到后缀表达式</h5>
+<ul>
 <li>主要是利用一个栈实现</li>
 <li>如果输入是一个操作数则直接输出，如果是一个操作符，如果栈此时是空的则将符号压入栈中，如果栈非空，则将符号的优先级和栈中的符号的优先级比较，将所有优先级更高或者优先级相同的符号pop出来输出，然后将操作符压入栈中。</li>
 <li>具体实现：输入一个string infix，输出一个vector postfix，用一个栈保存操作符。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Infix2Postfix(infix)</span><br><span class="line">	<span class="built_in">vector</span> postfix;</span><br><span class="line">	Stack S;</span><br><span class="line">	<span class="keyword">for</span> i from <span class="number">0</span> to infix.length()<span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> <span class="string">&#x27;0&#x27;</span> &lt;= infix[i] <span class="keyword">and</span> infix[i] &lt;= <span class="string">&#x27;9&#x27;</span> then</span><br><span class="line">			postfix.push_back(infix);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">while</span> !S.empty() <span class="keyword">and</span> S.top() &lt; infix[i] <span class="keyword">do</span></span><br><span class="line">				postfix.push_back(S.pop());</span><br><span class="line">			end <span class="keyword">while</span></span><br><span class="line">			S.push(infix[i]);</span><br><span class="line">		end <span class="keyword">if</span></span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	<span class="keyword">while</span> !S.empty() <span class="keyword">do</span></span><br><span class="line">		postfix.push_back(S.pop());</span><br><span class="line">	end <span class="keyword">while</span></span><br><span class="line">	<span class="keyword">return</span> postfix;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="P4-分治策略下的时间复杂度计算"><a href="#P4-分治策略下的时间复杂度计算" class="headerlink" title="P4 分治策略下的时间复杂度计算"></a>P4 分治策略下的时间复杂度计算</h5><ul>
-<li><p>分成5个1&#x2F;2大小的子问题，$O(n)$的时间合并。</p>
+<h5 id="P4-分治策略下的时间复杂度计算">P4 分治策略下的时间复杂度计算</h5>
+<ul>
+<li>
+<p>分成5个1/2大小的子问题，$O(n)$的时间合并。</p>
 <p>使用主定理。</p>
 <ul>
-<li><p>关于主定理</p>
+<li>
+<p>关于主定理</p>
 <p>分治算法的主定理是指把一个问题划分成多个子问题，每个子问题是原问题的一部分，然后执行一些额外的工作来计算出最后的答案。</p>
-<p>如果问题的递归形式是$T(n)&#x3D;aT(\frac{n}{b})+\Theta(n^klog^pn)$</p>
+<p>如果问题的递归形式是$T(n)=aT(\frac{n}{b})+\Theta(n^klog^pn)$</p>
 <p>其中，$a\geq 1,b&gt;1,k\geq 0$且$p$是实数，则：</p>
 <ol>
-<li>如果$a&gt;b^k$，那么$T(n)&#x3D;\Theta(n^{log_ba})$</li>
-<li>如果$a&#x3D;b^k$<ul>
-<li>如果$p&gt;-1$，那么$T(n)&#x3D;\Theta(n^{log_ba}log^{p+1}n)$</li>
-<li>如果$p&#x3D;-1$，那么$T(n)&#x3D;\Theta(n^{log_ba}loglogn)$</li>
-<li>如果$p&lt;-1$，那么$T(n)&#x3D;\Theta(n^{log_ba})$</li>
+<li>如果$a&gt;b^k$，那么$T(n)=\Theta(n^{log_ba})$</li>
+<li>如果$a=b^k$
+<ul>
+<li>如果$p&gt;-1$，那么$T(n)=\Theta(n^{log_ba}log^{p+1}n)$</li>
+<li>如果$p=-1$，那么$T(n)=\Theta(n^{log_ba}loglogn)$</li>
+<li>如果$p&lt;-1$，那么$T(n)=\Theta(n^{log_ba})$</li>
 </ul>
 </li>
-<li>如果$a&lt;b^k$<ul>
-<li>如果$p\geq 0$，那么$T(n)&#x3D;\Theta(n^klog^pn)$</li>
-<li>如果$p&lt;0$，那么$T(n)&#x3D;\Theta(n^k)$</li>
+<li>如果$a&lt;b^k$
+<ul>
+<li>如果$p\geq 0$，那么$T(n)=\Theta(n^klog^pn)$</li>
+<li>如果$p&lt;0$，那么$T(n)=\Theta(n^k)$</li>
 </ul>
 </li>
 </ol>
 </li>
-<li><p>在本题中：$T(n)&#x3D;5T(\frac{n}{2})+O(n)$</p>
-<p>其中$a&#x3D;5,b&#x3D;2,k&#x3D;1,p&#x3D;0$则$b^k&#x3D;2&lt;5$，那么$T(n)&#x3D;\Theta(n^{log_25})$</p>
+<li>
+<p>在本题中：$T(n)=5T(\frac{n}{2})+O(n)$</p>
+<p>其中$a=5,b=2,k=1,p=0$则$b^k=2&lt;5$，那么$T(n)=\Theta(n^{log_25})$</p>
 </li>
 </ul>
 </li>
-<li><p>递归树解决时间复杂度</p>
+<li>
+<p>递归树解决时间复杂度</p>
 </li>
-<li><p>递归推导式解决</p>
+<li>
+<p>递归推导式解决</p>
 </li>
 </ul>
-<h5 id="P5-移除数组中的重复元素"><a href="#P5-移除数组中的重复元素" class="headerlink" title="P5 移除数组中的重复元素"></a>P5 移除数组中的重复元素</h5><p>这一题我可以说是写的驴头不对马嘴，但是助教还是给了我七分，我宣布c学长是无敌无敌好的助教，类目。</p>
+<h5 id="P5-移除数组中的重复元素">P5 移除数组中的重复元素</h5>
+<p>这一题我可以说是写的驴头不对马嘴，但是助教还是给了我七分，我宣布c学长是无敌无敌好的助教，类目。</p>
 <p>可是他写的sample也太他喵难懂了。</p>
 <p>主要思路：主要是一个分治策略的运用，把数组分成两个删除重复元素且排好序的部分，比较难的是merge的过程。</p>
 <p>伪代码好复杂真的。</p>
 <p>传入一个l和r作为bound，新建一个B数组来暂时存放去重后且排好序的元素，利用以个k记录去重后数组元素个数，其实也充当了记录元素下标的一个载体。虽然不是很有耐心了，但是还是决定把伪代码抄一遍理解一下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Duplicate <span class="title">Removal</span><span class="params">(DR)</span></span></span><br><span class="line"><span class="function"><span class="comment">//Global declaration A[1...n] B[1...n]</span></span></span><br><span class="line"><span class="function"><span class="comment">//Require left boundary l, right boundary r</span></span></span><br><span class="line"><span class="function"><span class="comment">//Ensure k, number of elements of duplicate-removed array B on A[l...r], which stored in A[l...l+k-1]</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	<span class="keyword">if</span> l </span>== r then <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//如果只有一个元素，那么肯定去重后只有一个元素</span></span><br><span class="line">	mid = (r + l) &gt;&gt; <span class="number">1</span>; <span class="comment">//右移，高端操作，凡人一般都除以二</span></span><br><span class="line">	leftk = DR(a, l, mid), rightk = DR(a, mid+<span class="number">1</span>, r);<span class="comment">//左右子数组的k</span></span><br><span class="line">	k1 = <span class="number">1</span>, k2 = <span class="number">1</span>, k = <span class="number">0</span>; <span class="comment">//k1,k2主要用来记录左右子数组的下标，k主要用来记录工具数组B的下表</span></span><br><span class="line">	<span class="comment">//接下来学长做的事情，我在抄代码的时候才看懂，其实就是mergesort的merge过程，不过借用了一个B数组，最后再扫描一遍B数组，把不重复的数字导进A</span></span><br><span class="line">	<span class="keyword">while</span> k1 &lt;= leftk <span class="keyword">and</span> k2 &lt;= rightk <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> A[l+k1<span class="number">-1</span>] &lt; A[mid+k2] then</span><br><span class="line">			B[l+k] = A[l+k1<span class="number">-1</span>];</span><br><span class="line">			k++;</span><br><span class="line">      k1++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">      B[l+k] = A[mid+k2];</span><br><span class="line">			k++;</span><br><span class="line">			k2++;</span><br><span class="line">	<span class="keyword">while</span> k1 &lt;= leftk <span class="keyword">do</span></span><br><span class="line">    B[l+k] = A[l+k1<span class="number">-1</span>];</span><br><span class="line">		k++;</span><br><span class="line">    k1++;</span><br><span class="line">	<span class="keyword">while</span> k2 &lt;= rightk <span class="keyword">do</span></span><br><span class="line">    B[l+k] = A[mid+k2];</span><br><span class="line">		k++;</span><br><span class="line">		k2++;</span><br><span class="line">	k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> i=<span class="number">1</span> to leftk+rightk <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> i=<span class="number">1</span> <span class="keyword">or</span> B[l+i<span class="number">-1</span>] != B[l+i<span class="number">-2</span>] then</span><br><span class="line">      A[l+k]=B[l+i<span class="number">-1</span>];</span><br><span class="line">			k++;</span><br><span class="line">	<span class="keyword">return</span> k;</span><br></pre></td></tr></table></figure>
-
 <p>我一开始觉得这样好像也没什么特别的，但是分治的话其实和直接扫描数组删除重复元素相比已经节省了太多时间了。</p>
-<h5 id="P6-统计逆序对个数"><a href="#P6-统计逆序对个数" class="headerlink" title="P6 统计逆序对个数"></a>P6 统计逆序对个数</h5><p>不明白自己为何只拿了四分，而且助教也没有反馈，哭泣。</p>
+<h5 id="P6-统计逆序对个数">P6 统计逆序对个数</h5>
+<p>不明白自己为何只拿了四分，而且助教也没有反馈，哭泣。</p>
 <p>又是一个修改mergesort的算法呢。这次复习一定要好好看看mergesort</p>
 <ul>
-<li><p>插入排序时间复杂度和数组中逆序对个数的关系</p>
+<li>
+<p>插入排序时间复杂度和数组中逆序对个数的关系</p>
 <p>假设逆序对有m个，时间复杂度就是$\Theta(n+m)$</p>
 <p>证明过程看一下：</p>
-<p>设$f_i&#x3D;|{j:j&lt;i$ $and$ $A_j&gt;A_i}|$</p>
-<p>显然：$m&#x3D;\sum_{i&#x3D;1}^{n}f_i$</p>
-<p>根据插入排序的循环不变式可以知道，每一次循环过后A[1…j]都是已经排好序的，所以假设这些元素里存在逆序对且由于插入排序已经回到了正确的位置，那么这些元素一定就是A[j-f(j)…j-1]，也就是现在在key的右边的元素，一定是和key组成逆序对的，所以循环条件判断执行了f(j)+1次，而调换元素顺序一定执行了f(j)次。总共的时间复杂度应该就是$\sum_{i&#x3D;1}^n(c_2f(j_0)+1)+c_3f(j_0)+c_4f(j_0))&#x3D;\Theta(n+m)$</p>
+<p>设$f_i=|{j:j&lt;i$ $and$ $A_j&gt;A_i}|$</p>
+<p>显然：$m=\sum_{i=1}^{n}f_i$</p>
+<p>根据插入排序的循环不变式可以知道，每一次循环过后A[1…j]都是已经排好序的，所以假设这些元素里存在逆序对且由于插入排序已经回到了正确的位置，那么这些元素一定就是A[j-f(j)…j-1]，也就是现在在key的右边的元素，一定是和key组成逆序对的，所以循环条件判断执行了f(j)+1次，而调换元素顺序一定执行了f(j)次。总共的时间复杂度应该就是$\sum_{i=1}^n(c_2f(j_0)+1)+c_3f(j_0)+c_4f(j_0))=\Theta(n+m)$</p>
 </li>
-<li><p>统计逆序对的算法</p>
+<li>
+<p>统计逆序对的算法</p>
 <p>Merge的过程：将数组分成左右两个部分，开两个新的工具数组存放左右两边的数组，模仿mergesort进行扫描，只是当左边有数字小于右边，也就是要将右边元素放进原A数组的时候，要用cnt对逆序对进行计数，返回扫描过程中的逆序对数，同时将两个数组合并为有序数组。</p>
 </li>
 </ul>
-<h4 id="ProblemSet-3"><a href="#ProblemSet-3" class="headerlink" title="ProblemSet 3"></a>ProblemSet 3</h4><h5 id="P1-递归的时间复杂度"><a href="#P1-递归的时间复杂度" class="headerlink" title="P1 递归的时间复杂度"></a>P1 递归的时间复杂度</h5><ul>
+<h4 id="ProblemSet-3">ProblemSet 3</h4>
+<h5 id="P1-递归的时间复杂度">P1 递归的时间复杂度</h5>
+<ul>
 <li>归纳法。</li>
 <li>替换法解决时间复杂度</li>
 </ul>
-<h5 id="P2-两个可以直接拿来用的结论"><a href="#P2-两个可以直接拿来用的结论" class="headerlink" title="P2  两个可以直接拿来用的结论"></a>P2  两个可以直接拿来用的结论</h5><ul>
-<li>$T(n)&#x3D;T(\alpha)+T(n-\alpha)+cn$，$T(n)&#x3D;\Theta(n^2)$</li>
-<li>$T(n)&#x3D;T(\alpha n)+T((1-\alpha)n)$，$T(n)&#x3D;\Theta(nlgn)$</li>
-</ul>
-<h5 id="P3-n位数平方的分治法计算"><a href="#P3-n位数平方的分治法计算" class="headerlink" title="P3 n位数平方的分治法计算"></a>P3 n位数平方的分治法计算</h5><p>主要思路：</p>
-<p>将数字分割为前n&#x2F;2位数字a和后n&#x2F;2位数字b，则原数字$x&#x3D;2^n\cdot a^2 + b^2 +2^{2\frac{3}{2}}\cdot a\cdot b&#x3D;2^n\cdot a^2 + b^2 +2^{\frac{3}{2}n}((a+b)^2-a^2-b^2)$</p>
-<p>所以分治算法分成三个子问题，a和b的分别平方和(a+b)的平方。</p>
-<h5 id="P4-二分查找的逆过程"><a href="#P4-二分查找的逆过程" class="headerlink" title="P4 二分查找的逆过程"></a>P4 二分查找的逆过程</h5><p>sample里给出的名字是Binary Lifting。</p>
+<h5 id="P2-两个可以直接拿来用的结论">P2  两个可以直接拿来用的结论</h5>
 <ul>
-<li><p>主要思路：</p>
-<p>找到一个上界U使得$U\leq 2n$，然后进行二分查找。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lifting</span><br><span class="line"><span class="comment">// Require An array A.</span></span><br><span class="line"><span class="comment">// Ensure an upper bound U for n satisfying U &lt;= 2n.</span></span><br><span class="line">	x = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> A[x] != 无穷大 <span class="keyword">do</span></span><br><span class="line">		x = <span class="number">2</span>x;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br></pre></td></tr></table></figure></li>
+<li>$T(n)=T(\alpha)+T(n-\alpha)+cn$，$T(n)=\Theta(n^2)$</li>
+<li>$T(n)=T(\alpha n)+T((1-\alpha)n)$，$T(n)=\Theta(nlgn)$</li>
 </ul>
-<h5 id="P5-随机算法-amp-投票算法"><a href="#P5-随机算法-amp-投票算法" class="headerlink" title="P5 随机算法&amp;投票算法"></a>P5 随机算法&amp;投票算法</h5><ul>
-<li><p>题意：有身份不明的多数党和少数党人，只有通过他们对彼此的态度区分他们是不是一个党派的人，设计算法能够认证所有人的身份。</p>
+<h5 id="P3-n位数平方的分治法计算">P3 n位数平方的分治法计算</h5>
+<p>主要思路：</p>
+<p>将数字分割为前n/2位数字a和后n/2位数字b，则原数字$x=2^n\cdot a^2 + b^2 +2^{2\frac{3}{2}}\cdot a\cdot b=2^n\cdot a^2 + b^2 +2^{\frac{3}{2}n}((a+b)^2-a^2-b^2)$</p>
+<p>所以分治算法分成三个子问题，a和b的分别平方和(a+b)的平方。</p>
+<h5 id="P4-二分查找的逆过程">P4 二分查找的逆过程</h5>
+<p>sample里给出的名字是Binary Lifting。</p>
+<ul>
+<li>
+<p>主要思路：</p>
+<p>找到一个上界U使得$U\leq 2n$，然后进行二分查找。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lifting</span><br><span class="line"><span class="comment">// Require An array A.</span></span><br><span class="line"><span class="comment">// Ensure an upper bound U for n satisfying U &lt;= 2n.</span></span><br><span class="line">	x = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> A[x] != 无穷大 <span class="keyword">do</span></span><br><span class="line">		x = <span class="number">2</span>x;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>随机算法</p>
+</ul>
+<h5 id="P5-随机算法-投票算法">P5 随机算法&amp;投票算法</h5>
+<ul>
+<li>
+<p>题意：有身份不明的多数党和少数党人，只有通过他们对彼此的态度区分他们是不是一个党派的人，设计算法能够认证所有人的身份。</p>
+</li>
+<li>
+<p>随机算法</p>
 <p>随机选取一个参会者，让他和其他与会者见面。</p>
-<p>选到多数党人的概率至少是1&#x2F;2，所以扫描一遍数组的时间复杂度就是O(n)</p>
+<p>选到多数党人的概率至少是1/2，所以扫描一遍数组的时间复杂度就是O(n)</p>
 </li>
-<li><p>投票算法</p>
+<li>
+<p>投票算法</p>
 <p>用于在线性时间内在数列中找到多数元素。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Voting</span><br><span class="line"><span class="comment">//Require Integer n &gt;= 1, and an oracle F(x, y) which returns 1 if x and y are in the same party, and 0 otherwise.</span></span><br><span class="line"><span class="comment">//Ensure A index i in [n], representing that the i-th delegates is in the majority party.</span></span><br><span class="line">	cur = <span class="number">1</span>, cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> i=<span class="number">2</span>-&gt;n <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> cnt == <span class="number">0</span> then</span><br><span class="line">			cur = i, cnt = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">if</span> F(cur, i) == <span class="number">1</span> then</span><br><span class="line">				cnt = cnt + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				cnt = cnt - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> cur</span><br></pre></td></tr></table></figure>
-
 <p>如果cur不是多数党人，那么在某一次见面后cnt值就一定会减少为0。当cnt减少为0的时候，那个与他见面的与会者就一定是一个多数党人，同时之前与他见面的人也就都能根据反应的不同确定身份，此时将最后一个见面的多数党人设置为cur再去扫描剩下的与会者，更新cnt作为此时cur的cnt，即可确定所有人的身份。</p>
 </li>
-<li><p>网上看了一个图解，对投票算法才算真正理解了，也算是一种对抗算法吧。</p>
+<li>
+<p>网上看了一个图解，对投票算法才算真正理解了，也算是一种对抗算法吧。</p>
 </li>
 </ul>
-<h5 id="P6-最大子数组的分治算法"><a href="#P6-最大子数组的分治算法" class="headerlink" title="P6 最大子数组的分治算法"></a>P6 最大子数组的分治算法</h5><p>根据提示，应该修改添加一些返回信息来简化combine的过程。</p>
+<h5 id="P6-最大子数组的分治算法">P6 最大子数组的分治算法</h5>
+<p>根据提示，应该修改添加一些返回信息来简化combine的过程。</p>
 <ul>
-<li><p>复习书上的做法</p>
+<li>
+<p>复习书上的做法</p>
 <p>最大子数组有三种情况：完全位于原数组的左半边；完全位于原数组的右半边；跨越原数组的中点的子数组中和最大的。所以只要找出来进行比较即可。</p>
 <p>前两种我们都可以递归解决，因此额外要解决的就是第三种情况。</p>
 <p>第三种情况采取遍历的方法解决，先找出左边子数组以mid为结束点的最大子数组，再找出右边子数组以mid+1为起点的最大子数组然后合并即可。</p>
 <p>接下来是分治策略的核心，递归过程。先对左右两边进行递归，注意这里除了返回最大子数组的两个边界还应该返回子数组的和，因为有三种情况而比较的依据就是这个和。然后再用上面实现的算法找出第三种情况下的最大子数组，比较三个和得出答案。</p>
 </li>
-<li><p>算法的修改，优化最后的combine也就是比较过程。sample里给出的答案是在最后一种情况找子数组的时候进行了修改。考虑可不可以在对左右子数组进行递归的时候顺便也把第三种情况也解决了？如果在递归的时候，函数也能返回左边子数组以mid为结束点的最大子数组和右边子数组以mid+1为起点的最大子数组，那就可以直接得到第三种情况要求的子数组。</p>
+<li>
+<p>算法的修改，优化最后的combine也就是比较过程。sample里给出的答案是在最后一种情况找子数组的时候进行了修改。考虑可不可以在对左右子数组进行递归的时候顺便也把第三种情况也解决了？如果在递归的时候，函数也能返回左边子数组以mid为结束点的最大子数组和右边子数组以mid+1为起点的最大子数组，那就可以直接得到第三种情况要求的子数组。</p>
 <p>但是和书上的方式又有很大的不同。</p>
 <p>可以将最大子数组划分为三种情况：以最左边为起点的；以最右边为起点的；剩下的。</p>
 <p>每次函数的返回值为以上三种形式得到的最大子数组以及数组中元素的和。</p>
 <p>以最左边为起点的最大子数组的情况包含了教材方法中的子数组完全在左子数组中的还有以最左边为起点但跨越了中点的情况，以最右边为起点的最大子数组同理。如此便可以囊括了所有情况。</p>
 </li>
 </ul>
-<h5 id="P7-二叉大顶堆中第k大的元素"><a href="#P7-二叉大顶堆中第k大的元素" class="headerlink" title="P7 二叉大顶堆中第k大的元素"></a>P7 二叉大顶堆中第k大的元素</h5><ul>
+<h5 id="P7-二叉大顶堆中第k大的元素">P7 二叉大顶堆中第k大的元素</h5>
+<ul>
 <li>假设我们已经知道了前l大的元素，那么第l+1大的元素就只能是前面元素的子节点。所以我们取另外一个大顶堆，把最大的元素放进堆里，每从堆中取出一个元素，就把元素的两个子节点丢进堆，重复k-1次后取出新堆的top就是要找的元素。</li>
 </ul>
-<h4 id="ProblemSet-4"><a href="#ProblemSet-4" class="headerlink" title="ProblemSet 4"></a>ProblemSet 4</h4><h5 id="P1-画出构建堆和堆排序的具体步骤"><a href="#P1-画出构建堆和堆排序的具体步骤" class="headerlink" title="P1 画出构建堆和堆排序的具体步骤"></a>P1 画出构建堆和堆排序的具体步骤</h5><p>水题，但必须做对。</p>
-<h5 id="P2-Merge-k-sorted-lists"><a href="#P2-Merge-k-sorted-lists" class="headerlink" title="P2 Merge k sorted lists"></a>P2 Merge k sorted lists</h5><p>经典题，经典且水。</p>
+<h4 id="ProblemSet-4">ProblemSet 4</h4>
+<h5 id="P1-画出构建堆和堆排序的具体步骤">P1 画出构建堆和堆排序的具体步骤</h5>
+<p>水题，但必须做对。</p>
+<h5 id="P2-Merge-k-sorted-lists">P2 Merge k sorted lists</h5>
+<p>经典题，经典且水。</p>
 <ul>
-<li><p>主要思路：</p>
+<li>
+<p>主要思路：</p>
 <p>建立一个小顶堆，把每一个列表的第一个元素和它所在列表的id打包放进小顶堆。</p>
 <p>每次从小顶堆中pop顶部元素，同时把顶部元素原先所在列表的下一个元素也打包放进小顶堆。</p>
 <p>时间复杂度：$O(k)$的时间用来建立小顶堆，$O(logk)$的时间去pop和push。</p>
 </li>
-<li><p>代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fuction <span class="title">Merge</span><span class="params">(lst[])</span>:</span></span><br><span class="line"><span class="function">	List L</span></span><br><span class="line"><span class="function">	min_heap q</span></span><br><span class="line"><span class="function">	<span class="keyword">for</span> i from 0 to k-1 <span class="keyword">do</span></span></span><br><span class="line"><span class="function">		q.<span class="title">push</span><span class="params">(<span class="built_in">make_pair</span>(lst[i].front, i))</span></span></span><br><span class="line"><span class="function">		lst[i].<span class="title">pop_front</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	end <span class="keyword">for</span></span></span><br><span class="line"><span class="function">	<span class="keyword">while</span> <span class="keyword">not</span> q.<span class="title">empty</span><span class="params">()</span> <span class="keyword">do</span></span></span><br><span class="line"><span class="function">		tmp </span>= q.top()</span><br><span class="line">		key = tmp.first</span><br><span class="line">		id = tmp.second</span><br><span class="line">		q.pop()</span><br><span class="line">		L.push_back(key)</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> lst[id].empty() then</span><br><span class="line">			q.push(<span class="built_in">make_pair</span>(lst[id].front, i))</span><br><span class="line">			lst[id].pop_front()</span><br><span class="line">		end <span class="keyword">if</span></span><br><span class="line">	end <span class="keyword">while</span></span><br><span class="line">	<span class="keyword">return</span> L</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fuction <span class="title">Merge</span><span class="params">(lst[])</span>:</span></span><br><span class="line"><span class="function">	List L</span></span><br><span class="line"><span class="function">	min_heap q</span></span><br><span class="line"><span class="function">	<span class="keyword">for</span> i from 0 to k-1 <span class="keyword">do</span></span></span><br><span class="line"><span class="function">		q.<span class="title">push</span><span class="params">(<span class="built_in">make_pair</span>(lst[i].front, i))</span></span></span><br><span class="line"><span class="function">		lst[i].<span class="title">pop_front</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	end <span class="keyword">for</span></span></span><br><span class="line"><span class="function">	<span class="keyword">while</span> <span class="keyword">not</span> q.<span class="title">empty</span><span class="params">()</span> <span class="keyword">do</span></span></span><br><span class="line"><span class="function">		tmp </span>= q.top()</span><br><span class="line">		key = tmp.first</span><br><span class="line">		id = tmp.second</span><br><span class="line">		q.pop()</span><br><span class="line">		L.push_back(key)</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> lst[id].empty() then</span><br><span class="line">			q.push(<span class="built_in">make_pair</span>(lst[id].front, i))</span><br><span class="line">			lst[id].pop_front()</span><br><span class="line">		end <span class="keyword">if</span></span><br><span class="line">	end <span class="keyword">while</span></span><br><span class="line">	<span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="P3-Cruel-Unusual"><a href="#P3-Cruel-Unusual" class="headerlink" title="P3 Cruel-Unusual"></a>P3 Cruel-Unusual</h5><p>甭管MIller是谁，我诅咒他。</p>
+<h5 id="P3-Cruel-Unusual">P3 Cruel-Unusual</h5>
+<p>甭管MIller是谁，我诅咒他。</p>
 <p>这一题没写出来，幸好z助教人帅心善，给了我2.5分，绝绝子。</p>
 <ul>
-<li><p>要想证明Cruel确实能排序，可以假设Cruel可以对左右两边的数组进行排序，那么Unusual的作用其实就相当于Merge的作用。</p>
+<li>
+<p>要想证明Cruel确实能排序，可以假设Cruel可以对左右两边的数组进行排序，那么Unusual的作用其实就相当于Merge的作用。</p>
 <p>所以只要证明Unsual的作用就可以。</p>
-<p>(basis) 当n&#x3D;2时，[1,1]和[2,2]可以被合并为[1,2]，所以成立</p>
-<p>(i.s.) 由于n永远都是2的整数次方，可以直接假设当$n&#x3D;2^k$时，结论是成立的。</p>
-<p>当$n&#x3D;2^{k+1}$时，我们可以分别考虑四种元素：</p>
+<p>(basis) 当n=2时，[1,1]和[2,2]可以被合并为[1,2]，所以成立</p>
+<p>(i.s.) 由于n永远都是2的整数次方，可以直接假设当$n=2^k$时，结论是成立的。</p>
+<p>当$n=2^{k+1}$时，我们可以分别考虑四种元素：</p>
 <ol>
-<li><p>最小的n&#x2F;4个元素，这些元素一开始一定是在[1…n&#x2F;4]或者[n&#x2F;2+1…3n&#x2F;4]中的。</p>
-<p>而第一层循环交换了[n&#x2F;4+1…n&#x2F;2]和[n&#x2F;2+1…3n&#x2F;4]，所以最小的n&#x2F;4个元素就集中在了[1…n&#x2F;2]中。而根据归纳假设，[1…n&#x2F;2]可以假定已经排好序，所以最小的n&#x2F;4个元素其实就是[1…n&#x2F;4]，剩下的操作也不会再影响这一部分。</p>
+<li>
+<p>最小的n/4个元素，这些元素一开始一定是在[1…n/4]或者[n/2+1…3n/4]中的。</p>
+<p>而第一层循环交换了[n/4+1…n/2]和[n/2+1…3n/4]，所以最小的n/4个元素就集中在了[1…n/2]中。而根据归纳假设，[1…n/2]可以假定已经排好序，所以最小的n/4个元素其实就是[1…n/4]，剩下的操作也不会再影响这一部分。</p>
 </li>
-<li><p>最大的n&#x2F;4个元素，和第一种元素相同，这些元素最后一定会在[3n&#x2F;4+1…n]中被排好</p>
+<li>
+<p>最大的n/4个元素，和第一种元素相同，这些元素最后一定会在[3n/4+1…n]中被排好</p>
 </li>
-<li><p>其他的元素。在分别对于[1…n&#x2F;2]和[n&#x2F;2+1…n]执行了Unusual后，这些元素集中在[n&#x2F;4+1…3n&#x2F;4]中，且[n&#x2F;4+1…n&#x2F;2]和[n&#x2F;2+1…3n&#x2F;4]中的元素都已经按序排好，而根据归纳假设对[n&#x2F;4+1…3n&#x2F;4]进行Unusual可以将这两部分合并成一个有序数组。</p>
+<li>
+<p>其他的元素。在分别对于[1…n/2]和[n/2+1…n]执行了Unusual后，这些元素集中在[n/4+1…3n/4]中，且[n/4+1…n/2]和[n/2+1…3n/4]中的元素都已经按序排好，而根据归纳假设对[n/4+1…3n/4]进行Unusual可以将这两部分合并成一个有序数组。</p>
 </li>
 </ol>
-<p>所以当$n&#x3D;2^{k+1}$时，结论也成立。</p>
+<p>所以当$n=2^{k+1}$时，结论也成立。</p>
 </li>
-<li><p>其实这么一分析好像也不太难（废话吗这不是，照着sample谁写不出来啊tui</p>
+<li>
+<p>其实这么一分析好像也不太难（废话吗这不是，照着sample谁写不出来啊tui</p>
 </li>
-<li><p>接下来有两个证伪题。</p>
+<li>
+<p>接下来有两个证伪题。</p>
 <p>证！伪！只！要！举！出！反！例！</p>
 </li>
-<li><p>计算时间复杂度</p>
+<li>
+<p>计算时间复杂度</p>
 </li>
 </ul>
-<h5 id="P4-快速排序的改进"><a href="#P4-快速排序的改进" class="headerlink" title="P4 快速排序的改进"></a>P4 快速排序的改进</h5><ul>
-<li><p>证明正确性</p>
+<h5 id="P4-快速排序的改进">P4 快速排序的改进</h5>
+<ul>
+<li>
+<p>证明正确性</p>
 <p>实质上是把原快速排序中的一个递归过程更改成了迭代进行优化，sample里面助教是不是偷懒了丫！（x</p>
 <p>要用归纳假设证明一下的。</p>
 </li>
-<li><p>递归算法的栈深度</p>
-<p>当多个函数构成嵌套调用时,按照”先调用后返回”的原则,上述函数之间的信息传递和控制传递都必须通过”栈”来实现,即系统程序整个运行时的所需要的数据空间都安排在一个栈中,每当调用一个函数时,就在它的栈顶分配一个存储区,每当这个函数退出时,就释放它的存储区,则当前运行的函数的数据区必须在栈顶</p>
+<li>
+<p>递归算法的栈深度</p>
+<p>当多个函数构成嵌套调用时,按照&quot;先调用后返回&quot;的原则,上述函数之间的信息传递和控制传递都必须通过&quot;栈&quot;来实现,即系统程序整个运行时的所需要的数据空间都安排在一个栈中,每当调用一个函数时,就在它的栈顶分配一个存储区,每当这个函数退出时,就释放它的存储区,则当前运行的函数的数据区必须在栈顶</p>
 </li>
-<li><p>优化算法</p>
+<li>
+<p>优化算法</p>
 <p>使得栈的最大深度变为$\Theta(lgn)$</p>
 <p>比较partition划分之后的数组，在较小的数组中进行递归，在较大的数组中进行迭代。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ModifiedTRQuickSort(A[<span class="number">1.</span>..n], p, r)</span><br><span class="line">	<span class="keyword">while</span> p &lt; r <span class="keyword">do</span></span><br><span class="line">		q = partition(A, p, r);</span><br><span class="line">		<span class="keyword">if</span> q &lt; (p+r)/<span class="number">2</span> <span class="function">then</span></span><br><span class="line"><span class="function">			<span class="title">ModifiedTRQuickSort</span><span class="params">(A, p, q<span class="number">-1</span>)</span></span>;</span><br><span class="line">			p = q + <span class="number">1</span>;</span><br><span class="line">		<span class="function">elif</span></span><br><span class="line"><span class="function">			<span class="title">ModifiedTRQuickSort</span><span class="params">(A, q+<span class="number">1</span>, r)</span></span>;</span><br><span class="line">			r = q - <span class="number">1</span>;</span><br><span class="line">		end <span class="keyword">if</span></span><br><span class="line">	end <span class="keyword">while</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ModifiedTRQuickSort(A[<span class="number">1.</span>..n], p, r)</span><br><span class="line">	<span class="keyword">while</span> p &lt; r <span class="keyword">do</span></span><br><span class="line">		q = partition(A, p, r);</span><br><span class="line">		<span class="keyword">if</span> q &lt; (p+r)/<span class="number">2</span> <span class="function">then</span></span><br><span class="line"><span class="function">			<span class="title">ModifiedTRQuickSort</span><span class="params">(A, p, q<span class="number">-1</span>)</span></span>;</span><br><span class="line">			p = q + <span class="number">1</span>;</span><br><span class="line">		<span class="function">elif</span></span><br><span class="line"><span class="function">			<span class="title">ModifiedTRQuickSort</span><span class="params">(A, q+<span class="number">1</span>, r)</span></span>;</span><br><span class="line">			r = q - <span class="number">1</span>;</span><br><span class="line">		end <span class="keyword">if</span></span><br><span class="line">	end <span class="keyword">while</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="P5-SqrtSort"><a href="#P5-SqrtSort" class="headerlink" title="P5 SqrtSort"></a>P5 SqrtSort</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SortBySqrtSort</span><br><span class="line">Require n</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">2</span>*<span class="built_in">sqrt</span>(n)<span class="number">-1</span> to <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> k = <span class="number">1</span> to i <span class="keyword">do</span></span><br><span class="line">		SqrtSort((k<span class="number">-1</span>)<span class="built_in">sqrt</span>(n)/<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
+<h5 id="P5-SqrtSort">P5 SqrtSort</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SortBySqrtSort</span><br><span class="line">Require n</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">2</span>*<span class="built_in">sqrt</span>(n)<span class="number">-1</span> to <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> k = <span class="number">1</span> to i <span class="keyword">do</span></span><br><span class="line">		SqrtSort((k<span class="number">-1</span>)<span class="built_in">sqrt</span>(n)/<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 <p>正确性证明：</p>
 <p>分为外层和内层循环不变式的证明。</p>
-<h5 id="P6-抛硬币问题"><a href="#P6-抛硬币问题" class="headerlink" title="P6 抛硬币问题"></a>P6 抛硬币问题</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">OneInTwo</span><br><span class="line">a = BiasedCoin()</span><br><span class="line">b = BiasedCoin()</span><br><span class="line"><span class="keyword">if</span> a = <span class="number">1</span> <span class="keyword">and</span> b = <span class="number">0</span> then</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> a = <span class="number">0</span> <span class="keyword">and</span> b = <span class="number">1</span> then</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">return</span> OneInTwo()</span><br></pre></td></tr></table></figure>
-
-<h5 id="P7-Upper-Bound-and-Lower-Bound"><a href="#P7-Upper-Bound-and-Lower-Bound" class="headerlink" title="P7 Upper Bound and Lower Bound"></a>P7 Upper Bound and Lower Bound</h5><ul>
+<h5 id="P6-抛硬币问题">P6 抛硬币问题</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">OneInTwo</span><br><span class="line">a = BiasedCoin()</span><br><span class="line">b = BiasedCoin()</span><br><span class="line"><span class="keyword">if</span> a = <span class="number">1</span> <span class="keyword">and</span> b = <span class="number">0</span> then</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> a = <span class="number">0</span> <span class="keyword">and</span> b = <span class="number">1</span> then</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">return</span> OneInTwo()</span><br></pre></td></tr></table></figure>
+<h5 id="P7-Upper-Bound-and-Lower-Bound">P7 Upper Bound and Lower Bound</h5>
+<ul>
 <li>要给出一个Upper Bound，我们只需要给出一个算法并且证明时间复杂度</li>
 <li>要给出一个Lower Bound，我们需要证明任何算法花费得时间都比这个要多。</li>
 </ul>
-<h5 id="P8-证明堆排序的时间复杂度"><a href="#P8-证明堆排序的时间复杂度" class="headerlink" title="P8 证明堆排序的时间复杂度"></a>P8 证明堆排序的时间复杂度</h5><p>要证明当元素各不相同时，堆排序的时间复杂度是$\Theta(nlgn)$，而我们已经知道堆排序的时间复杂度总是$O(nlgn)$，所以我们只要证明当元素各不相同时时间复杂度是$\Omega(nlgn)$</p>
-<h4 id="ProblemSet-5"><a href="#ProblemSet-5" class="headerlink" title="ProblemSet 5"></a>ProblemSet 5</h4><h5 id="P1-k-sorted-array"><a href="#P1-k-sorted-array" class="headerlink" title="P1 k-sorted array"></a>P1 k-sorted array</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">k-<span class="built_in">sort</span>(A, l, r, k)</span><br><span class="line">	<span class="keyword">if</span> k == <span class="number">1</span> then</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	blocksize = (r-l+<span class="number">1</span>)/k</span><br><span class="line">	pos = k/<span class="number">2</span> * blocksize</span><br><span class="line">	<span class="built_in">RandomSelect</span>(A, l, r, pos)</span><br><span class="line">	k-<span class="built_in">sort</span>(A, l, l+pos<span class="number">-1</span>, k/<span class="number">2</span>)</span><br><span class="line">	k-<span class="built_in">sort</span>(A, l+pos, r, k/<span class="number">2</span>)</span><br><span class="line">end function</span><br></pre></td></tr></table></figure>
-
-<h5 id="P2-假币问题"><a href="#P2-假币问题" class="headerlink" title="P2 假币问题"></a>P2 假币问题</h5><ul>
-<li><p>两枚假币在同一边的概率</p>
-<p>  删去两枚假币后就在这一堆或者在另一堆，一个n&#x2F;2-2，一个n&#x2F;2</p>
+<h5 id="P8-证明堆排序的时间复杂度">P8 证明堆排序的时间复杂度</h5>
+<p>要证明当元素各不相同时，堆排序的时间复杂度是$\Theta(nlgn)$，而我们已经知道堆排序的时间复杂度总是$O(nlgn)$，所以我们只要证明当元素各不相同时时间复杂度是$\Omega(nlgn)$</p>
+<h4 id="ProblemSet-5">ProblemSet 5</h4>
+<h5 id="P1-k-sorted-array">P1 k-sorted array</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">k-<span class="built_in">sort</span>(A, l, r, k)</span><br><span class="line">	<span class="keyword">if</span> k == <span class="number">1</span> then</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	blocksize = (r-l+<span class="number">1</span>)/k</span><br><span class="line">	pos = k/<span class="number">2</span> * blocksize</span><br><span class="line">	<span class="built_in">RandomSelect</span>(A, l, r, pos)</span><br><span class="line">	k-<span class="built_in">sort</span>(A, l, l+pos<span class="number">-1</span>, k/<span class="number">2</span>)</span><br><span class="line">	k-<span class="built_in">sort</span>(A, l+pos, r, k/<span class="number">2</span>)</span><br><span class="line">end function</span><br></pre></td></tr></table></figure>
+<h5 id="P2-假币问题">P2 假币问题</h5>
+<ul>
+<li>
+<p>两枚假币在同一边的概率</p>
+<p>删去两枚假币后就在这一堆或者在另一堆，一个n/2-2，一个n/2</p>
 </li>
-<li><p>可以使用标准二分查找在n&#x2F;2次比较后找出两枚假币。</p>
+<li>
+<p>可以使用标准二分查找在n/2次比较后找出两枚假币。</p>
 <p>先随机平均划分一堆硬币为两堆，重复操作直到两枚假币不在一边。</p>
 </li>
 </ul>
-<h5 id="P3-快排的运用"><a href="#P3-快排的运用" class="headerlink" title="P3 快排的运用"></a>P3 快排的运用</h5><ul>
+<h5 id="P3-快排的运用">P3 快排的运用</h5>
+<ul>
 <li>基于S的value用快速排序分别对S和W进行排序；遍历W计算总和；遍历S找寻目标元素。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Finding Magical Mean</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">function <span class="title">MagicalMean</span><span class="params">(S, W)</span></span></span><br><span class="line"><span class="function">	Sort <span class="built_in">array</span> S <span class="keyword">and</span> W based on the value of S</span>;</span><br><span class="line">	tot = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> i = <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">		tot = tot + W[i];</span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	cur = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> i = <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">		<span class="keyword">if</span> cur &lt;= tot/<span class="number">2</span> <span class="keyword">and</span> tot-cur-W[i] &gt;= tot/<span class="number">2</span> then</span><br><span class="line">			ans = S[i];</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		end <span class="keyword">if</span></span><br><span class="line">		cur = cur + W[i];</span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">end function</span><br></pre></td></tr></table></figure>
-
-<p>​	时间复杂度计算：$T(n)&#x3D;O(nlogn)+O(n)&#x3D;O(nlogn)$</p>
+<p>​	时间复杂度计算：$T(n)=O(nlogn)+O(n)=O(nlogn)$</p>
 <ul>
-<li><p>先使用randomselect找出S的中位数m，再以m为基准对S和W执行partition。</p>
+<li>
+<p>先使用randomselect找出S的中位数m，再以m为基准对S和W执行partition。</p>
 <p>然后分别计算m左右两边的总权重，判断m是不是目标元素，如果是，则直接返回m，如果不是，则：</p>
-<p>如果$w(S_{&lt;x})&gt; w(S)&#x2F;2$，说明基准太大就在左边半边递归。</p>
-<p>如果$w(S_{&gt;x})&gt;w(S)&#x2F;2$，说明基准太小就在右边半边递归。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">MagicalMean(S, W, l, r, lsum, rsum)</span><br><span class="line">	m = FindMedian(S, l, r);</span><br><span class="line">	q = Partition(S, W, l, r, m);</span><br><span class="line">	wl = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> i = l to q<span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">		wl = wl + W[i];</span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	tot = wl + wr + lsum + rsum + W[q];</span><br><span class="line">	<span class="keyword">if</span> wl + lsum &lt;= tot/<span class="number">2</span> <span class="keyword">and</span> wr + rsum &lt;= tot/<span class="number">2</span> then</span><br><span class="line">		ans = m;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> wl + lsum &gt; tot/<span class="number">2</span> then</span><br><span class="line">		ans = MagicalMean(S, W, l, q<span class="number">-1</span>, lsum, rsum+wr+W[q]);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		ans = MagicalMean(S, W, q+<span class="number">1</span>, r, lsum+wl+W[q], rsum);</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	<span class="keyword">return</span> ans;</span><br></pre></td></tr></table></figure></li>
+<p>如果$w(S_{&lt;x})&gt; w(S)/2$，说明基准太大就在左边半边递归。</p>
+<p>如果$w(S_{&gt;x})&gt;w(S)/2$，说明基准太小就在右边半边递归。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">MagicalMean(S, W, l, r, lsum, rsum)</span><br><span class="line">	m = FindMedian(S, l, r);</span><br><span class="line">	q = Partition(S, W, l, r, m);</span><br><span class="line">	wl = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> i = l to q<span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">		wl = wl + W[i];</span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	tot = wl + wr + lsum + rsum + W[q];</span><br><span class="line">	<span class="keyword">if</span> wl + lsum &lt;= tot/<span class="number">2</span> <span class="keyword">and</span> wr + rsum &lt;= tot/<span class="number">2</span> then</span><br><span class="line">		ans = m;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> wl + lsum &gt; tot/<span class="number">2</span> then</span><br><span class="line">		ans = MagicalMean(S, W, l, q<span class="number">-1</span>, lsum, rsum+wr+W[q]);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		ans = MagicalMean(S, W, q+<span class="number">1</span>, r, lsum+wl+W[q], rsum);</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	<span class="keyword">return</span> ans;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>时间复杂度：$T(n)&#x3D;T(\frac{n}{2})+O(n)&#x3D;O(n)$</p>
-<h5 id="P4-桶排序的延伸"><a href="#P4-桶排序的延伸" class="headerlink" title="P4 桶排序的延伸"></a>P4 桶排序的延伸</h5><ul>
-<li><p>对0和1序列进行排序</p>
+<p>时间复杂度：$T(n)=T(\frac{n}{2})+O(n)=O(n)$</p>
+<h5 id="P4-桶排序的延伸">P4 桶排序的延伸</h5>
+<ul>
+<li>
+<p>对0和1序列进行排序</p>
 <ol>
 <li>设置三个列表</li>
 <li>把每个元素与a[1]比较，如果更小，放入第一个列表，如果一样大，放入第二个列表，如果更大，放入第三个列表。</li>
 <li>将三个列表合并</li>
 </ol>
 </li>
-<li><p>String Sort</p>
+<li>
+<p>String Sort</p>
 <p>有点子像基数排序。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>-sort(strList, i)</span><br><span class="line">	create <span class="number">27</span> buckets B_a, B_b, B_c,..., B_z</span><br><span class="line">	<span class="keyword">for</span> s in strList <span class="keyword">do</span></span><br><span class="line">		Assign s to B_i <span class="comment">//将单词放进开头字母的列表</span></span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	<span class="keyword">for</span> i = <span class="string">&#x27;a&#x27;</span> to <span class="string">&#x27;z&#x27;</span> <span class="keyword">do</span></span><br><span class="line">		<span class="built_in">string</span>-sort(B_i, i+<span class="number">1</span>)</span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	<span class="keyword">return</span> concat(B_a, B_b,..., B_z)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>-sort(strList, i)</span><br><span class="line">	create <span class="number">27</span> buckets B_a, B_b, B_c,..., B_z</span><br><span class="line">	<span class="keyword">for</span> s in strList <span class="keyword">do</span></span><br><span class="line">		Assign s to B_i <span class="comment">//将单词放进开头字母的列表</span></span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	<span class="keyword">for</span> i = <span class="string">&#x27;a&#x27;</span> to <span class="string">&#x27;z&#x27;</span> <span class="keyword">do</span></span><br><span class="line">		<span class="built_in">string</span>-sort(B_i, i+<span class="number">1</span>)</span><br><span class="line">	end <span class="keyword">for</span></span><br><span class="line">	<span class="keyword">return</span> concat(B_a, B_b,..., B_z)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="P5-寻找树的特殊节点"><a href="#P5-寻找树的特殊节点" class="headerlink" title="P5 寻找树的特殊节点"></a>P5 寻找树的特殊节点</h5><ul>
+<h5 id="P5-寻找树的特殊节点">P5 寻找树的特殊节点</h5>
+<ul>
 <li>证明每个树都有这样一个节点</li>
 <li>预先计算所有以u为节点的子树的大小，然后检查所有节点的稳定性。</li>
 </ul>
-<h5 id="P6-寻找两个有序数组中第k小的元素"><a href="#P6-寻找两个有序数组中第k小的元素" class="headerlink" title="P6 寻找两个有序数组中第k小的元素"></a>P6 寻找两个有序数组中第k小的元素</h5><p>分治策略</p>
+<h5 id="P6-寻找两个有序数组中第k小的元素">P6 寻找两个有序数组中第k小的元素</h5>
+<p>分治策略</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">find k-th Smallest Element</span><br><span class="line"><span class="comment">// Require A[1...n], B[1...m], k</span></span><br><span class="line"><span class="comment">// Ensure The kth smallest elements in A并B</span></span><br><span class="line">	<span class="keyword">if</span> A is empty then</span><br><span class="line">		<span class="keyword">return</span> B[k]</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	<span class="keyword">if</span> B is empty then</span><br><span class="line">		<span class="keyword">return</span> A[k]</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	<span class="keyword">if</span> k = <span class="number">1</span> then</span><br><span class="line">		<span class="keyword">return</span> min(A[<span class="number">1</span>], B[<span class="number">1</span>])</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	<span class="keyword">if</span> n &gt; m then </span><br><span class="line">		<span class="keyword">return</span> FKSE(B[<span class="number">1.</span>..m], A[<span class="number">1.</span>..n], k)</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	k0 &lt;- min(k/<span class="number">2</span>, n)</span><br><span class="line">	k1 &lt;- k-k0</span><br><span class="line">	<span class="keyword">if</span> A[k0] = B[k1] then</span><br><span class="line">		<span class="keyword">return</span> A[k]</span><br><span class="line">	end <span class="keyword">if</span></span><br><span class="line">	<span class="keyword">if</span> A[k0] &lt; B[k1] then</span><br><span class="line">		<span class="keyword">return</span> FKSE(A[k0+<span class="number">1.</span>..n], B[<span class="number">1.</span>..m], k-k0)</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> FKSE(A[<span class="number">1.</span>..n], B[k1+<span class="number">1.</span>..m], k-k1)</span><br><span class="line">	end <span class="keyword">if</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="P7-遍历二叉树中的节点"><a href="#P7-遍历二叉树中的节点" class="headerlink" title="P7 遍历二叉树中的节点"></a>P7 遍历二叉树中的节点</h5><p>要求在O(n)时间内遍历所有节点。</p>
+<h5 id="P7-遍历二叉树中的节点">P7 遍历二叉树中的节点</h5>
+<p>要求在O(n)时间内遍历所有节点。</p>
 <p>经典策略：Morris遍历</p>
 <ol>
-<li><p>如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。</p>
+<li>
+<p>如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。</p>
 </li>
-<li><p>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。</p>
+<li>
+<p>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。</p>
 </li>
 </ol>
-<p>  a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。</p>
-<p>  b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空（恢复树的形状）。输出当前节点。当前节点更新为当前节点的右孩子。</p>
+<p>a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。</p>
+<p>b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空（恢复树的形状）。输出当前节点。当前节点更新为当前节点的右孩子。</p>
 <ol start="3">
 <li>重复以上1、2直到当前节点为空。</li>
 </ol>
-<h4 id="ProblemSet-6"><a href="#ProblemSet-6" class="headerlink" title="ProblemSet 6"></a>ProblemSet 6</h4><h5 id="P1-根据树的遍历画出树"><a href="#P1-根据树的遍历画出树" class="headerlink" title="P1 根据树的遍历画出树"></a>P1 根据树的遍历画出树</h5><ul>
-<li><p>只根据前序和后序遍历队列无法确定一棵唯一二叉树</p>
+<h4 id="ProblemSet-6">ProblemSet 6</h4>
+<h5 id="P1-根据树的遍历画出树">P1 根据树的遍历画出树</h5>
+<ul>
+<li>
+<p>只根据前序和后序遍历队列无法确定一棵唯一二叉树</p>
 <p>证明只需要举出反例：一个只有左子树和一个只有右子树的树，由于都是path型的树，所以前序和后序遍历队列都是相同的，但是两棵树仍然是不同的两棵树。</p>
 </li>
-<li><p>由遍历队列构建满二叉树的算法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ConstructFullTree(Pre, Pos, l, r, idx)</span><br><span class="line">	root = Pre[idx]</span><br><span class="line">	if l = r then return root</span><br><span class="line">	idx++</span><br><span class="line">	for int i = l to r</span><br><span class="line">		if Pre[idx] = Pos[i]</span><br><span class="line">		int bound = i</span><br><span class="line">		break</span><br><span class="line">	root.left = CFT(Pre, Pos, l, bound, idx)</span><br><span class="line">	root.right = CFT(Pre, Pos, bound+1, r, idx)</span><br><span class="line">	return root;</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>由遍历队列构建满二叉树的算法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ConstructFullTree(Pre, Pos, l, r, idx)</span><br><span class="line">	root = Pre[idx]</span><br><span class="line">	if l = r then return root</span><br><span class="line">	idx++</span><br><span class="line">	for int i = l to r</span><br><span class="line">		if Pre[idx] = Pos[i]</span><br><span class="line">		int bound = i</span><br><span class="line">		break</span><br><span class="line">	root.left = CFT(Pre, Pos, l, bound, idx)</span><br><span class="line">	root.right = CFT(Pre, Pos, bound+1, r, idx)</span><br><span class="line">	return root;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="P2-二叉搜索树转换为hb二叉搜索树"><a href="#P2-二叉搜索树转换为hb二叉搜索树" class="headerlink" title="P2 二叉搜索树转换为hb二叉搜索树"></a>P2 二叉搜索树转换为hb二叉搜索树</h5><p>复习一下树的旋转：</p>
+<h5 id="P2-二叉搜索树转换为hb二叉搜索树">P2 二叉搜索树转换为hb二叉搜索树</h5>
+<p>复习一下树的旋转：</p>
 <p>将一个节点上移、一个节点下移。树旋转会改变树的形状，因此常被用来将较小的子树下移、较大的子树上移，从而降低树的高度、提升许多树操作的效率。</p>
 <ul>
-<li><p>主要思路：</p>
+<li>
+<p>主要思路：</p>
 <p>先通过不断的右旋将BST转化成一条chain，再将得到的链不断左旋转化成一棵树。</p>
 </li>
-<li><p>证明：</p>
+<li>
+<p>证明：</p>
 <p>定理：至多n-1次右旋可以将BST从一棵树转化成一条右走向链。</p>
-<p>Basis：n&#x3D;1时不需要旋转</p>
+<p>Basis：n=1时不需要旋转</p>
 <p>I.H：假设$1\leq n\leq k$时，最多需要n-1次右旋</p>
-<p>I.S：当n&#x3D;k+1，假设左边子树的大小是m，右边子树的大小是k-m</p>
-<p>​	    根据I.H，最多需要$t&#x3D;(m-1)+max{0,(k-m-1)}\leq k-1$次右旋</p>
+<p>I.S：当n=k+1，假设左边子树的大小是m，右边子树的大小是k-m</p>
+<p>​	    根据I.H，最多需要$t=(m-1)+max{0,(k-m-1)}\leq k-1$次右旋</p>
 </li>
 </ul>
-<h5 id="P3-将随机二叉树转化为BST"><a href="#P3-将随机二叉树转化为BST" class="headerlink" title="P3 将随机二叉树转化为BST"></a>P3 将随机二叉树转化为BST</h5><p>先用$O(n)$次旋转将二叉树转化成一条每个节点只有一个左子节点的链。</p>
+<h5 id="P3-将随机二叉树转化为BST">P3 将随机二叉树转化为BST</h5>
+<p>先用$O(n)$次旋转将二叉树转化成一条每个节点只有一个左子节点的链。</p>
 <p>用一个冒泡排序的类似方法。</p>
 <p>在链中可以通过一次swap，一次左旋和一次swap操作交换两个节点的位置但是不影响其他性质。</p>
 <p>假设设置当前节点为X，其父节点Y（如果链躺下来就算是右边的）比它小的话。先将X和其兄弟节点（空）交换位置，再将Y左旋（降低高度），再将Y此时的右子树与左子树（空）交换位置；如果Y更大，则更改当前节点为Y。一轮下来，根节点应该就是所有节点中最大的一个节点。</p>
-<h5 id="P4-画出红黑树的建立和删除节点的过程"><a href="#P4-画出红黑树的建立和删除节点的过程" class="headerlink" title="P4 画出红黑树的建立和删除节点的过程"></a>P4 画出红黑树的建立和删除节点的过程</h5><p>ommited</p>
-<h5 id="P5-AVL树"><a href="#P5-AVL树" class="headerlink" title="P5 AVL树"></a>P5 AVL树</h5><h5 id="P6-可熔优先队列"><a href="#P6-可熔优先队列" class="headerlink" title="P6 可熔优先队列"></a>P6 可熔优先队列</h5>
+<h5 id="P4-画出红黑树的建立和删除节点的过程">P4 画出红黑树的建立和删除节点的过程</h5>
+<p>ommited</p>
+<h5 id="P5-AVL树">P5 AVL树</h5>
+<h5 id="P6-可熔优先队列">P6 可熔优先队列</h5>
+
     </article>
     <!-- license -->
     
@@ -1008,7 +1106,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.</span> <span class="toc-text">作业回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-1"><span class="toc-number">1.1.</span> <span class="toc-text">ProblemSet 1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E5%BE%AA%E7%8E%AF%E4%B8%8D%E5%8F%98%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">P1 循环不变式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">P2 计算时间复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-x2F-4-%E4%B8%80%E4%BA%9B%E6%B8%90%E8%BF%91%E7%9A%84%E7%BB%83%E4%B9%A0"><span class="toc-number">1.1.3.</span> <span class="toc-text">P3&#x2F;4 一些渐近的练习</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E7%94%A8%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0%E4%B8%A4%E4%B8%AA%E6%A0%88%EF%BC%88%E5%85%B1%E4%BA%AB%E6%A0%88%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">P5 用一个数组实现两个栈（共享栈）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E7%94%A8%E4%B8%A4%E4%B8%AA%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%A0%88"><span class="toc-number">1.1.5.</span> <span class="toc-text">P6 用两个先进先出队列实现一个栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E9%9A%8F%E6%9C%BA%E9%98%9F%E5%88%97"><span class="toc-number">1.1.6.</span> <span class="toc-text">P7 随机队列</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-2"><span class="toc-number">1.2.</span> <span class="toc-text">ProblemSet 2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E9%80%86%E5%BA%8F%E9%93%BE%E8%A1%A8-amp-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">P1 逆序链表&amp;双向链表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E6%9C%80%E5%A4%A7%E6%A0%88"><span class="toc-number">1.2.2.</span> <span class="toc-text">P2 最大栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-%E4%BB%8E%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%B0%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">P3 从中缀表达式到后缀表达式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E5%88%86%E6%B2%BB%E7%AD%96%E7%95%A5%E4%B8%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="toc-number">1.2.4.</span> <span class="toc-text">P4 分治策略下的时间复杂度计算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E7%A7%BB%E9%99%A4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="toc-number">1.2.5.</span> <span class="toc-text">P5 移除数组中的重复元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E7%BB%9F%E8%AE%A1%E9%80%86%E5%BA%8F%E5%AF%B9%E4%B8%AA%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">P6 统计逆序对个数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-3"><span class="toc-number">1.3.</span> <span class="toc-text">ProblemSet 3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E9%80%92%E5%BD%92%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.3.1.</span> <span class="toc-text">P1 递归的时间复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%8B%BF%E6%9D%A5%E7%94%A8%E7%9A%84%E7%BB%93%E8%AE%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text">P2  两个可以直接拿来用的结论</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-n%E4%BD%8D%E6%95%B0%E5%B9%B3%E6%96%B9%E7%9A%84%E5%88%86%E6%B2%BB%E6%B3%95%E8%AE%A1%E7%AE%97"><span class="toc-number">1.3.3.</span> <span class="toc-text">P3 n位数平方的分治法计算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E9%80%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.4.</span> <span class="toc-text">P4 二分查找的逆过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-amp-%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.5.</span> <span class="toc-text">P5 随机算法&amp;投票算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.6.</span> <span class="toc-text">P6 最大子数组的分治算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E4%BA%8C%E5%8F%89%E5%A4%A7%E9%A1%B6%E5%A0%86%E4%B8%AD%E7%AC%ACk%E5%A4%A7%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.7.</span> <span class="toc-text">P7 二叉大顶堆中第k大的元素</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-4"><span class="toc-number">1.4.</span> <span class="toc-text">ProblemSet 4</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E7%94%BB%E5%87%BA%E6%9E%84%E5%BB%BA%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.4.1.</span> <span class="toc-text">P1 画出构建堆和堆排序的具体步骤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-Merge-k-sorted-lists"><span class="toc-number">1.4.2.</span> <span class="toc-text">P2 Merge k sorted lists</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-Cruel-Unusual"><span class="toc-number">1.4.3.</span> <span class="toc-text">P3 Cruel-Unusual</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-number">1.4.4.</span> <span class="toc-text">P4 快速排序的改进</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-SqrtSort"><span class="toc-number">1.4.5.</span> <span class="toc-text">P5 SqrtSort</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E6%8A%9B%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.6.</span> <span class="toc-text">P6 抛硬币问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-Upper-Bound-and-Lower-Bound"><span class="toc-number">1.4.7.</span> <span class="toc-text">P7 Upper Bound and Lower Bound</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P8-%E8%AF%81%E6%98%8E%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.4.8.</span> <span class="toc-text">P8 证明堆排序的时间复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-5"><span class="toc-number">1.5.</span> <span class="toc-text">ProblemSet 5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-k-sorted-array"><span class="toc-number">1.5.1.</span> <span class="toc-text">P1 k-sorted array</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.2.</span> <span class="toc-text">P2 假币问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-%E5%BF%AB%E6%8E%92%E7%9A%84%E8%BF%90%E7%94%A8"><span class="toc-number">1.5.3.</span> <span class="toc-text">P3 快排的运用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E6%A1%B6%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.5.4.</span> <span class="toc-text">P4 桶排序的延伸</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E5%AF%BB%E6%89%BE%E6%A0%91%E7%9A%84%E7%89%B9%E6%AE%8A%E8%8A%82%E7%82%B9"><span class="toc-number">1.5.5.</span> <span class="toc-text">P5 寻找树的特殊节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">1.5.6.</span> <span class="toc-text">P6 寻找两个有序数组中第k小的元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-number">1.5.7.</span> <span class="toc-text">P7 遍历二叉树中的节点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-6"><span class="toc-number">1.6.</span> <span class="toc-text">ProblemSet 6</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E6%A0%B9%E6%8D%AE%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%94%BB%E5%87%BA%E6%A0%91"><span class="toc-number">1.6.1.</span> <span class="toc-text">P1 根据树的遍历画出树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BAhb%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">1.6.2.</span> <span class="toc-text">P2 二叉搜索树转换为hb二叉搜索树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-%E5%B0%86%E9%9A%8F%E6%9C%BA%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E5%8C%96%E4%B8%BABST"><span class="toc-number">1.6.3.</span> <span class="toc-text">P3 将随机二叉树转化为BST</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E7%94%BB%E5%87%BA%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E5%BB%BA%E7%AB%8B%E5%92%8C%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.6.4.</span> <span class="toc-text">P4 画出红黑树的建立和删除节点的过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-AVL%E6%A0%91"><span class="toc-number">1.6.5.</span> <span class="toc-text">P5 AVL树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E5%8F%AF%E7%86%94%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97"><span class="toc-number">1.6.6.</span> <span class="toc-text">P6 可熔优先队列</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.</span> <span class="toc-text">作业回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-1"><span class="toc-number">1.1.</span> <span class="toc-text">ProblemSet 1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E5%BE%AA%E7%8E%AF%E4%B8%8D%E5%8F%98%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">P1 循环不变式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">P2 计算时间复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-4-%E4%B8%80%E4%BA%9B%E6%B8%90%E8%BF%91%E7%9A%84%E7%BB%83%E4%B9%A0"><span class="toc-number">1.1.3.</span> <span class="toc-text">P3&#x2F;4 一些渐近的练习</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E7%94%A8%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0%E4%B8%A4%E4%B8%AA%E6%A0%88%EF%BC%88%E5%85%B1%E4%BA%AB%E6%A0%88%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">P5 用一个数组实现两个栈（共享栈）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E7%94%A8%E4%B8%A4%E4%B8%AA%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%A0%88"><span class="toc-number">1.1.5.</span> <span class="toc-text">P6 用两个先进先出队列实现一个栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E9%9A%8F%E6%9C%BA%E9%98%9F%E5%88%97"><span class="toc-number">1.1.6.</span> <span class="toc-text">P7 随机队列</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-2"><span class="toc-number">1.2.</span> <span class="toc-text">ProblemSet 2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E9%80%86%E5%BA%8F%E9%93%BE%E8%A1%A8-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">P1 逆序链表&amp;双向链表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E6%9C%80%E5%A4%A7%E6%A0%88"><span class="toc-number">1.2.2.</span> <span class="toc-text">P2 最大栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-%E4%BB%8E%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%B0%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">P3 从中缀表达式到后缀表达式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E5%88%86%E6%B2%BB%E7%AD%96%E7%95%A5%E4%B8%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="toc-number">1.2.4.</span> <span class="toc-text">P4 分治策略下的时间复杂度计算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E7%A7%BB%E9%99%A4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="toc-number">1.2.5.</span> <span class="toc-text">P5 移除数组中的重复元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E7%BB%9F%E8%AE%A1%E9%80%86%E5%BA%8F%E5%AF%B9%E4%B8%AA%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">P6 统计逆序对个数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-3"><span class="toc-number">1.3.</span> <span class="toc-text">ProblemSet 3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E9%80%92%E5%BD%92%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.3.1.</span> <span class="toc-text">P1 递归的时间复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%8B%BF%E6%9D%A5%E7%94%A8%E7%9A%84%E7%BB%93%E8%AE%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text">P2  两个可以直接拿来用的结论</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-n%E4%BD%8D%E6%95%B0%E5%B9%B3%E6%96%B9%E7%9A%84%E5%88%86%E6%B2%BB%E6%B3%95%E8%AE%A1%E7%AE%97"><span class="toc-number">1.3.3.</span> <span class="toc-text">P3 n位数平方的分治法计算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E9%80%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.4.</span> <span class="toc-text">P4 二分查找的逆过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.5.</span> <span class="toc-text">P5 随机算法&amp;投票算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.6.</span> <span class="toc-text">P6 最大子数组的分治算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E4%BA%8C%E5%8F%89%E5%A4%A7%E9%A1%B6%E5%A0%86%E4%B8%AD%E7%AC%ACk%E5%A4%A7%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.7.</span> <span class="toc-text">P7 二叉大顶堆中第k大的元素</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-4"><span class="toc-number">1.4.</span> <span class="toc-text">ProblemSet 4</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E7%94%BB%E5%87%BA%E6%9E%84%E5%BB%BA%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.4.1.</span> <span class="toc-text">P1 画出构建堆和堆排序的具体步骤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-Merge-k-sorted-lists"><span class="toc-number">1.4.2.</span> <span class="toc-text">P2 Merge k sorted lists</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-Cruel-Unusual"><span class="toc-number">1.4.3.</span> <span class="toc-text">P3 Cruel-Unusual</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-number">1.4.4.</span> <span class="toc-text">P4 快速排序的改进</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-SqrtSort"><span class="toc-number">1.4.5.</span> <span class="toc-text">P5 SqrtSort</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E6%8A%9B%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.6.</span> <span class="toc-text">P6 抛硬币问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-Upper-Bound-and-Lower-Bound"><span class="toc-number">1.4.7.</span> <span class="toc-text">P7 Upper Bound and Lower Bound</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P8-%E8%AF%81%E6%98%8E%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.4.8.</span> <span class="toc-text">P8 证明堆排序的时间复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-5"><span class="toc-number">1.5.</span> <span class="toc-text">ProblemSet 5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-k-sorted-array"><span class="toc-number">1.5.1.</span> <span class="toc-text">P1 k-sorted array</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.2.</span> <span class="toc-text">P2 假币问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-%E5%BF%AB%E6%8E%92%E7%9A%84%E8%BF%90%E7%94%A8"><span class="toc-number">1.5.3.</span> <span class="toc-text">P3 快排的运用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E6%A1%B6%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.5.4.</span> <span class="toc-text">P4 桶排序的延伸</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-%E5%AF%BB%E6%89%BE%E6%A0%91%E7%9A%84%E7%89%B9%E6%AE%8A%E8%8A%82%E7%82%B9"><span class="toc-number">1.5.5.</span> <span class="toc-text">P5 寻找树的特殊节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">1.5.6.</span> <span class="toc-text">P6 寻找两个有序数组中第k小的元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P7-%E9%81%8D%E5%8E%86%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-number">1.5.7.</span> <span class="toc-text">P7 遍历二叉树中的节点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ProblemSet-6"><span class="toc-number">1.6.</span> <span class="toc-text">ProblemSet 6</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P1-%E6%A0%B9%E6%8D%AE%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%94%BB%E5%87%BA%E6%A0%91"><span class="toc-number">1.6.1.</span> <span class="toc-text">P1 根据树的遍历画出树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P2-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BAhb%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">1.6.2.</span> <span class="toc-text">P2 二叉搜索树转换为hb二叉搜索树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P3-%E5%B0%86%E9%9A%8F%E6%9C%BA%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E5%8C%96%E4%B8%BABST"><span class="toc-number">1.6.3.</span> <span class="toc-text">P3 将随机二叉树转化为BST</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P4-%E7%94%BB%E5%87%BA%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E5%BB%BA%E7%AB%8B%E5%92%8C%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.6.4.</span> <span class="toc-text">P4 画出红黑树的建立和删除节点的过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P5-AVL%E6%A0%91"><span class="toc-number">1.6.5.</span> <span class="toc-text">P5 AVL树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#P6-%E5%8F%AF%E7%86%94%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97"><span class="toc-number">1.6.6.</span> <span class="toc-text">P6 可熔优先队列</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1193,10 +1291,6 @@
         
         
     
-        
-        
-        
-        
         
         
         

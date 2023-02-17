@@ -19,12 +19,12 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="一、实验进度第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。 第二周（截止9.26）：粗略地完成了pa1.1的前两个任务，不幸的是，没有一个指令是能正常用的。">
+    <meta name="description" content="一、实验进度 第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。 第二周（截止9.26）：粗略地完成了pa1.1的前两个任务，不幸的是，没有一个指令是能正常用的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PA1实验报告">
 <meta property="og:url" content="https://hanny-y.github.io/2021/10/04/PA1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="Hanny&#39;s Blog">
-<meta property="og:description" content="一、实验进度第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。 第二周（截止9.26）：粗略地完成了pa1.1的前两个任务，不幸的是，没有一个指令是能正常用的。">
+<meta property="og:description" content="一、实验进度 第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。 第二周（截止9.26）：粗略地完成了pa1.1的前两个任务，不幸的是，没有一个指令是能正常用的。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-04T09:28:47.000Z">
 <meta property="article:modified_time" content="2021-10-10T04:52:49.884Z">
@@ -489,14 +489,15 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h4 id="一、实验进度"><a href="#一、实验进度" class="headerlink" title="一、实验进度"></a>一、实验进度</h4><p>第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。</p>
+        <h4 id="一、实验进度">一、实验进度</h4>
+<p>第一周（截止9.19）：因为看RTFSC较慢，所以看了一周时间的代码。下载VScode。</p>
 <p>第二周（截止9.26）：粗略地完成了pa1.1的前两个任务，不幸的是，没有一个指令是能正常用的。</p>
 <span id="more"></span>
-
 <p>第三周（截止10.3）：在ddl的压迫下，本周是效率最高的一周。先是写完了扫描内存，当然测试也是错误的，并且在make run后出现了数不清的bug！（那种感觉！）de完1.1的bug后，开始写1.2，在经过将近三天的苦苦挣扎后，大概完成了功能，又花费了一天时间debug。编译成功后进行了第一次提交，果不其然地Rejected。国庆节静坐一天，终于通过前两个easy test。</p>
 <p>10.1晚更新：我感觉来不及了。</p>
 <p>10.2晚更新：坐牢一天的结果是意外之喜，全部accepted的了。此刻我已泪流满面。</p>
-<h4 id="二、实验过程"><a href="#二、实验过程" class="headerlink" title="二、实验过程"></a>二、实验过程</h4><p><em><strong>1.好好看报错信息</strong></em></p>
+<h4 id="二、实验过程">二、实验过程</h4>
+<p><em><strong>1.好好看报错信息</strong></em></p>
 <p>在看指南时，我的nemu在make run之后不会出现(nemu)…为此我“暗自神伤”许久，后来终于静下心来阅读了编译成功后welcome后面的字，哈哈，什么脑瘫。</p>
 <p>其实在pa0的make menuconfig环节就犯过类似的错误。当时报错信息后面明明白白写着bison，我却火急火燎地去stfw下了一堆乌七八糟的东西，并独自懵逼为什么不行。</p>
 <p><em><strong>2.偷懒的后果</strong></em></p>
@@ -545,9 +546,10 @@
 <p><em><strong>7.群内交流，受益无穷</strong></em></p>
 <p>因为有好多人写得比我快，然后出现的问题会在群内交流，像我这种吭哧吭哧落在后面的人就受益无穷啦！（感谢先驱！）比如zkr同学遇到的问题，我在试图输出一个十六进制的数时，也会因为第一个数字是0被识别为十进制然后出大错，也是在群友的帮助下顺利解决啦，前面提到的字符转整形也有人问过。</p>
 <p>10.1更新：群内有同学提出了RunTime Error的问题，今天晚上我的p指令在试图输出一个寄存器值的时候会报错，显示错误原因是“run“，群内有热心同学贴出了老师在网站上的总结，原因是没有返回0，检查了一下发现在某些情况下返回了num，修改之后修复了。剩下的问题是*和NEG的实现，预计明天可以写完。</p>
-<p>10.2更新：今天的聊天记录又帮助了苦苦坐牢的我…其实从早上到此刻写我的心得体会之前的一段时间，我提交的oj结果都是RuntimeError的死亡结果。<del>好在有人和我一样</del>,第一个问题是oj显示Segmentation fault，我进行了自行解决，在Wikipedia上查出加粗的一行字：<strong>数组访问越界也可能产生这个错误</strong>，所以目之所及的所有数组的长度都改成了1551<del>（debug想哭的心情）</del>,然后解决掉了问题。</p>
+<p>10.2更新：今天的聊天记录又帮助了苦苦坐牢的我…其实从早上到此刻写我的心得体会之前的一段时间，我提交的oj结果都是RuntimeError的死亡结果。<s>好在有人和我一样</s>,第一个问题是oj显示Segmentation fault，我进行了自行解决，在Wikipedia上查出加粗的一行字：<strong>数组访问越界也可能产生这个错误</strong>，所以目之所及的所有数组的长度都改成了1551~~（debug想哭的心情）~~,然后解决掉了问题。</p>
 <p>然后就是仿佛大家都会出错的Assert Fail错误，assert fail出现的原因就是存在没有考虑到的情况，所以导致了错误输出。第一个assert fail时我的错误是忽略了空格也会被识别，解决是识别到空格时通过将nr_token-1来忽略这个空格。第二个assert fail出现的原因纯属是因为粗心！在最后识别“*”和“-”时，忘记了“（”这个情况，好在还能找出来并进行修正了。</p>
-<h4 id="三、必答题"><a href="#三、必答题" class="headerlink" title="三、必答题"></a>三、必答题</h4><p><em><strong>(1)从状态机的视角理解程序运行</strong></em></p>
+<h4 id="三、必答题">三、必答题</h4>
+<p><em><strong>(1)从状态机的视角理解程序运行</strong></em></p>
 <p>画出状态机：</p>
 <p>(0, x, x) -&gt; (1, 0, x) -&gt; (2, 0, 0) -&gt; (3, 0, 1) -&gt; (4, 1, 1) -&gt; (5, 1, 2) -&gt; (6, 3, 2) -&gt;…-&gt; ( 201, 4950, 100) -&gt; (202, 5050, 100)</p>
 <p>(按照要求只画出了循环最初两步和最后两步)</p>
@@ -557,34 +559,34 @@
 <p>通过阅读目录可以确定我要阅读的地方是：</p>
 <p>（也许是？）Chapter 7 – Multitasking</p>
 <p><em><strong>(3) 理解基础设施</strong></em></p>
-<p>我将会在调试上花费的时间是 $500\times0.9\times30\times20&#x3D;270000s&#x3D;75h$，</p>
-<p>如果使用简易调试器，花费的时间是$500\times0.9\times10\times20&#x3D;90000s&#x3D;25h$，</p>
+<p>我将会在调试上花费的时间是 $500\times0.9\times30\times20=270000s=75h$，</p>
+<p>如果使用简易调试器，花费的时间是$500\times0.9\times10\times20=90000s=25h$，</p>
 <p>帮助我节省了$50h$的时间。</p>
-<p><em><strong>(4)RTFM</strong></em> </p>
+<p><em><strong>(4)RTFM</strong></em></p>
 <p>在riscv32的手册中查阅，我选择的手册是RISC-V-Reader-Chinese-v2p1。</p>
 <ul>
-<li><p><strong>Q:</strong> riscv32有哪几种指令格式？</p>
+<li>
+<p><strong>Q:</strong> riscv32有哪几种指令格式？</p>
 <p><strong>A:</strong> p16-17</p>
 </li>
-<li><p><strong>Q:</strong> LUI 指令的行为是什么？</p>
+<li>
+<p><strong>Q:</strong> LUI 指令的行为是什么？</p>
 <p><strong>A:</strong> p19</p>
 </li>
-<li><p><strong>Q:</strong> mstatus寄存器的结构是怎么样的？</p>
+<li>
+<p><strong>Q:</strong> mstatus寄存器的结构是怎么样的？</p>
 <p><strong>A:</strong> p20-22</p>
 </li>
 </ul>
 <p><em><strong>(5)shell命令</strong></em></p>
-<p>完成PA1之后，nemu&#x2F;目录下的所有.c和.h的文件总共有23421行代码。</p>
+<p>完成PA1之后，nemu/目录下的所有.c和.h的文件总共有23421行代码。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*[.h/.c]&quot; | xargs wc -l</span><br></pre></td></tr></table></figure>
-
 <p>做PA1之前框架代码有23031行代码。</p>
 <p>所以在PA1中写了390行代码。</p>
 <p>Make file改动：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COUNT_LINE := $(shell find . -name &quot;*[.h/.c]&quot; | xargs wc -l)</span><br></pre></td></tr></table></figure>
-
 <p>除去空行之外，共有20242行。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*[.h/.c]&quot; | xargs grep &quot;^.&quot; | wc -l</span><br></pre></td></tr></table></figure>
-
 <p><em><strong>(6)RTFM</strong></em></p>
 <p>-Wall：用于让gcc产生警告信息并全部打开。</p>
 <p>-Werror：用于让gcc将所有警告当成错误处理。</p>
@@ -941,10 +943,6 @@
         
         
     
-        
-        
-        
-        
         
         
         

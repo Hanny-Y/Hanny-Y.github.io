@@ -26,15 +26,15 @@
 <meta property="og:site_name" content="Hanny&#39;s Blog">
 <meta property="og:description" content="划分；分治；平衡树；倍增；流水线">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hanny-y.github.io/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/1.png">
-<meta property="og:image" content="https://hanny-y.github.io/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/2.png">
-<meta property="og:image" content="https://hanny-y.github.io/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/3.png">
+<meta property="og:image" content="https://hanny-y.github.io/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/1.png">
+<meta property="og:image" content="https://hanny-y.github.io/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/2.png">
+<meta property="og:image" content="https://hanny-y.github.io/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/3.png">
 <meta property="article:published_time" content="2023-02-13T11:24:09.000Z">
 <meta property="article:modified_time" content="2023-02-14T03:01:05.991Z">
 <meta property="article:author" content="Hannydeer">
 <meta property="article:tag" content="并行计算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hanny-y.github.io/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/1.png">
+<meta name="twitter:image" content="https://hanny-y.github.io/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/1.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -504,11 +504,13 @@
     <article class="article-entry">
         <p>划分；分治；平衡树；倍增；流水线</p>
 <span id="more"></span>
-
-<h3 id="划分设计技术"><a href="#划分设计技术" class="headerlink" title="划分设计技术"></a>划分设计技术</h3><h4 id="均匀划分技术"><a href="#均匀划分技术" class="headerlink" title="均匀划分技术"></a>均匀划分技术</h4><p>n个元素$A[1…n]$分成p组，每组$A[(i-1)n&#x2F;p+1..in&#x2F;p]$,$i&#x3D;1\sim p$</p>
-<h5 id="MIMD机器上PSRS排序算法"><a href="#MIMD机器上PSRS排序算法" class="headerlink" title="MIMD机器上PSRS排序算法"></a>MIMD机器上PSRS排序算法</h5><ul>
-<li><strong>均匀划分：</strong>n个元素均匀地划分为p段，每台处理器有n&#x2F;p个元素。</li>
-<li><strong>局部排序：</strong> <strong>各处理器</strong>利用串行排序算法，排序各自的n&#x2F;p个元素。</li>
+<h3 id="划分设计技术">划分设计技术</h3>
+<h4 id="均匀划分技术">均匀划分技术</h4>
+<p>n个元素$A[1…n]$分成p组，每组$A[(i-1)n/p+1…in/p]$,$i=1\sim p$</p>
+<h5 id="MIMD机器上PSRS排序算法">MIMD机器上PSRS排序算法</h5>
+<ul>
+<li>**均匀划分：**n个元素均匀地划分为p段，每台处理器有n/p个元素。</li>
+<li><strong>局部排序：</strong> <strong>各处理器</strong>利用串行排序算法，排序各自的n/p个元素。</li>
 <li><strong>正则采样：</strong> 每个处理器从<strong>自己的</strong>有序段中选取p个样本元素（分成p段每段第一个）。</li>
 <li><strong>样本排序：</strong> 用<strong>一台处理器</strong>将所有的$p^2$个样本元素用串行排序算法排序。</li>
 <li><strong>选择主元：</strong> 用一台处理器选取p-1个主元并将其播送给其余处理器。</li>
@@ -516,69 +518,95 @@
 <li><strong>全局交换：</strong> 各处理器将其辖段按照段号交换到相应的处理器中。</li>
 <li><strong>归并排序：</strong> 各处理器使用归并排序将收到的<strong>各个段</strong>进行归并排序。</li>
 </ul>
-<h4 id="方根划分技术"><a href="#方根划分技术" class="headerlink" title="方根划分技术"></a>方根划分技术</h4><p>n个元素$A[1..n]$分成$A[(i-1)n^{1&#x2F;2}+1…in^{1&#x2F;2}]$，$i&#x3D;1\sim n^{1&#x2F;2}$</p>
-<h5 id="SIMD-CREW模型上的Valiant归并"><a href="#SIMD-CREW模型上的Valiant归并" class="headerlink" title="SIMD-CREW模型上的Valiant归并"></a>SIMD-CREW模型上的Valiant归并</h5><ul>
-<li>AB分别按照$i|\sqrt{p}|$和$j|\sqrt{q}|$分成若干段。<br>划分元：每一段的最后一个元素。<br>每个段有$\lfloor{p}\rfloor$个划分元！</li>
+<h4 id="方根划分技术">方根划分技术</h4>
+<p>n个元素$A[1…n]$分成$A[(i-1)n^{1/2}+1…in^{1/2}]$，$i=1\sim n^{1/2}$</p>
+<h5 id="SIMD-CREW模型上的Valiant归并">SIMD-CREW模型上的Valiant归并</h5>
+<ul>
+<li>AB分别按照$i|\sqrt{p}|$和$j|\sqrt{q}|$分成若干段。<br>
+划分元：每一段的最后一个元素。<br>
+每个段有$\lfloor{p}\rfloor$个划分元！</li>
 <li><strong>段间比较：</strong> A划分元与B相应段里的元素进行比较，确定A的划分元应该插入B中的区段。</li>
 <li><strong>段内比较：</strong> A的划分元与B相应段内的元素进行比较，并插入适当的位置，。</li>
 <li><strong>递归归并：</strong> B按插入的A划分元重新分段（插入的划分元属于哪一段就新定义为第几段），与A相应段构成了成对的数组，对每队段组递归执行第一步到第三步直到A中的元素数为0。</li>
 </ul>
 <p>整个过程可以用$\lfloor{pq}\rfloor$个处理器完成。</p>
-<h4 id="对数划分技术"><a href="#对数划分技术" class="headerlink" title="对数划分技术"></a>对数划分技术</h4><p>n个元素$A[1..n]$分成$A[(i-1)logn+1…ilogn]$，$1\sim n&#x2F;logn$</p>
-<h5 id="PRAM-CREW上的对数划分并进行归并排序"><a href="#PRAM-CREW上的对数划分并进行归并排序" class="headerlink" title="PRAM-CREW上的对数划分并进行归并排序"></a>PRAM-CREW上的对数划分并进行归并排序</h5><p>两个有序组</p>
+<h4 id="对数划分技术">对数划分技术</h4>
+<p>n个元素$A[1…n]$分成$A[(i-1)logn+1…ilogn]$，$1\sim n/logn$</p>
+<h5 id="PRAM-CREW上的对数划分并进行归并排序">PRAM-CREW上的对数划分并进行归并排序</h5>
+<p>两个有序组</p>
 <ul>
 <li>A和B的归并排序转化为$(A_i,B_i)$和$(A_j,B_j)$的归并。</li>
 </ul>
-<h4 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h4><p>n个元素$A[1..n]$分成等长的p组，每组满足某个特性。</p>
-<h5 id="每组元素个数必须大于m"><a href="#每组元素个数必须大于m" class="headerlink" title="每组元素个数必须大于m"></a>每组元素个数必须大于m</h5><p>输入$A&#x3D;(a_1,…,a_n)$<br>输出前m个最小者</p>
+<h4 id="功能划分">功能划分</h4>
+<p>n个元素$A[1…n]$分成等长的p组，每组满足某个特性。</p>
+<h5 id="每组元素个数必须大于m">每组元素个数必须大于m</h5>
+<p>输入$A=(a_1,…,a_n)$<br>
+输出前m个最小者</p>
 <ul>
-<li>功能划分：将A划分成g&#x3D;n&#x2F;m个组，每个组含m个元素。（放到g个处理器中）</li>
+<li>功能划分：将A划分成g=n/m个组，每个组含m个元素。（放到g个处理器中）</li>
 <li>局部排序：使用Batcher排序网络将个组并行进行排序。（单个处理器内部排序）</li>
 <li>两两比较：将所排序的各组两两进行比较，从而形成MIN序列。（两两处理器之间比较，选取元素较小的组成一个新组）</li>
 <li>排序-比较：对于各个MIN序列，重复执行第二步和第三步，直至选出m个最小者。</li>
 </ul>
-<h3 id="分治设计技术"><a href="#分治设计技术" class="headerlink" title="分治设计技术"></a>分治设计技术</h3><h4 id="intro"><a href="#intro" class="headerlink" title="intro"></a>intro</h4><p>分治法侧重点在于子问题的归并；划分法侧重于原问题的划分。</p>
-<h4 id="双调归并网络"><a href="#双调归并网络" class="headerlink" title="双调归并网络"></a>双调归并网络</h4><h5 id="双调序列的定义"><a href="#双调序列的定义" class="headerlink" title="双调序列的定义"></a>双调序列的定义</h5><p>先单调递增（减）再单调递减（增）的序列。</p>
-<h5 id="Batcher定理"><a href="#Batcher定理" class="headerlink" title="Batcher定理"></a>Batcher定理</h5><p>给定双调序列$(x_0,x_1,…,x_{n-1})$，对于所有的$0\leq i\leq \frac{n}{2}-1$，执行$x_i$和$x_{i+n&#x2F;2}$的比较交换得到$s_i&#x3D;min{x_i,x_{i+n&#x2F;2}}$和$l_i&#x3D;max{x_i,x_{i+n&#x2F;2}}$，则：</p>
+<h3 id="分治设计技术">分治设计技术</h3>
+<h4 id="intro">intro</h4>
+<p>分治法侧重点在于子问题的归并；划分法侧重于原问题的划分。</p>
+<h4 id="双调归并网络">双调归并网络</h4>
+<h5 id="双调序列的定义">双调序列的定义</h5>
+<p>先单调递增（减）再单调递减（增）的序列。</p>
+<h5 id="Batcher定理">Batcher定理</h5>
+<p>给定双调序列$(x_0,x_1,…,x_{n-1})$，对于所有的$0\leq i\leq \frac{n}{2}-1$，执行$x_i$和$x_{i+n/2}$的比较交换得到$s_i=min{x_i,x_{i+n/2}}$和$l_i=max{x_i,x_{i+n/2}}$，则：</p>
 <ul>
 <li>小序列$(s_0,s_1,…,s_{n-1})$和大序列$(l_0,l_1,…,l_{n-1})$仍然是双调序列。</li>
 <li>对于所有$0\leq i,j\leq\frac{n}{2}-1$，满足$s_i\leq l_j$。</li>
 </ul>
-<h5 id="Batcher双调归并算法"><a href="#Batcher双调归并算法" class="headerlink" title="Batcher双调归并算法"></a>Batcher双调归并算法</h5><ul>
-<li>$\lceil n&#x2F;2\rceil$个处理器，内部有比较的有$\lfloor n&#x2F;2\rfloor$个处理器。</li>
-<li>处理器$P_i(0\leq i\leq \lfloor n&#x2F;2\rfloor)$中存放$x_i,x_{i+n&#x2F;2}$，比较之后将较大的元素放入前$\lfloor n&#x2F;2\rfloor&#x2F;2$个处理器里，较小的元素放进剩下的处理器中。</li>
+<h5 id="Batcher双调归并算法">Batcher双调归并算法</h5>
+<ul>
+<li>$\lceil n/2\rceil$个处理器，内部有比较的有$\lfloor n/2\rfloor$个处理器。</li>
+<li>处理器$P_i(0\leq i\leq \lfloor n/2\rfloor)$中存放$x_i,x_{i+n/2}$，比较之后将较大的元素放入前$\lfloor n/2\rfloor/2$个处理器里，较小的元素放进剩下的处理器中。</li>
 <li>对形成的两个序列递归直到元素不需要更改处理器。</li>
 </ul>
-<h3 id="平衡树设计技术"><a href="#平衡树设计技术" class="headerlink" title="平衡树设计技术"></a>平衡树设计技术</h3><p>画出平衡树解决问题。</p>
-<h4 id="求最大值"><a href="#求最大值" class="headerlink" title="求最大值"></a>求最大值</h4><h5 id="SIMD-TC-SM-上求最大值"><a href="#SIMD-TC-SM-上求最大值" class="headerlink" title="SIMD-TC(SM)上求最大值"></a>SIMD-TC(SM)上求最大值</h5><ul>
+<h3 id="平衡树设计技术">平衡树设计技术</h3>
+<p>画出平衡树解决问题。</p>
+<h4 id="求最大值">求最大值</h4>
+<h5 id="SIMD-TC-SM-上求最大值">SIMD-TC(SM)上求最大值</h5>
+<ul>
 <li>从叶子开始两两比较，较大的一个作为它们的父亲节点与其他比较得出的父亲节点进行比较。</li>
 <li>时间复杂度$O(logn)$</li>
 </ul>
-<h4 id="计算前缀和"><a href="#计算前缀和" class="headerlink" title="计算前缀和"></a>计算前缀和</h4><p>求解序列的前n个部分和。</p>
+<h4 id="计算前缀和">计算前缀和</h4>
+<p>求解序列的前n个部分和。</p>
 <ul>
-<li>令$A[i]&#x3D;x_i,i&#x3D;1\sim n$</li>
-<li>$B[h,j]$和$C[h,j]$为辅助数组$(h&#x3D;0\sim logn,j&#x3D;1-n&#x2F;2^h)$</li>
+<li>令$A[i]=x_i,i=1\sim n$</li>
+<li>$B[h,j]$和$C[h,j]$为辅助数组$(h=0\sim logn,j=1-n/2^h)$</li>
 <li>数组B记录由叶到根正向遍历树中各节点的信息（求各个片段和）</li>
 <li>数组C记录由根到叶反向遍历树中各节点的信息（不同的片段进行组合求出前缀和，选取一个[1…k]加上[k…m]）</li>
 </ul>
-<h3 id="倍增设计技术"><a href="#倍增设计技术" class="headerlink" title="倍增设计技术"></a>倍增设计技术</h3><p>递归调用时，数据之间的距离逐步加倍。</p>
-<h4 id="表序问题"><a href="#表序问题" class="headerlink" title="表序问题"></a>表序问题</h4><p>n个元素的列表L求出每个元素的rank（到表尾的距离）</p>
+<h3 id="倍增设计技术">倍增设计技术</h3>
+<p>递归调用时，数据之间的距离逐步加倍。</p>
+<h4 id="表序问题">表序问题</h4>
+<p>n个元素的列表L求出每个元素的rank（到表尾的距离）</p>
 <ul>
 <li>初始化p[k]（后继）和distance[k]（距离）</li>
 <li>对于每一个元素每次倍增地改变它的后继，直到后继变为尾节点。</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">执行logn次</span><br><span class="line">  对k并行地做</span><br><span class="line">    如果k的后继不等于k的后继之后继 //不是最后一个节点</span><br><span class="line">      distance[k]=distance[k]+distance[p[k]]</span><br><span class="line">      p[k]=p[p[k]]</span><br><span class="line">  对k并行地做</span><br><span class="line">    rank[k]=distance[k]</span><br></pre></td></tr></table></figure>
-
-<p><img src="/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/1.png" alt="1"></p>
-<h4 id="求森林的根"><a href="#求森林的根" class="headerlink" title="求森林的根"></a>求森林的根</h4><p>求森林中每个节点的根。</p>
+<p><img src="/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/1.png" alt="1"></p>
+<h4 id="求森林的根">求森林的根</h4>
+<p>求森林中每个节点的根。</p>
 <ul>
-<li>输入森林F，弧由$(i,P(i))$指定，$1\leq i\leq n$<br>输出每个节点i的根s(i)</li>
+<li>输入森林F，弧由$(i,P(i))$指定，$1\leq i\leq n$<br>
+输出每个节点i的根s(i)</li>
 <li>和表序问题相同的思想，将节点的父亲节点更新为其父节点的父节点，直到父节点是其本身。</li>
 </ul>
-<h3 id="流水线设计技术"><a href="#流水线设计技术" class="headerlink" title="流水线设计技术"></a>流水线设计技术</h3><p>将算法流程划分成p个前后衔接的任务片段，每个片段的输出作为下一个任务片段的输入。</p>
-<h4 id="5-point-DFT的计算"><a href="#5-point-DFT的计算" class="headerlink" title="5-point DFT的计算"></a>5-point DFT的计算</h4><p>一个n点的离散傅立叶变换(DFT)可以定义为：<br>给定序列$(a_0,a_1,…,a_{n-1})$按照如下规则变换成序列$(b_0,b_1,…,b_{n-1})$<br>$b_j&#x3D;\sum_{k&#x3D;0}^{n-1}a_kw^{kj}(0\leq j\leq n)$</p>
-<p><img src="/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/2.png" alt="2"></p>
-<p><img src="/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/3.png" alt="3"></p>
+<h3 id="流水线设计技术">流水线设计技术</h3>
+<p>将算法流程划分成p个前后衔接的任务片段，每个片段的输出作为下一个任务片段的输入。</p>
+<h4 id="5-point-DFT的计算">5-point DFT的计算</h4>
+<p>一个n点的离散傅立叶变换(DFT)可以定义为：<br>
+给定序列$(a_0,a_1,…,a_{n-1})$按照如下规则变换成序列$(b_0,b_1,…,b_{n-1})$<br>
+$b_j=\sum_{k=0}^{n-1}a_kw^{kj}(0\leq j\leq n)$</p>
+<p><img src="/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/2.png" alt="2"></p>
+<p><img src="/2023/02/13/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF/3.png" alt="3"></p>
 
     </article>
     <!-- license -->
@@ -936,10 +964,6 @@
         
         
     
-        
-        
-        
-        
         
         
         

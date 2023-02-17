@@ -491,51 +491,65 @@
     <article class="article-entry">
         <p>记录了PA2实验的完成过程。</p>
 <span id="more"></span>
-
-<h4 id="实验进度"><a href="#实验进度" class="headerlink" title="实验进度"></a>实验进度</h4><p>10.23：开始艰难地RTFSC，这到底在讲什么？我要做什么？？？</p>
+<h4 id="实验进度">实验进度</h4>
+<p>10.23：开始艰难地RTFSC，这到底在讲什么？我要做什么？？？</p>
 <p>10.26:尝试做点什么，基本上确定了需要添加的指令，并在decode.c中添加了正确的（也许？）的匹配规则。</p>
 <p>10.27: 基本实现了dummy运行需要的指令。</p>
 <p>10.30: de了几个bug后早上成功运行了dummy。晚上添加了add，sub等几个指令后成功运行了add.c和add-longlong。虽然感觉把dummy跑成功后好像快了一点点，但是指令和测试真的有点多，不知道能不能赶上softddl qwq。</p>
 <p>在写实验报告的时候觉得自己写的实在太细了，所以把一些手册的摘录内容和rtfsc的内容都省略或者写到了别的笔记里，比如有整理riscv32所有指令的想法，后续实现指令的时候也便于查找。</p>
 <p>10.31: 挨个测试，添加指令，通过所有test。</p>
-<h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><h5 id="RTFSC"><a href="#RTFSC" class="headerlink" title="RTFSC"></a>RTFSC</h5><p><strong>在~&#x2F;ics2021&#x2F;nemu&#x2F;include&#x2F;cpu中</strong></p>
+<h4 id="实验过程">实验过程</h4>
+<h5 id="RTFSC">RTFSC</h5>
+<p><strong>在~/ics2021/nemu/include/cpu中</strong></p>
 <ul>
-<li><p><em><strong>Operand</strong></em></p>
+<li>
+<p><em><strong>Operand</strong></em></p>
 <ul>
-<li><p>IFDEF</p>
+<li>
+<p>IFDEF</p>
 <p><code>#ifdef</code>预处理程序指令检查宏是否由<code>#define</code>定义。 如果是，则执行代码，否则<code>#else</code>代码执行(如果存在)。</p>
 <p>在定义结构体时进行宏定义，其作用域从定义处开始直至文件结束。</p>
 </li>
-<li><p>&#96;&#96;&#96;c<br> rtlreg_t *preg; &#x2F;&#x2F;直接指向那些已经存在的RTL寄存器<br>word_t imm; &#x2F;&#x2F;无符号立即数<br>sword_t simm; &#x2F;&#x2F;有符号立即数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ***Decode***</span><br><span class="line"></span><br><span class="line">  这个结构体用于存放在执行一条指令过程中的译码和执行信息, 包括指令的PC, 执行方式, 以及操作数的信息.</span><br><span class="line">  </span><br><span class="line">  ```c</span><br><span class="line">  //一个名为Decode的重要的结构</span><br><span class="line">  typedef struct Decode &#123;</span><br><span class="line">    vaddr_t pc; // 指令的pc</span><br><span class="line">    vaddr_t snpc; // static next pc；和dnpc的区别？</span><br><span class="line">    vaddr_t dnpc; // dynamic next pc</span><br><span class="line">    void (*EHelper)(struct Decode *); //指令的执行方式</span><br><span class="line">    Operand dest, src1, src2; // 操作数</span><br><span class="line">    ISADecodeInfo isa; //存放译码信息</span><br><span class="line">    IFDEF(CONFIG_ITRACE, char logbuf[128]);</span><br><span class="line">  &#125; Decode;</span><br></pre></td></tr></table></figure></li>
+<li>
+<pre><code class="language-c"> rtlreg_t *preg; //直接指向那些已经存在的RTL寄存器
+    word_t imm; //无符号立即数
+    sword_t simm; //有符号立即数
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ***Decode***</span><br><span class="line"></span><br><span class="line">  这个结构体用于存放在执行一条指令过程中的译码和执行信息, 包括指令的PC, 执行方式, 以及操作数的信息.</span><br><span class="line">  </span><br><span class="line">  ```c</span><br><span class="line">  //一个名为Decode的重要的结构</span><br><span class="line">  typedef struct Decode &#123;</span><br><span class="line">    vaddr_t pc; // 指令的pc</span><br><span class="line">    vaddr_t snpc; // static next pc；和dnpc的区别？</span><br><span class="line">    vaddr_t dnpc; // dynamic next pc</span><br><span class="line">    void (*EHelper)(struct Decode *); //指令的执行方式</span><br><span class="line">    Operand dest, src1, src2; // 操作数</span><br><span class="line">    ISADecodeInfo isa; //存放译码信息</span><br><span class="line">    IFDEF(CONFIG_ITRACE, char logbuf[128]);</span><br><span class="line">  &#125; Decode;</span><br></pre></td></tr></table></figure>
+
+</code></pre>
+</li>
 </ul>
 </li>
 </ul>
-<p><strong>在nemu&#x2F;src&#x2F;isa&#x2F;riscv-32&#x2F;include&#x2F;isa-def.h中</strong></p>
+<p><strong>在nemu/src/isa/riscv-32/include/isa-def.h中</strong></p>
 <ul>
-<li><p><em><strong>ISADecodeInfo</strong></em></p>
+<li>
+<p><em><strong>ISADecodeInfo</strong></em></p>
 <p>对ISA相关的信息进行抽象。</p>
 <p>Struct内有union instr，instr内部的struct有i, s, u, 除了这些struct还有一个val数。</p>
 <p>用uint32_t数的形式对信息进行抽象。</p>
 </li>
 </ul>
-<p><strong>在nemu&#x2F;src&#x2F;cpu&#x2F;cpu-exe.c中</strong></p>
+<p><strong>在nemu/src/cpu/cpu-exe.c中</strong></p>
 <ul>
-<li><p><em><strong>fetch_decode()</strong></em></p>
-<p>先把当前的PC保存到<code>s</code>的成员<code>pc</code>和<code>snpc</code>中, 其中<code>s-&gt;pc</code>就是当前指令的PC, 而<code>s-&gt;snpc</code>则是下一条指令的PC, 这里的<code>snpc</code>是”static next PC”的意思.</p>
+<li>
+<p><em><strong>fetch_decode()</strong></em></p>
+<p>先把当前的PC保存到<code>s</code>的成员<code>pc</code>和<code>snpc</code>中, 其中<code>s-&gt;pc</code>就是当前指令的PC, 而<code>s-&gt;snpc</code>则是下一条指令的PC, 这里的<code>snpc</code>是&quot;static next PC&quot;的意思.</p>
 </li>
 </ul>
 <p><strong>在decode.c中</strong></p>
 <ul>
-<li><p><em><strong>isa_fetch_decode</strong></em></p>
+<li>
+<p><em><strong>isa_fetch_decode</strong></em></p>
 <p>会随着取指的过程修改<code>s-&gt;snpc</code>的值, 使得从<code>isa_fetch_decode()</code>返回后<code>s-&gt;snpc</code>正好为下一条指令的PC.</p>
 <p>返回一个编号<code>idx</code>, 用于对<code>g_exec_table</code>这一数组进行索引</p>
-<p><code>g_exec_table</code>是一个函数指针的数组, 数组中的每个元素都会指向一个用于模拟指令执行的函数, 我们把这样的函数称为”执行辅助函数”(execution helper function). 通过<code>idx</code>索引这个数组, 可以找到与一条指令相匹配的执行辅助函数, 并把它记录到<code>s-&gt;EHelper</code>中</p>
+<p><code>g_exec_table</code>是一个函数指针的数组, 数组中的每个元素都会指向一个用于模拟指令执行的函数, 我们把这样的函数称为&quot;执行辅助函数&quot;(execution helper function). 通过<code>idx</code>索引这个数组, 可以找到与一条指令相匹配的执行辅助函数, 并把它记录到<code>s-&gt;EHelper</code>中</p>
 </li>
 </ul>
 <p><strong>在cpu-exe.c中</strong></p>
 <ul>
-<li><p><em><strong>fetch_decode_exec_updatepc()</strong></em></p>
+<li>
+<p><em><strong>fetch_decode_exec_updatepc()</strong></em></p>
 <p>接受一个<code>Decode</code>类型的结构体指针<code>s</code></p>
 <p>然后代码会调用<code>isa_fetch_decode()</code>函数</p>
 <p>会调用刚才记录到<code>s-&gt;EHelper</code>的执行辅助函数, 来模拟指令执行的真正操作. 最后会更新PC, 让PC指向下一条指令.</p>
@@ -543,51 +557,62 @@
 </ul>
 <p><strong>在ifetch.h中</strong></p>
 <ul>
-<li><p><em><strong>instr_fetch(vaddr_t pc, int len)</strong></em></p>
+<li>
+<p><em><strong>instr_fetch(vaddr_t pc, int len)</strong></em></p>
 <p>负责取指令的工作.</p>
 <p>会根据参数<code>len</code>来调用<code>vaddr_ifetch()</code></p>
 <ul>
-<li><p><em><strong>vaddr_ifetch()</strong></em></p>
+<li>
+<p><em><strong>vaddr_ifetch()</strong></em></p>
 <p>通过<code>paddr_read()</code>来访问物理内存中的内容</p>
 </li>
-<li><p>取指操作的本质只不过就是一次内存的访问而已</p>
+<li>
+<p>取指操作的本质只不过就是一次内存的访问而已</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>……sc 实在太多，其中比较重要的还是前面两个结构，在实现指令的时候会作为操作对象。</p>
+<p>…sc 实在太多，其中比较重要的还是前面两个结构，在实现指令的时候会作为操作对象。</p>
 <p><strong>关于伪指令</strong></p>
 <p>以为伪指令也要实现，所以傻傻地把什么li和j的过程也写了，还为匹配规则怎么写，感到迷惑，后来查了伪指令的定义才恍然大悟：<strong>该类指令并不是可执行指令，没有机器代码，只用于汇编过程中为汇编程序提供汇编信息</strong>，原来是指令，又不完全是指令。</p>
-<p>为什么会浪费大量的时间找不到方向，还总是做一些无用功呢？当然是没有好好rtfm和rtfsc啦。虽然上个学期学了点RISC-V32，还做了实验，但是<del>也忘得差不多了</del>，所以把手册又翻出来读了，不过比较功利地选择了中文手册，不过里面的附录是真的有用。</p>
+<p>为什么会浪费大量的时间找不到方向，还总是做一些无用功呢？当然是没有好好rtfm和rtfsc啦。虽然上个学期学了点RISC-V32，还做了实验，但是<s>也忘得差不多了</s>，所以把手册又翻出来读了，不过比较功利地选择了中文手册，不过里面的附录是真的有用。</p>
 <p>和x86比起来，riscv确实要精简不少。把指令全部实现也许也不是什么难事（好大的口气</p>
-<h5 id="运行dummy-c"><a href="#运行dummy-c" class="headerlink" title="运行dummy.c"></a>运行dummy.c</h5><p>根据txt文件里的反汇编结果，需要实现的指令应该是auipc, addi和jal，lui指令(compute.h)和sw指令(ldst.h)在框架中已经被实现。</p>
+<h5 id="运行dummy-c">运行dummy.c</h5>
+<p>根据txt文件里的反汇编结果，需要实现的指令应该是auipc, addi和jal，lui指令(compute.h)和sw指令(ldst.h)在框架中已经被实现。</p>
 <p>根据讲义，要想添加新的指令：</p>
 <ul>
-<li><p>在<code>nemu/src/isa/riscv32/instr/decode.c</code>中添加正确的模式匹配规则。</p>
+<li>
+<p>在<code>nemu/src/isa/riscv32/instr/decode.c</code>中添加正确的模式匹配规则。</p>
 <p>将要用的指令添加在了表格辅助函数def_THelper(main)下，根据txt内的反汇编结果确定了七位opcode。</p>
 </li>
-<li><p>用RTL实现正确的执行辅助函数, 需要注意使用RTL伪指令时要遵守上文提到的小型调用约定。</p>
+<li>
+<p>用RTL实现正确的执行辅助函数, 需要注意使用RTL伪指令时要遵守上文提到的小型调用约定。</p>
 <ul>
-<li><p>auipc(compute.h)：向pc高位加上立即数</p>
+<li>
+<p>auipc(compute.h)：向pc高位加上立即数</p>
 <p>查阅手册得到应该实现的功能是：</p>
-<p>x[rd] &#x3D; pc + sext(immediate[31:12] &lt;&lt; 12)</p>
+<p>x[rd] = pc + sext(immediate[31:12] &lt;&lt; 12)</p>
 <p>要注意的是，addi的操作数必须要一个是立即数一个是寄存器，所以可以用x0作为周转。</p>
 </li>
-<li><p>addi(compute.h)</p>
+<li>
+<p>addi(compute.h)</p>
 <p>查阅手册得到应该实现的功能是：</p>
-<p>x[rd] &#x3D; x[rs1] + sext(immediate)</p>
+<p>x[rd] = x[rs1] + sext(immediate)</p>
 </li>
-<li><p>jal(control.h)</p>
+<li>
+<p>jal(control.h)</p>
 <p>查阅手册得到实现为：</p>
-<p>x[rd] &#x3D; pc + 4;</p>
-<p>pc +&#x3D; sext(offset);</p>
+<p>x[rd] = pc + 4;</p>
+<p>pc += sext(offset);</p>
 <p>其中需要进行符号扩展，在rtl伪指令(pseudo.h)中有rtl_sext，但是需要自己实现。(在真正实现jal的时候)</p>
 </li>
 </ul>
 </li>
-<li><p>在<code>nemu/src/isa/riscv32/include/isa-all-instr.h</code>中把指令添加到<code>INSTR_LIST</code>中</p>
+<li>
+<p>在<code>nemu/src/isa/riscv32/include/isa-all-instr.h</code>中把指令添加到<code>INSTR_LIST</code>中</p>
 </li>
-<li><p>必要时在<code>nemu/src/isa/riscv32/include/isa-exec.h</code>中添加相应的头文件</p>
+<li>
+<p>必要时在<code>nemu/src/isa/riscv32/include/isa-exec.h</code>中添加相应的头文件</p>
 </li>
 </ul>
 <p>做完这些后就将dummy在nemu中make run，出现了大量error…</p>
@@ -598,7 +623,7 @@
 <p>显示是有指令没有执行，我想了想估计还是伪指令的问题，就又回去读了手册。</p>
 <p>对于txt文件中的伪指令：</p>
 <ul>
-<li>li：等同于执行lui和&#x2F;或addi</li>
+<li>li：等同于执行lui和/或addi</li>
 <li>mv：实际被扩展为addi rd，rs1，0</li>
 <li>ret：实际被扩展为jalr x0，0(x1)</li>
 <li>j：等同于jal x0，offset</li>
@@ -606,7 +631,7 @@
 <p>检查了一下，还缺一个jalr指令</p>
 <p>jalr(control.h)</p>
 <p>实际上是jal的寄存器版本。把pc设置为x[rs1]+sext(offset)，把计算出的地址的最低有效位设为0，并将原pc+4的值写入f[rd]。rd默认为x1。</p>
-<p>根据手册需要实现t &#x3D; pc + 4; pc &#x3D; (x[rs1] + sext(offset)) &amp; ~1; x[rd] &#x3D; t;</p>
+<p>根据手册需要实现t = pc + 4; pc = (x[rs1] + sext(offset)) &amp; ~1; x[rd] = t;</p>
 <p>但是…就是说，还是FAIL了，然后开始根据讲义仔细阅读abort at的pc，看了txt好像没有这个指令。</p>
 <p>啊，原来是jal写错了啊，TT。</p>
 <p>那些试验中我跳错过的位置：</p>
@@ -618,25 +643,33 @@
 <p>但是按照之前犯过的一些错误，jarl指令此时应该也是错的，所以还是不用实现的是吗…</p>
 <p>然后讲义往后看了一点，竟然还有这么多指令，文件分的还是少了点。</p>
 <p>新添的头文件是control.h，内部存放了跳转指令的执行辅助函数。</p>
-<h5 id="再次RTFSC"><a href="#再次RTFSC" class="headerlink" title="再次RTFSC"></a>再次RTFSC</h5><p>感觉慢慢习惯了阅读这么多代码了。</p>
-<h5 id="实现更多的指令"><a href="#实现更多的指令" class="headerlink" title="实现更多的指令"></a>实现更多的指令</h5><h6 id="add-c"><a href="#add-c" class="headerlink" title="add.c"></a>add.c</h6><ul>
-<li><p><em><strong>add</strong></em></p>
-<p>x[rd] &#x3D; x[rs1] + x[rs2]</p>
+<h5 id="再次RTFSC">再次RTFSC</h5>
+<p>感觉慢慢习惯了阅读这么多代码了。</p>
+<h5 id="实现更多的指令">实现更多的指令</h5>
+<h6 id="add-c">add.c</h6>
+<ul>
+<li>
+<p><em><strong>add</strong></em></p>
+<p>x[rd] = x[rs1] + x[rs2]</p>
 </li>
-<li><p><em><strong>sltiu</strong></em></p>
+<li>
+<p><em><strong>sltiu</strong></em></p>
 <p>无符号数小于立即数则置位。比较x[rsl]和有符号扩展的immediate，比较时视为无符号数。如果x[rsl]更小，向x[rd]写入1，否则写入0。</p>
-<p>x[rd] &#x3D; (x[rs1] &lt; unsighed(sext(immediate))</p>
+<p>x[rd] = (x[rs1] &lt; unsighed(sext(immediate))</p>
 </li>
-<li><p><em><strong>bne</strong></em></p>
-<p>if(rs1 !&#x3D; rs2) pc+&#x3D;sext(offset)</p>
+<li>
+<p><em><strong>bne</strong></em></p>
+<p>if(rs1 != rs2) pc+=sext(offset)</p>
 </li>
-<li><p><em><strong>beqz</strong></em></p>
+<li>
+<p><em><strong>beqz</strong></em></p>
 <p>伪指令，查阅手册得知功能为：</p>
-<p>If(rs1 &#x3D;&#x3D; 0) pc +&#x3D; sext(offset)</p>
+<p>If(rs1 == 0) pc += sext(offset)</p>
 <p>可视为 beq rs1, x0, offset</p>
 </li>
-<li><p><em><strong>beq</strong></em></p>
-<p>If(rs1 &#x3D;&#x3D; rs2) pc +&#x3D; sext(offset)</p>
+<li>
+<p><em><strong>beq</strong></em></p>
+<p>If(rs1 == rs2) pc += sext(offset)</p>
 </li>
 </ul>
 
@@ -996,10 +1029,6 @@
         
         
     
-        
-        
-        
-        
         
         
         

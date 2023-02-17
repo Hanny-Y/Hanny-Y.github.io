@@ -328,7 +328,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">2.2k</span>Reading time: <span class="post-count reading-time">10 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.1k</span>Reading time: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -492,122 +492,170 @@
         <p>记录了“概率论与数理统计”课程的学习。</p>
 <p>教材《概率论与数理统计（浙大第四版）》</p>
 <span id="more"></span>
-
-<h4 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h4><p><em><strong>随机变量：</strong></em> 实验结果用数值表示时，可以引入一个变量来表示随机事件。</p>
+<h4 id="离散型随机变量">离散型随机变量</h4>
+<p><em><strong>随机变量：</strong></em> 实验结果用数值表示时，可以引入一个变量来表示随机事件。</p>
 <p><em><strong>离散型随机变量：</strong></em> 随机变量X的值是有限的或者无限可列的。</p>
-<p><em><strong>分布列：</strong></em> $p_k &#x3D; P(X&#x3D;x_k),k&#x3D;1,2,…,$</p>
-<p>满足：$p_k\geq 0$且$\sum_{k}p_k&#x3D;1$（完备性）</p>
-<p><em><strong>期望：</strong></em> 级数$\sum_{k&#x3D;1}^{\infty}p_kx_k$绝对收敛，称级数和为X的期望，或均值或加权平均值。</p>
-<p>记为：$E(x)&#x3D;\sum_{k&#x3D;1}^{\infty}p_kx_k$</p>
+<p><em><strong>分布列：</strong></em> $p_k = P(X=x_k),k=1,2,…,$</p>
+<p>满足：$p_k\geq 0$且$\sum_{k}p_k=1$（完备性）</p>
+<p><em><strong>期望：</strong></em> 级数$\sum_{k=1}^{\infty}p_kx_k$绝对收敛，称级数和为X的期望，或均值或加权平均值。</p>
+<p>记为：$E(x)=\sum_{k=1}^{\infty}p_kx_k$</p>
 <ol>
 <li>期望由分布列决定，是常量而非变量，由分布列可以直接计算期望。</li>
-<li>若随机变量$X&#x3D;c\in R$，则$E(c)&#x3D;c$</li>
-<li>对于随机变量$X$和常数$a,b\in R$，有$E(aX+b)&#x3D;aE(X)+b$</li>
-<li>设离散型随机变量$X$的分布列为$P(X&#x3D;x_k)&#x3D;p_k$，若$g:R\rightarrow R$是连续的函数，且级数$\sum_{k\geq 1}g(x_k)p_k$绝对收敛，则有：$E[g(X)]&#x3D;\sum_{k&#x3D;1}^{\infty}g(x_k)p_k$</li>
-<li>推论：对于$X$和连续函数$g_i:R\rightarrow R(i\in[n])$，若每个函数的期望$E(g_i(X))$存在，则对任意常数$c_1,c_2,\cdots,c_n$，有：$E(c_1g_1(X)+c_2g_2(X)+\cdots c_ng_n(X))&#x3D;\sum_{i&#x3D;1}^{n}c_iE(g_n(X))$</li>
+<li>若随机变量$X=c\in R$，则$E©=c$</li>
+<li>对于随机变量$X$和常数$a,b\in R$，有$E(aX+b)=aE(X)+b$</li>
+<li>设离散型随机变量$X$的分布列为$P(X=x_k)=p_k$，若$g:R\rightarrow R$是连续的函数，且级数$\sum_{k\geq 1}g(x_k)p_k$绝对收敛，则有：$E[g(X)]=\sum_{k=1}^{\infty}g(x_k)p_k$</li>
+<li>推论：对于$X$和连续函数$g_i:R\rightarrow R(i\in[n])$，若每个函数的期望$E(g_i(X))$存在，则对任意常数$c_1,c_2,\cdots,c_n$，有：$E(c_1g_1(X)+c_2g_2(X)+\cdots c_ng_n(X))=\sum_{i=1}^{n}c_iE(g_n(X))$</li>
 <li>若函数$g:[a,b]\rightarrow R$对任意的$x_1,x_2\in[a,b]$和$\lambda\in[0,1]$，有$g(\lambda x_1+(1-\lambda)x_2)\leq\lambda g(x_1)+(1-\lambda)g(x_2)$成立，称函数$g(x)$是定义在$[a,b]$上的凸函数。</li>
 </ol>
 <p><em><strong>Jensen不等式：</strong></em></p>
 <p>对于离散型变量$X\in[a,b]$和连续凸函数$g:[a,b]\rightarrow R$，有$g(E(X))\leq E(g(X))$</p>
 <p>对于离散型变量$X\in[a,b]$和连续凹函数$g:[a,b]\rightarrow R$，有$g(E(X))\geq E(g(X))$</p>
 <p><em><strong>方差：</strong></em></p>
-<p>$Var(X)&#x3D;D(x)&#x3D;E(X-E(X))^2&#x3D;\sum_{k}p_k(x_k-E(X))^2&#x3D;\sum_{k}p_k(x_k-\sum_{k}x_kp_k)^2$</p>
-<p>$Var(X)&#x3D;E(X-E(x))^2&#x3D;E(X^2-2X E(X)+E^2(X))&#x3D;E(x^2)-(E(X))^2$</p>
+<p>$Var(X)=D(x)=E(X-E(X))^2=\sum_{k}p_k(x_k-E(X))^2=\sum_{k}p_k(x_k-\sum_{k}x_kp_k)^2$</p>
+<p>$Var(X)=E(X-E(x))^2=E(X^2-2X E(X)+E^2(X))=E(x^2)-(E(X))^2$</p>
 <ul>
-<li>若随机变量$X&#x3D;c$，则$Var(X)&#x3D;0$</li>
-<li>对随机变量$X$和常数$a,b\in R$，有$Var(aX+b)&#x3D;a^2Var(X)$</li>
-<li>对随机变量$X$和常数$a\in R$，有$Var(X)&#x3D;E(X-E(X))^2\leq E(X-a)^2$</li>
-<li><strong>Bhatia-Davis不等式</strong> 对随机变量$X\in[a,b]$有$Var(X)\leq (b-E(x))(E(X)-a)\leq (b-a)^2&#x2F;4$</li>
+<li>若随机变量$X=c$，则$Var(X)=0$</li>
+<li>对随机变量$X$和常数$a,b\in R$，有$Var(aX+b)=a^2Var(X)$</li>
+<li>对随机变量$X$和常数$a\in R$，有$Var(X)=E(X-E(X))^2\leq E(X-a)^2$</li>
+<li><strong>Bhatia-Davis不等式</strong> 对随机变量$X\in[a,b]$有$Var(X)\leq (b-E(x))(E(X)-a)\leq (b-a)^2/4$</li>
 </ul>
 <p><em><strong>常用的离散型随机变量：</strong></em></p>
 <ul>
-<li><p>离散型均匀分布：设随机变量$X$的取值为$x_1,x_2,\cdots,x_n$，且$P(X&#x3D;x_i)&#x3D;1&#x2F;n$，称$X$服从离散型均匀分布。且$E(X)&#x3D;\sum_{i&#x3D;1}^{n}&#x2F;n$，$Var(X)&#x3D;\sum_{i&#x3D;1}^{n}x_i^2&#x2F;n-(\sum_{i&#x3D;1}^{n}&#x2F;n)^2$</p>
+<li>
+<p>离散型均匀分布：设随机变量$X$的取值为$x_1,x_2,\cdots,x_n$，且$P(X=x_i)=1/n$，称$X$服从离散型均匀分布。且$E(X)=\sum_{i=1}^{n}/n$，$Var(X)=\sum_{i=1}^{n}x_i^2/n-(\sum_{i=1}^{n}/n)^2$</p>
 </li>
-<li><p>0-1分布：随机变量$X$的取值为{0,1}，其分布列$P(X&#x3D;1)&#x3D;p$，$P(X&#x3D;0)&#x3D;1-p$，称$X$服从参数为$p$的0-1分布，记为X~Ber(p)且$E(X)&#x3D;p,Var(X)&#x3D;p-p^2&#x3D;p(1-p)$</p>
+<li>
+<p>0-1分布：随机变量$X$的取值为{0,1}，其分布列$P(X=1)=p$，$P(X=0)=1-p$，称$X$服从参数为$p$的0-1分布，记为X~Ber§且$E(X)=p,Var(X)=p-p^2=p(1-p)$</p>
 </li>
-<li><p>二项分布：$P(X&#x3D;k)&#x3D;{n \choose k}p^k(1-p)^{n-k}$，记为X~B(n,p)。且$E(X)&#x3D;np,Var(X)&#x3D;np(1-p)$</p>
+<li>
+<p>二项分布：$P(X=k)={n \choose k}p^k(1-p)^{n-k}$，记为X~B(n,p)。且$E(X)=np,Var(X)=np(1-p)$</p>
 </li>
-<li><p>几何分布：随机变量$X$表示事件$A$首次发生时的试验次数，分布列为$P(X&#x3D;k)&#x3D;p(1-p)^{k-1}$且$E(X)&#x3D;1&#x2F;p,Var(x)&#x3D;(1-p)&#x2F;p^2$</p>
+<li>
+<p>几何分布：随机变量$X$表示事件$A$首次发生时的试验次数，分布列为$P(X=k)=p(1-p)^{k-1}$且$E(X)=1/p,Var(x)=(1-p)/p^2$</p>
 </li>
-<li><p>负二项分布：随机变量$X$表示事件$A$第r次发生时的试验次数，分布列为$P(X&#x3D;k)&#x3D;{k-1 \choose r-1}p^{r-1}(1-p)^{k-r}\cdot p&#x3D;{k-1 \choose r-1}p^r(1-p)^{k-r}$，且$E(X)&#x3D;r&#x2F;p,Var(X)&#x3D;r(1-p)&#x2F;p^2$</p>
+<li>
+<p>负二项分布：随机变量$X$表示事件$A$第r次发生时的试验次数，分布列为$P(X=k)={k-1 \choose r-1}p^{r-1}(1-p)^{k-r}\cdot p={k-1 \choose r-1}p^r(1-p)^{k-r}$，且$E(X)=r/p,Var(X)=r(1-p)/p^2$</p>
 </li>
-<li><p>泊松分布：分布列为$P(X&#x3D;k)&#x3D;\lambda e^{-\lambda}&#x2F;k!$，记为X~P($\lambda$),且$E(X)&#x3D;\lambda,Var(x)&#x3D;\lambda$</p>
+<li>
+<p>泊松分布：分布列为$P(X=k)=\lambda e^{-\lambda}/k!$，记为X~P($\lambda$),且$E(X)=\lambda,Var(x)=\lambda$</p>
 </li>
 </ul>
-<h4 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h4><p><em><strong>分布函数：</strong></em></p>
-<p>给定任意随机变量X和实数$x\in (-\infty, +\infty)$，函数$F(x)&#x3D;P(X\leq x)$称为随机变量$X$的分布函数，分布函数的本质是概率。</p>
-<p>对任意实数$x_1&lt;x_2$，有$P(x_1&lt;X\leq x_2)&#x3D;P(X\leq x_2)-P(X\leq x_1)&#x3D;F(x_2)-F(x_1)$</p>
+<h4 id="连续型随机变量">连续型随机变量</h4>
+<p><em><strong>分布函数：</strong></em></p>
+<p>给定任意随机变量X和实数$x\in (-\infty, +\infty)$，函数$F(x)=P(X\leq x)$称为随机变量$X$的分布函数，分布函数的本质是概率。</p>
+<p>对任意实数$x_1&lt;x_2$，有$P(x_1&lt;X\leq x_2)=P(X\leq x_2)-P(X\leq x_1)=F(x_2)-F(x_1)$</p>
 <p>性质：</p>
 <ul>
 <li>单调性：若$x_1&lt;x_2$，则$F(x_1)\leq F(x_2)$</li>
-<li>规范性：$F(x)\in [0,1]$，且$F(-\infty)&#x3D;lim_{x\rightarrow -\infty}F(x)&#x3D;0,F(+\infty)&#x3D;lim_{x\rightarrow +\infty}F(x)&#x3D;1$</li>
-<li>右连续性：$F(x+0)&#x3D;lim_{\Delta x\rightarrow0}+F(x+\Delta x)&#x3D;F(x)$</li>
+<li>规范性：$F(x)\in [0,1]$，且$F(-\infty)=lim_{x\rightarrow -\infty}F(x)=0,F(+\infty)=lim_{x\rightarrow +\infty}F(x)=1$</li>
+<li>右连续性：$F(x+0)=lim_{\Delta x\rightarrow0}+F(x+\Delta x)=F(x)$</li>
 <li>分布函数可以由上述性质完全刻画。</li>
 </ul>
 <p>可以用分布函数表示随机事件的概率：</p>
-<p>$P(X&lt;a)&#x3D;lim_{x\rightarrow a^-}F(x)$</p>
+<p>$P(X&lt;a)=lim_{x\rightarrow a^-}F(x)$</p>
 <p>…</p>
 <p><em><strong>概率密度函数：</strong></em></p>
-<p>设随机变量$X$的分布函数为$F(x)$，如果存在可积函数$f(x)$，使得对任意实数$x$有$F(x)&#x3D;\displaystyle \int^{x}_{-\infty}{f(t)dt}$成立，则称$X$为连续型随机变量，函数$f(x)$为随机变量$X$的概率密度函数。</p>
+<p>设随机变量$X$的分布函数为$F(x)$，如果存在可积函数$f(x)$，使得对任意实数$x$有$F(x)=\displaystyle \int^{x}_{-\infty}{f(t)dt}$成立，则称$X$为连续型随机变量，函数$f(x)$为随机变量$X$的概率密度函数。</p>
 <p>性质：</p>
 <ul>
-<li><p>概率密度函数$f(x)$满足非负性$f(x)\geq 0$和规范性$\displaystyle \int^{+\infty}_{-\infty}{f(t)dt}&#x3D;1$</p>
+<li>
+<p>概率密度函数$f(x)$满足非负性$f(x)\geq 0$和规范性$\displaystyle \int^{+\infty}_{-\infty}{f(t)dt}=1$</p>
 <p>概率密度函数可由函数的非负性和规范性完全刻画。</p>
-<p>对任意$x_1\leq x_2$，有$P(x_1&lt;X\leq x_2)&#x3D;F(x_2)-F(x_1)&#x3D;\displaystyle \int^{x_2}_{x_1}{f(t)dt}$</p>
-<p>概率密度的几何解释：随机变量$X$落入区间$(x_1,x_2]$的概率等于$x$轴，$x&#x3D;x_1,x&#x3D;x_2$和$y&#x3D;f(x)$所围成的曲边梯形的面积。</p>
+<p>对任意$x_1\leq x_2$，有$P(x_1&lt;X\leq x_2)=F(x_2)-F(x_1)=\displaystyle \int^{x_2}_{x_1}{f(t)dt}$</p>
+<p>概率密度的几何解释：随机变量$X$落入区间$(x_1,x_2]$的概率等于$x$轴，$x=x_1,x=x_2$和$y=f(x)$所围成的曲边梯形的面积。</p>
 </li>
-<li><p>对连续随机变量X，其分布函数$F(x)$在整个实数域上连续；若$f(x)$在x点连续，则$F(x)$在$x$的点可导，且$F’(x)&#x3D;f(x)$。</p>
+<li>
+<p>对连续随机变量X，其分布函数$F(x)$在整个实数域上连续；若$f(x)$在x点连续，则$F(x)$在$x$的点可导，且$F’(x)=f(x)$。</p>
 </li>
-<li><p>对连续型随机变量$X$和常数$x\in (-\infty,+\infty)$，有$P(X&#x3D;x)&#x3D;0$</p>
+<li>
+<p>对连续型随机变量$X$和常数$x\in (-\infty,+\infty)$，有$P(X=x)=0$</p>
 </li>
 </ul>
 <p><em><strong>连续随机变量的期望和方差</strong></em></p>
 <p>设连续随机变量$X$的概率密度函数为$f(x)$，若积分$\int^{+\infty}<em>{-\infty}{xf(x)dx}$绝对收敛，称$\int^{+\infty}</em>{-\infty}{xf(x)dx}$为随机变量$X$的期望，记为$E(X)$，即</p>
-<p>$E(X)&#x3D;\displaystyle \int^{+\infty}_{-\infty}{tf(t)dt}$</p>
+<p>$E(X)=\displaystyle \int^{+\infty}_{-\infty}{tf(t)dt}$</p>
 <p>性质：</p>
 <ul>
-<li><p><strong>线性关系：</strong> 对任意常数a,b和随机变量$X$，有$E(aX+b)&#x3D;aE(X)+b$</p>
-<p>对常数$c_1,\cdots,c_n$和连续函数$g_1(x),\cdots,g_n(x)$，有$E(\sum_{i&#x3D;1}^{n}c_ig_i(X))&#x3D;\sum_{i&#x3D;1}^{n}c_iE(g_i(X))$</p>
+<li>
+<p><strong>线性关系：</strong> 对任意常数a,b和随机变量$X$，有$E(aX+b)=aE(X)+b$</p>
+<p>对常数$c_1,\cdots,c_n$和连续函数$g_1(x),\cdots,g_n(x)$，有$E(\sum_{i=1}^{n}c_ig_i(X))=\sum_{i=1}^{n}c_iE(g_i(X))$</p>
 </li>
-<li><p>设随机变量$X$的密度函数为$f(x)$，且$\int^{+\infty}<em>{-\infty}{g(t)f(t)dt}$绝对可积，则$E(g(X))&#x3D;\displaystyle \int^{+\infty}</em>{-\infty}{g(t)f(t)dt}$</p>
+<li>
+<p>设随机变量$X$的密度函数为$f(x)$，且$\int^{+\infty}<em>{-\infty}{g(t)f(t)dt}$绝对可积，则$E(g(X))=\displaystyle \int^{+\infty}</em>{-\infty}{g(t)f(t)dt}$</p>
 </li>
-<li><p><strong>Jensen不等式：</strong>对连续随机变量$X$和凸函数$f(x)$有$f(E(X))\leq E[f(X)]$;对连续随机变量$X$和凹函数$f(x)$有$f(E(X))\geq E[f(X)]$</p>
+<li>
+<p>**Jensen不等式：**对连续随机变量$X$和凸函数$f(x)$有$f(E(X))\leq E[f(X)]$;对连续随机变量$X$和凹函数$f(x)$有$f(E(X))\geq E[f(X)]$</p>
 </li>
-<li><p>对非负的随机变量$X$，有$E[X]&#x3D;\int^{\infty}_{0}{P(X&gt;t)dt}$.</p>
+<li>
+<p>对非负的随机变量$X$，有$E[X]=\int^{\infty}_{0}{P(X&gt;t)dt}$.</p>
 <ul>
-<li><p>对随机变量$X$和连续函数$g(x)$，有$E(g(X))&#x3D;\displaystyle \int^{+\infty}<em>{-\infty}{g(x)f(x)dx}&#x3D;\displaystyle \int^{+\infty}</em>{0}{P(g(X)&gt;t)dt}$</p>
+<li>
+<p>对随机变量$X$和连续函数$g(x)$，有$E(g(X))=\displaystyle \int^{+\infty}<em>{-\infty}{g(x)f(x)dx}=\displaystyle \int^{+\infty}</em>{0}{P(g(X)&gt;t)dt}$</p>
 </li>
-<li><p><em><strong>方差：</strong></em>设连续随机变量$X$的概率密度为$f(x)$，若$\int^{+\infty}<em>{-\infty}{(t-E(x))^2f(t)dt}$收敛，称为随机变量$X$的方差，记为$Var(X)$，即：$Var(X)&#x3D;E(X-E(X))^2&#x3D;\displaystyle \int^{+\infty}</em>{-\infty}{(t-E(X))^2f(t)dt}$</p>
-<p>其等价性定义为：$Var(X)&#x3D;E(X-E(X))^2&#x3D;E(X^2)-(E(X))^2&#x3D;\int^{+\infty}<em>{-\infty}{t^2f(t)dt}-(\int^{+\infty}</em>{-\infty}{tf(t)dt})^2$</p>
+<li>
+<p>***方差：***设连续随机变量$X$的概率密度为$f(x)$，若$\int^{+\infty}<em>{-\infty}{(t-E(x))^2f(t)dt}$收敛，称为随机变量$X$的方差，记为$Var(X)$，即：$Var(X)=E(X-E(X))^2=\displaystyle \int^{+\infty}</em>{-\infty}{(t-E(X))^2f(t)dt}$</p>
+<p>其等价性定义为：$Var(X)=E(X-E(X))^2=E(X^2)-(E(X))^2=\int^{+\infty}<em>{-\infty}{t^2f(t)dt}-(\int^{+\infty}</em>{-\infty}{tf(t)dt})^2$</p>
 </li>
-<li><p>对任意常数$a,b$和随机变量$X$，有$Var(aX+b)&#x3D;a^2Var(X)$。</p>
+<li>
+<p>对任意常数$a,b$和随机变量$X$，有$Var(aX+b)=a^2Var(X)$。</p>
 </li>
 </ul>
 </li>
 </ul>
 <p><em><strong>常用的连续型随机变量</strong></em></p>
 <ul>
-<li><p><em><strong>均匀分布</strong></em></p>
-<p>概率密度为：<br>$$<br>f(x)&#x3D;\left{<br>\begin{aligned}<br>\frac{1}{b-a};;x\in[a,b] \<br>0   ;;;;;;;;;;;;;其他 \<br>\end{aligned}<br>\right.<br>$$<br>对任意$x\in(-\infty,+\infty)$有$f(x)\geq 0$，且$\displaystyle \int^{+\infty}<em>{-\infty}{f(t)dt}&#x3D;\displaystyle \int^{a}</em>{-\infty}{f(t)dt}+\displaystyle \int^{b}<em>{a}{f(t)dt}+\displaystyle \int^{+\infty}</em>{b}{f(t)dt}&#x3D;\displaystyle \int^{b}_{a}{\frac{1}{b-a}dt}&#x3D;1$</p>
+<li>
+<p><em><strong>均匀分布</strong></em></p>
+<p>概率密度为：<br>
+$$<br>
+f(x)=\left{<br>
+\begin{aligned}<br>
+\frac{1}{b-a};;x\in[a,b] \<br>
+0   ;;;;;;;;;;;;;其他 \<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+对任意$x\in(-\infty,+\infty)$有$f(x)\geq 0$，且$\displaystyle \int^{+\infty}<em>{-\infty}{f(t)dt}=\displaystyle \int^{a}</em>{-\infty}{f(t)dt}+\displaystyle \int^{b}<em>{a}{f(t)dt}+\displaystyle \int^{+\infty}</em>{b}{f(t)dt}=\displaystyle \int^{b}_{a}{\frac{1}{b-a}dt}=1$</p>
 <p>几何解释：$X$落入$[a,b]$内任一子区间的概率与该区间的长度成正比，与该区间的位置无关。</p>
-<p>分布函数：<br>$$<br>f(x)&#x3D;\left{<br>\begin{aligned}<br>0 ,x\leq a\<br>\frac{x-a}{b-a},a&lt;x&lt;b \<br>1,x\geq b \<br>\end{aligned}<br>\right.<br>$$<br>期望和方差：$E(X)&#x3D;\frac{a+b}{2},Var(X)&#x3D;\frac{(b-a)^2}{12}$</p>
+<p>分布函数：<br>
+$$<br>
+f(x)=\left{<br>
+\begin{aligned}<br>
+0 ,x\leq a\<br>
+\frac{x-a}{b-a},a&lt;x&lt;b \<br>
+1,x\geq b \<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+期望和方差：$E(X)=\frac{a+b}{2},Var(X)=\frac{(b-a)^2}{12}$</p>
 </li>
-<li><p><em><strong>指数分布</strong></em></p>
-<p>密度函数：<br>$$<br>f(x)&#x3D;\left{<br>\begin{aligned}<br>\lambda e^{-\lambda x},x\geq 0 \<br>0,其他 \<br>\end{aligned}<br>\right.<br>$$<br>一般用于时间等待等实际问题。</p>
-<p>$\displaystyle \int^{+\infty}<em>{-\infty}{f(t)dt}&#x3D;\displaystyle \int^{+\infty}</em>{0}{\lambda e^{-\lambda t}dt}&#x3D;[-e^{-\lambda t}]_{0}^{+\infty}&#x3D;1$</p>
+<li>
+<p><em><strong>指数分布</strong></em></p>
+<p>密度函数：<br>
+$$<br>
+f(x)=\left{<br>
+\begin{aligned}<br>
+\lambda e^{-\lambda x},x\geq 0 \<br>
+0,其他 \<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+一般用于时间等待等实际问题。</p>
+<p>$\displaystyle \int^{+\infty}<em>{-\infty}{f(t)dt}=\displaystyle \int^{+\infty}</em>{0}{\lambda e^{-\lambda t}dt}=[-e^{-\lambda t}]_{0}^{+\infty}=1$</p>
 <p>分布函数：</p>
-<p>当$x\leq 0$时有$F(x)&#x3D;\displaystyle \int^{x}_{0}{\lambda e^{-\lambda t}dt}&#x3D;1-e^{-\lambda x}$</p>
+<p>当$x\leq 0$时有$F(x)=\displaystyle \int^{x}_{0}{\lambda e^{-\lambda t}dt}=1-e^{-\lambda x}$</p>
 <p>期望与方差：</p>
-<p>$E(X)&#x3D;\frac{1}{\lambda},Var(X)&#x3D;\frac{1}{\lambda ^2}$</p>
+<p>$E(X)=\frac{1}{\lambda},Var(X)=\frac{1}{\lambda ^2}$</p>
 <p>无记忆性：</p>
-<p>给定常数$\lambda &gt; 0$，若随机变量$X～e(\lambda)$，则对任意$s&gt;0,t&gt;0$，有$P(X&gt;s+t|X&gt;t)&#x3D;P(X&gt;s)$</p>
+<p>给定常数$\lambda &gt; 0$，若随机变量$X～e(\lambda)$，则对任意$s&gt;0,t&gt;0$，有$P(X&gt;s+t|X&gt;t)=P(X&gt;s)$</p>
 <p>是唯一具有无记忆性的连续型随机变量。</p>
 </li>
-<li><p><em><strong>正态分布</strong></em></p>
+<li>
+<p><em><strong>正态分布</strong></em></p>
 <p>概率密度：</p>
-<p>$f(x)&#x3D;\frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{x^2}{2\sigma^2}}$</p>
+<p>$f(x)=\frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{x^2}{2\sigma^2}}$</p>
 <p><strong>标准正态分布密度函数：</strong></p>
-<p>$f(x)&#x3D;\frac{1}{\sqrt 2\pi}e^{-\frac{x^2}{2}}$</p>
+<p>$f(x)=\frac{1}{\sqrt 2\pi}e^{-\frac{x^2}{2}}$</p>
 </li>
 </ul>
 
@@ -967,10 +1015,6 @@
         
         
     
-        
-        
-        
-        
         
         
         

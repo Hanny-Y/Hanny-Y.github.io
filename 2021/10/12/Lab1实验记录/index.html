@@ -491,74 +491,89 @@
     <article class="article-entry">
         <p>记录了ics2021的第一项lab实验。</p>
 <span id="more"></span>
-
-<h4 id="实验任务："><a href="#实验任务：" class="headerlink" title="实验任务："></a>实验任务：</h4><p>求出$a\times b(mod;m)$,即求出最小的非负整数t，满足$a\times b\equiv t(mod;m)$</p>
+<h4 id="实验任务：">实验任务：</h4>
+<p>求出$a\times b(mod;m)$,即求出最小的非负整数t，满足$a\times b\equiv t(mod;m)$</p>
 <p>要求只用分支、循环、位运算和加减法。可以定义额外的辅助函数。可以使用数组。</p>
 <p>代码应当可以移植：应当兼容32-bit和64-bit机器。</p>
-<h4 id="实验进度"><a href="#实验进度" class="headerlink" title="实验进度"></a>实验进度</h4><p>10.12：得到了框架代码，中间出了一点小问题，就是出现hint打头的warning，后来stfw解决惹，是下载了一个东西（待自行探索）。然后，又开始了漫长的读指南历程…要疯了，这杀千刀的指南。</p>
+<h4 id="实验进度">实验进度</h4>
+<p>10.12：得到了框架代码，中间出了一点小问题，就是出现hint打头的warning，后来stfw解决惹，是下载了一个东西（待自行探索）。然后，又开始了漫长的读指南历程…要疯了，这杀千刀的指南。</p>
 <p>以及刚刚知道ics群里的万恶之源是yzh本人！我震惊，我在梦里已经暗杀这人一万次了。</p>
 <p>因为群里有人说把框架代码交了也能过easy test，于是本脑瘫就头铁交了一把，然后，错了哈。不会吧不会吧不会真的有人设置环境变量还纠结了好久吧，我真的好菜呜呜。</p>
-<h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><h5 id="一个错误的实现："><a href="#一个错误的实现：" class="headerlink" title="一个错误的实现："></a>一个错误的实现：</h5><p>第一眼：这有啥错？（雾）（还不速速滚去补习理论课？？？</p>
+<h4 id="实验过程">实验过程</h4>
+<h5 id="一个错误的实现：">一个错误的实现：</h5>
+<p>第一眼：这有啥错？（雾）（还不速速滚去补习理论课？？？</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">uint64_t</span> <span class="title">multimod</span><span class="params">(<span class="keyword">uint64_t</span> a, <span class="keyword">uint64_t</span> b, <span class="keyword">uint64_t</span> m)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (a * b) % m; <span class="comment">//buggy</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>那么我们来充满耐心来看一下指南是怎么说的吧：因为使用乘法(a*b)计算两个64位整数的乘积，只能保留乘积的低64位。其实我们计算的是$(a\cdot b;mod;2^{64})mod;m$；哎哎哎，计算机里表示数字的位置是有限的呢（课后一定补理论！下次一定！）</p>
-<h5 id="测试建议："><a href="#测试建议：" class="headerlink" title="测试建议："></a>测试建议：</h5><p>折腾了好久没成功，py的代码借鉴了lem学姐留下的资料（学姐赛高！），然后按照指南上的实现，然后显示返回null，爷不伺候了，暂时，嗯。（10.12）</p>
-<h5 id="如何实现不用乘除法的multimod："><a href="#如何实现不用乘除法的multimod：" class="headerlink" title="如何实现不用乘除法的multimod："></a>如何实现不用乘除法的multimod：</h5><p>？？？什么奇怪操作，真是折腾人（怂）</p>
+<h5 id="测试建议：">测试建议：</h5>
+<p>折腾了好久没成功，py的代码借鉴了lem学姐留下的资料（学姐赛高！），然后按照指南上的实现，然后显示返回null，爷不伺候了，暂时，嗯。（10.12）</p>
+<h5 id="如何实现不用乘除法的multimod：">如何实现不用乘除法的multimod：</h5>
+<p>？？？什么奇怪操作，真是折腾人（怂）</p>
 <p>《数字逻辑电路》，学了但没完全学，全靠帅气善良的wgs书记狂捞。《计算机系统基础》，学了，但正常情况下网课时间都用来写其他作业或者打HP决斗了。我反思我忏悔。而且，你也没反复强调啊，晕。</p>
 <p>指南的大概意思，很多部件都是由最简单的部件组合构成的，所以我们完全可以通过位运算和循环（甚至施舍了你加减法）实现任何运算，任何哦！指南相信，我们完全可以用最最最简单的逻辑门来实现乘法器和除法器。</p>
 <p>烦了，毁灭吧。</p>
-<h5 id="使用位运算实现加法"><a href="#使用位运算实现加法" class="headerlink" title="使用位运算实现加法"></a>使用位运算实现加法</h5><p>开头：虽然我们施舍了你加减法，但是你最好不要用哦～</p>
+<h5 id="使用位运算实现加法">使用位运算实现加法</h5>
+<p>开头：虽然我们施舍了你加减法，但是你最好不要用哦～</p>
 <p>接着指南人性化地给出了一些示例：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">bit_of</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (x &gt;&gt; i) &amp; <span class="number">1</span>; <span class="comment">//移位运算</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">full_add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x ^ y ^ z; <span class="comment">//全加运算</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">carry</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (x &amp; y) | (x &amp; z) | (y &amp; z); <span class="comment">//进位</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> s0 = full_add(bit_of(a, <span class="number">0</span>), bit_of(b, <span class="number">0</span>), <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">int</span> c0 = carry   (bit_of(a, <span class="number">0</span>), bit_of(b, <span class="number">0</span>), <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">int</span> s1 = full_add(bit_of(a, <span class="number">1</span>), bit_of(b, <span class="number">1</span>), c0);</span><br><span class="line">  <span class="keyword">int</span> c1 = carry   (bit_of(a, <span class="number">1</span>), bit_of(b, <span class="number">1</span>), c0);</span><br><span class="line">  <span class="keyword">return</span> (c1 &lt;&lt; <span class="number">2</span>) | (s1 &lt;&lt; <span class="number">1</span>) | (s0 &lt;&lt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>看懂了吗？指南只能送你到这里了，接下来的路，要自己走！现在让我来看看这个代码（小声</p>
 <p>其实在上学期的DLCO课程就有讲过这些，虽然不知道数字逻辑电路课程和DLCO的区别究竟在哪里，但是感觉在计算机组成方面对本学期课程有亿点先导作用。但是帅气wgs讲的真的是…</p>
-<h5 id="实现multimod："><a href="#实现multimod：" class="headerlink" title="实现multimod："></a>实现multimod：</h5><p>指南给出了明确的公式变形：</p>
-<p>$a\times b&#x3D;(a_0\times 2^0+a_1\times 2^1+\cdots+a_{63}\times2^{63})\cdot b$</p>
+<h5 id="实现multimod：">实现multimod：</h5>
+<p>指南给出了明确的公式变形：</p>
+<p>$a\times b=(a_0\times 2^0+a_1\times 2^1+\cdots+a_{63}\times2^{63})\cdot b$</p>
 <p>感觉还是比较直观的，a是一个64bit的二进制数，拆开与b相乘（应该</p>
-<p>$a\cdot b$ Mod m &#x3D; $(\sum_{0\leq i&lt;64}a_i\cdot b\cdot 2^i$ $mod$ $m)$ $mod$ $m$</p>
+<p>$a\cdot b$ Mod m = $(\sum_{0\leq i&lt;64}a_i\cdot b\cdot 2^i$ $mod$ $m)$ $mod$ $m$</p>
 <p>（敲重点！！！）因此，我们只要能实现mod m的加法也就是(x+y)mod m，就能实现$(b\cdot 2^i)$ Mod m。多么奇妙啊（喂喂，只会纸上谈兵的你真的明白了吗？！还不快点滚去码起来啊！）</p>
 <p>在这里要小心x+y溢出64-bit整数的问题。。。</p>
 <p>我去，怎么还有潜在溢出问题，算了，等溢了再说吧，现在纸上谈兵也说明不了问题。</p>
 <p>首先是实现一个最简单的mod功能：</p>
 <ul>
-<li><p>左移和右移的数字意义：左移n位相当于乘以2的n次方，右移n位相当于除以2的n次方<strong>并取整</strong>。</p>
+<li>
+<p>左移和右移的数字意义：左移n位相当于乘以2的n次方，右移n位相当于除以2的n次方<strong>并取整</strong>。</p>
 </li>
-<li><p>对于要作为模的数字，将模扩大不会影响取模结果，但是缩小会产生影响。</p>
+<li>
+<p>对于要作为模的数字，将模扩大不会影响取模结果，但是缩小会产生影响。</p>
 </li>
-<li><p>代码：</p>
+<li>
+<p>代码：</p>
 <p>略</p>
 </li>
 </ul>
 <p>然后要实现一个addmod功能，能够返回(a+b)%m的结果，这样我们就可以计算指南给出的表达实里每个单独的一项后实现相加。</p>
 <ul>
-<li><p>a+b的结果可能溢出，如果溢出，一定会比它们其中一个的真值要小。</p>
+<li>
+<p>a+b的结果可能溢出，如果溢出，一定会比它们其中一个的真值要小。</p>
 </li>
-<li><p>如果a+b的结果是溢出的，按照指南的旨意求出实际要求的内容即：((t mod m)+(2^64^ mod m ))%m。</p>
+<li>
+<p>如果a+b的结果是溢出的，按照指南的旨意求出实际要求的内容即：((t mod m)+(2^64^ mod m ))%m。</p>
 </li>
-<li><p>如果没有溢出，求解(a%m+b%m)%m。</p>
+<li>
+<p>如果没有溢出，求解(a%m+b%m)%m。</p>
 </li>
-<li><p>代码</p>
+<li>
+<p>代码</p>
 <p>略</p>
 <p></p>
 </li>
 </ul>
 <p>最后实现multimod：</p>
 <ul>
-<li><p>根据给出的表达式（这指南哪里抽象了？简直是保姆级嗷，别尬黑）：首先我们对a做一个最简单的取模，初始化最终结果为0（因为结果是一个addmod的形式）</p>
+<li>
+<p>根据给出的表达式（这指南哪里抽象了？简直是保姆级嗷，别尬黑）：首先我们对a做一个最简单的取模，初始化最终结果为0（因为结果是一个addmod的形式）</p>
 </li>
-<li><p>要怎么实现$2^i\cdot b$ $mod$ $m$呢？指南里说要利用好(a+b)mod m，我们可以改变b的值来实现这个步骤：</p>
-<p>((b mod m) + (b mod m)) mod m &#x3D; 2b mod m</p>
-<p>((2b mod m) + (2b mod m)) mod m &#x3D; 4b mod m &#x3D; 2^2^ b mod m</p>
-<p>((4b mod m) + (4b mod m)) mod m &#x3D; 8b mod m &#x3D; 2^3^ b mod m</p>
-<p>……</p>
-<p>在每一次将a右移一位后，执行：b &#x3D; addmod(b, b, m)，即可实现2^i^b mod m。</p>
+<li>
+<p>要怎么实现$2^i\cdot b$ $mod$ $m$呢？指南里说要利用好(a+b)mod m，我们可以改变b的值来实现这个步骤：</p>
+<p>((b mod m) + (b mod m)) mod m = 2b mod m</p>
+<p>((2b mod m) + (2b mod m)) mod m = 4b mod m = 2^2^ b mod m</p>
+<p>((4b mod m) + (4b mod m)) mod m = 8b mod m = 2^3^ b mod m</p>
+<p>…</p>
+<p>在每一次将a右移一位后，执行：b = addmod(b, b, m)，即可实现2^i^b mod m。</p>
 </li>
-<li><p>接下来就是我们要把a的每一位和上面求的结果做运算，假如这一位是1，我们就要把上面的结果在res的基础上加上去并mod m。最后就可以将实现将所有的a<del>i</del>b^i^ mod m并且相加取模啦。</p>
+<li>
+<p>接下来就是我们要把a的每一位和上面求的结果做运算，假如这一位是1，我们就要把上面的结果在res的基础上加上去并mod m。最后就可以将实现将所有的a~i~b^i^ mod m并且相加取模啦。</p>
 </li>
 </ul>
-<h4 id="一段神秘的代码"><a href="#一段神秘的代码" class="headerlink" title="一段神秘的代码"></a>一段神秘的代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int64_t</span> <span class="title">multimod_fast</span><span class="params">(<span class="keyword">int64_t</span> a, <span class="keyword">int64_t</span> b, <span class="keyword">int64_t</span> m)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int64_t</span> t = (a * b - (<span class="keyword">int64_t</span>)((<span class="keyword">double</span>)a * b / m) * m) % m;</span><br><span class="line">  <span class="keyword">return</span> t &lt; <span class="number">0</span> ? t + m : t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="一段神秘的代码">一段神秘的代码</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int64_t</span> <span class="title">multimod_fast</span><span class="params">(<span class="keyword">int64_t</span> a, <span class="keyword">int64_t</span> b, <span class="keyword">int64_t</span> m)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int64_t</span> t = (a * b - (<span class="keyword">int64_t</span>)((<span class="keyword">double</span>)a * b / m) * m) % m;</span><br><span class="line">  <span class="keyword">return</span> t &lt; <span class="number">0</span> ? t + m : t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>据说代码的精髓在第二行？？？</p>
 <p>我的理论基础实在是太差了，大概只能做完课本上的笨蛋题目吧。看了一下l学姐留下的报告，先码一下。</p>
 <p>把ab乘积转换为<code>double</code>类型。<code>double</code>类型能表示的范围是大于<code>int64_t</code>的，但是精度不够，尾数部分只有52位的精度（加上前面的1一共是53位），所以应该是只能保证这53位的精度。</p>
@@ -920,10 +935,6 @@
         
         
     
-        
-        
-        
-        
         
         
         

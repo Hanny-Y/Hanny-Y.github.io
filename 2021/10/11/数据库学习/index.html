@@ -492,55 +492,69 @@
         <p>因为老师的声音太催眠，所以果断选择在正课划水，课后自学。（狗头</p>
 <p>教材：《数据库原理、编程与性能》</p>
 <span id="more"></span>
-
-<h3 id="Ch-1-数据库概论"><a href="#Ch-1-数据库概论" class="headerlink" title="Ch.1 数据库概论"></a>Ch.1 数据库概论</h3><h4 id="数据库用户"><a href="#数据库用户" class="headerlink" title="数据库用户"></a>数据库用户</h4><ul>
-<li><p>最终用户：从键盘输入要查询的信息要求数据库打印（诸如你我）</p>
+<h3 id="Ch-1-数据库概论">Ch.1 数据库概论</h3>
+<h4 id="数据库用户">数据库用户</h4>
+<ul>
+<li>
+<p>最终用户：从键盘输入要查询的信息要求数据库打印（诸如你我）</p>
 <ul>
 <li>临时用户——通过SQL（数据库标准查询语言）访问DBMS的用户</li>
 <li>初级用户——通过菜单访问DBMS的用户</li>
 </ul>
 </li>
-<li><p>应用程序员——编写菜单程序的程序员</p>
+<li>
+<p>应用程序员——编写菜单程序的程序员</p>
 </li>
-<li><p>数据库管理员——管理DBMS的专家</p>
+<li>
+<p>数据库管理员——管理DBMS的专家</p>
 </li>
 </ul>
 <p><em><strong>我们的目标，成为一个资深临时用户，一个好的应用程序员或者一个DBA。</strong></em></p>
-<h3 id="Ch-2-关系模型"><a href="#Ch-2-关系模型" class="headerlink" title="Ch.2 关系模型"></a>Ch.2 关系模型</h3><h4 id="CAP数据库"><a href="#CAP数据库" class="headerlink" title="CAP数据库"></a>CAP数据库</h4><p>由CUSTOMERS,AGENTS,PRODUCTS组成</p>
+<h3 id="Ch-2-关系模型">Ch.2 关系模型</h3>
+<h4 id="CAP数据库">CAP数据库</h4>
+<p>由CUSTOMERS,AGENTS,PRODUCTS组成</p>
 <p>CUSTOMERS中的顾客用cid属性作为唯一标识，顾客向代理商（aid）要求购买商品（pid）。每次订货都会在表ORDERS中增加一条订单记录，用ordno唯一标识该记录。</p>
-<h4 id="数据库各部分的命名"><a href="#数据库各部分的命名" class="headerlink" title="数据库各部分的命名"></a>数据库各部分的命名</h4><ul>
+<h4 id="数据库各部分的命名">数据库各部分的命名</h4>
+<ul>
 <li>表、列、行</li>
 <li>关系（对应表）、元组（对应行）、属性（对应列）</li>
 </ul>
 <p>用表的列名指代该表的属性，用表的行来指代表中的元组。</p>
 <p>数据库是表或者关系的集合。</p>
 <p>表的标题是表的列名的集合，它出现在表的最上部，位于表的第一行，元组的上面。表T的标题用Head(T)标记。</p>
-<p>如：Head(CUSTOMERS)&#x3D;cid name city discnt</p>
+<p>如：Head(CUSTOMERS)=cid name city discnt</p>
 <p>表的标题也被称为关系模式，组成关系的属性的集合。</p>
 <p>表的行集合，元组集合称为表的内容，表的行数称为表的基数。</p>
 <p>表名以及表的标题是表长期存在的属性，而表的行集合在数量和详细值方面相对而言是时常变化的。</p>
-<h6 id="域和数据类型"><a href="#域和数据类型" class="headerlink" title="域和数据类型"></a>域和数据类型</h6><p>空表的结构必须预先声明。</p>
+<h6 id="域和数据类型">域和数据类型</h6>
+<p>空表的结构必须预先声明。</p>
 <p>表中的列必须有特定的类型。</p>
 <p>表T的属性A的取值范围是在集合D上，称D为域。</p>
 <p>域一般被定义为可以被用作表的属性值的常数的集合，在某些编程语言中对应于一些特定的枚举类型。大多数数据库系统都支持小数位数的显式精确度。而不支持有枚举集合组成的类型。</p>
 <p>给表的列加上一个特定类型的意义：对声明在该类型上的两个不同的列的值进行比较。如果类型不同，数据库系统可能会拒绝在不同类型的列之间进行比较。</p>
-<h6 id="表和关系"><a href="#表和关系" class="headerlink" title="表和关系"></a>表和关系</h6><p><em><strong>笛卡儿积</strong></em></p>
+<h6 id="表和关系">表和关系</h6>
+<p><em><strong>笛卡儿积</strong></em></p>
 <p>现在关系是一种数学结构，被定义为一个笛卡尔积的子集。表是CP的一个子集，所有行都包含在CP所表示的元组的集合中。且表有时是一个真子集。称符合条件的笛卡尔积重的元素为相关的。表中的每一行都与不同的列上的值相关联，表中的行的完整的集合才被称为一个关系。</p>
 <p>通常不轻易改变列即标题。行可以随时被增加和删除。</p>
-<h6 id="关系规则"><a href="#关系规则" class="headerlink" title="关系规则"></a>关系规则</h6><ul>
-<li><p>第一范式规则：在定义的表中，关系模型坚持不允许含有多值属性（有时称为重复字段）和含有内部结构（比如记录类型）的列。遵守这样规则的表被称为第一范式。</p>
+<h6 id="关系规则">关系规则</h6>
+<ul>
+<li>
+<p>第一范式规则：在定义的表中，关系模型坚持不允许含有多值属性（有时称为重复字段）和含有内部结构（比如记录类型）的列。遵守这样规则的表被称为第一范式。</p>
 <p>第一范式规则同时也要求任何列的值都必须是简单类型，不允许包含内部结构。不允许是结构类型。</p>
 </li>
-<li><p>只能基于内容存取行规则：我们只可以通过行的内容即每一行中所存在的属性值来检测列。</p>
+<li>
+<p>只能基于内容存取行规则：我们只可以通过行的内容即每一行中所存在的属性值来检测列。</p>
 <p>说明了行是没有次序之分的。列同是。</p>
 </li>
-<li><p>行唯一性规则：要求关系中的任何两个元组的值在同一时刻不能是完全相同的</p>
+<li>
+<p>行唯一性规则：要求关系中的任何两个元组的值在同一时刻不能是完全相同的</p>
 </li>
 </ul>
-<h6 id="键、超键和空值"><a href="#键、超键和空值" class="headerlink" title="键、超键和空值"></a>键、超键和空值</h6><p>超键：表中的任意两行数据在该列集合上都有唯一的值。</p>
+<h6 id="键、超键和空值">键、超键和空值</h6>
+<p>超键：表中的任意两行数据在该列集合上都有唯一的值。</p>
 <p>键：组成键的列的集合中再也没有子集也是表的超键。</p>
 <p><em><strong>表的键：</strong></em></p>
-<p>给定一个表T，标题$Head(T)&#x3D;A_1…A_n$。表T的一个键，有时也称为候选键，是具有以下特征的一组属性的集合$K&#x3D;A_{i1}\cdots A_{ik}$：</p>
+<p>给定一个表T，标题$Head(T)=A_1…A_n$。表T的一个键，有时也称为候选键，是具有以下特征的一组属性的集合$K=A_{i1}\cdots A_{ik}$：</p>
 <ol>
 <li>如果u,v是T中的两个不同的元组，根据设计者的意图u[K]不等于v[K]；这就是说，集合K中必定存在至少一个列$A_{im}$使得$u[A_{im}]\neq v[A_{im}]$</li>
 <li>没有K的真子集H具有特征1。</li>
@@ -553,74 +567,111 @@
 <p>空值（NULL value）：未知的或者尚未定义的。表的主键不能包含空值。</p>
 <p><em><strong>实体完整性规则：</strong></em></p>
 <p>表T中的任何行在主键列的取值都不允许为空值。</p>
-<h6 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h6><p>集合运算</p>
-<p><em><strong>兼容表：</strong></em> 如果R和S有着相同的标题即Head(R)&#x3D;Head(S)，而且属性是从相同的域中选择并且具有相同的含义，则R和S是兼容的。</p>
+<h6 id="关系代数">关系代数</h6>
+<p>集合运算</p>
+<p><em><strong>兼容表：</strong></em> 如果R和S有着相同的标题即Head®=Head(S)，而且属性是从相同的域中选择并且具有相同的含义，则R和S是兼容的。</p>
 <ul>
 <li>并、交和差运算：必须是兼容表;$R\cup S,R\cap S,R-S,$</li>
-<li>赋值和别名：将旧表R的内容赋给新表S：$S(B_1,\cdots B_n):&#x3D;R(A_1,\cdots,A_n)$（可以保存表达式的中间结果）</li>
-<li>乘积运算：表R和S的乘积是标题$Head(T)&#x3D;R.A_1\cdots R.A_nS.B_1\cdots B_n$的表T</li>
+<li>赋值和别名：将旧表R的内容赋给新表S：$S(B_1,\cdots B_n):=R(A_1,\cdots,A_n)$（可以保存表达式的中间结果）</li>
+<li>乘积运算：表R和S的乘积是标题$Head(T)=R.A_1\cdots R.A_nS.B_1\cdots B_n$的表T</li>
 </ul>
 <p>自然关系运算</p>
 <ul>
-<li><p>投影运算：取出特定一列</p>
+<li>
+<p>投影运算：取出特定一列</p>
 </li>
-<li><p>选择运算：S where C；AND，OR，NOT连接符</p>
+<li>
+<p>选择运算：S where C；AND，OR，NOT连接符</p>
 </li>
-<li><p>关系代数优先级：投影&gt;选择&gt;乘积&gt;连接、除法&gt;交&gt;并、差</p>
+<li>
+<p>关系代数优先级：投影&gt;选择&gt;乘积&gt;连接、除法&gt;交&gt;并、差</p>
 </li>
-<li><p>连接运算</p>
+<li>
+<p>连接运算</p>
 </li>
-<li><p>除运算；给定两个表T和S，$Head(T)&#x3D;A_1\cdots A_n$且$Head(S)&#x3D;B_1\cdots B_n$。如果R是通过R&#x3D;TxS定义的那么有T&#x3D;R&#x2F;S成立。</p>
+<li>
+<p>除运算；给定两个表T和S，$Head(T)=A_1\cdots A_n$且$Head(S)=B_1\cdots B_n$。如果R是通过R=TxS定义的那么有T=R/S成立。</p>
 </li>
 </ul>
-<h6 id="运算依赖"><a href="#运算依赖" class="headerlink" title="运算依赖"></a>运算依赖</h6><ol>
-<li>R和S是两个兼容表，$Head(R)&#x3D;Head(S)&#x3D;A_1\cdots A_n$。交运算可以被减运算重新定义为：$A\cap B&#x3D;A-(A-B)$</li>
-<li>给定两个表R和S，$Head(R)&#x3D;A_1\cdots A_nB_1\cdots B_k,Head(S)&#x3D;B_1\cdots B_kC_1\cdots C_m$，其中$n,k,m\geq 0$，R和S的连接可以用积、选择、投影运算以及赋值算子重写。</li>
+<h6 id="运算依赖">运算依赖</h6>
+<ol>
+<li>R和S是两个兼容表，$Head®=Head(S)=A_1\cdots A_n$。交运算可以被减运算重新定义为：$A\cap B=A-(A-B)$</li>
+<li>给定两个表R和S，$Head®=A_1\cdots A_nB_1\cdots B_k,Head(S)=B_1\cdots B_kC_1\cdots C_m$，其中$n,k,m\geq 0$，R和S的连接可以用积、选择、投影运算以及赋值算子重写。</li>
 <li>除法可以用投影、乘积和差表达。</li>
 </ol>
-<h3 id="Ch-3-基本SQL查询语言"><a href="#Ch-3-基本SQL查询语言" class="headerlink" title="Ch.3 基本SQL查询语言"></a>Ch.3 基本SQL查询语言</h3><h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><ol>
+<h3 id="Ch-3-基本SQL查询语言">Ch.3 基本SQL查询语言</h3>
+<h4 id="引言">引言</h4>
+<h4 id="创建数据库">创建数据库</h4>
+<ol>
 <li>得到计算机系统的账号</li>
 <li>短语出现在[]中时，表示该短语是可选的。对主键的定义是可选的。</li>
 <li>竖杠｜被用来表示在许多可能的短语之间的一种选择。</li>
 </ol>
-<h4 id="简单的Select语句"><a href="#简单的Select语句" class="headerlink" title="简单的Select语句"></a>简单的Select语句</h4><p>Select语句导致了以下几个（概念性的）步骤。</p>
+<h4 id="简单的Select语句">简单的Select语句</h4>
+<p>Select语句导致了以下几个（概念性的）步骤。</p>
 <ol>
 <li>计算出出现在FROM后面的表之间的笛卡尔积。</li>
 <li>实施由WHERE后面的条件规定的选择操作。</li>
 <li>将出现在选择列表中的属性投影成结果表。</li>
 </ol>
-<h3 id="Ch-4-对象——关系SQL"><a href="#Ch-4-对象——关系SQL" class="headerlink" title="Ch.4 对象——关系SQL"></a>Ch.4 对象——关系SQL</h3><p>介绍数据库管理系统的对象——关系模型(ORDBMS)</p>
-<h4 id="引言-1"><a href="#引言-1" class="headerlink" title="引言"></a>引言</h4><h5 id="ORSQL的能力"><a href="#ORSQL的能力" class="headerlink" title="ORSQL的能力"></a>ORSQL的能力</h5><p>ORSQL的对象-关系模型支持用户对象定义。</p>
-<h6 id="汇聚类型"><a href="#汇聚类型" class="headerlink" title="汇聚类型"></a>汇聚类型</h6><p>允许一个行包括一个行值汇聚</p>
+<h3 id="Ch-4-对象——关系SQL">Ch.4 对象——关系SQL</h3>
+<p>介绍数据库管理系统的对象——关系模型(ORDBMS)</p>
+<h4 id="引言-2">引言</h4>
+<h5 id="ORSQL的能力">ORSQL的能力</h5>
+<p>ORSQL的对象-关系模型支持用户对象定义。</p>
+<h6 id="汇聚类型">汇聚类型</h6>
+<p>允许一个行包括一个行值汇聚</p>
 <p>规则一：第一范式  在表的定义中，关系模型不允许列中出现形如多值域（有时称为重复域）或任何内部的数据结构（如记录）。满足这样的条件的表即是第一范式的表。对象-关系模型允许包含多个值或者结构化数据，违反了第一范式规则。</p>
-<h6 id="方法和UDF"><a href="#方法和UDF" class="headerlink" title="方法和UDF"></a>方法和UDF</h6><p>在本章中研究的对象总允许ORSQL直接访问对象的各个部分，因此，在ORDBMS中，所有的对象被看作是公共的而非私有的</p>
-<h4 id="对象和表"><a href="#对象和表" class="headerlink" title="对象和表"></a>对象和表</h4><p>新的用户定义类型：对象类型</p>
-<h5 id="ORACLE中的对象类型"><a href="#ORACLE中的对象类型" class="headerlink" title="ORACLE中的对象类型"></a>ORACLE中的对象类型</h5><p>如何创建一个对象类型：一个对象类型有多个类型属性，与一个表的列相似。</p>
+<h6 id="方法和UDF">方法和UDF</h6>
+<p>在本章中研究的对象总允许ORSQL直接访问对象的各个部分，因此，在ORDBMS中，所有的对象被看作是公共的而非私有的</p>
+<h4 id="对象和表">对象和表</h4>
+<p>新的用户定义类型：对象类型</p>
+<h5 id="ORACLE中的对象类型">ORACLE中的对象类型</h5>
+<p>如何创建一个对象类型：一个对象类型有多个类型属性，与一个表的列相似。</p>
 <p>Create Object Type</p>
 <p>“Create type xxx as an object”</p>
-<h3 id="Ch-5-访问数据库的程序"><a href="#Ch-5-访问数据库的程序" class="headerlink" title="Ch.5 访问数据库的程序"></a>Ch.5 访问数据库的程序</h3><h4 id="C语言中嵌入式SQL介绍"><a href="#C语言中嵌入式SQL介绍" class="headerlink" title="C语言中嵌入式SQL介绍"></a>C语言中嵌入式SQL介绍</h4><p>嵌入式SQL是指在程序内执行的SQL语句，是嵌入在编程语言（宿主语言）。</p>
+<h3 id="Ch-5-访问数据库的程序">Ch.5 访问数据库的程序</h3>
+<h4 id="C语言中嵌入式SQL介绍">C语言中嵌入式SQL介绍</h4>
+<p>嵌入式SQL是指在程序内执行的SQL语句，是嵌入在编程语言（宿主语言）。</p>
 <p>在SQL语句之前必须有exec sql短语，可以扩展到该文件的多行，以分号作为结束。</p>
 <ol>
-<li><p>声明部分<br>嵌入式SQL中的变量需要声明<br>使用宿主变量时必须在前面加冒号，并且需要声明宿主变量。</p>
+<li>
+<p>声明部分<br>
+嵌入式SQL中的变量需要声明<br>
+使用宿主变量时必须在前面加冒号，并且需要声明宿主变量。</p>
 </li>
-<li><p>在SQL中建立连接和释放连接</p>
+<li>
+<p>在SQL中建立连接和释放连接</p>
 <ul>
-<li>连接：<br>  如：connect to target-server [AS connect-name][USER username]<br>  exec sql connect :user_name identified by :user_pwd;(ORACLE)</li>
-<li>断开连接：<br>  如：exec sql disconnect current;<br>  在使用disconnect之前还必须对成功的事务执行commit语句，或者对不成功的事务执行Rollback语句撤销不成功事务中已做的部分工作。<br>  exec sql commit&#x2F;rollback release(ORACLE)</li>
+<li>连接：<br>
+如：connect to target-server [AS connect-name][USER username]<br>
+exec sql connect :user_name identified by :user_pwd;(ORACLE)</li>
+<li>断开连接：<br>
+如：exec sql disconnect current;<br>
+在使用disconnect之前还必须对成功的事务执行commit语句，或者对不成功的事务执行Rollback语句撤销不成功事务中已做的部分工作。<br>
+exec sql commit/rollback release(ORACLE)</li>
 </ul>
 </li>
-<li><p>数据库系统和C语言中的字符串<br>用嵌入式SQL语句将字符串列中得到的值读到C数组中时，大多数的数据库会把列值转换成以空字符结束的字符串。<br>因此保证接收数组拥有足够的空间。</p>
+<li>
+<p>数据库系统和C语言中的字符串<br>
+用嵌入式SQL语句将字符串列中得到的值读到C数组中时，大多数的数据库会把列值转换成以空字符结束的字符串。<br>
+因此保证接收数组拥有足够的空间。</p>
 </li>
-<li><p>提示用户交互<br>prompt()函数</p>
+<li>
+<p>提示用户交互<br>
+prompt()函数</p>
 </li>
-<li><p>预编译和编译过程</p>
+<li>
+<p>预编译和编译过程</p>
 </li>
 </ol>
 <p><em><strong>使用游标选择多行</strong></em></p>
 <p><strong>一次一行原则：</strong> 当检索未知数量的行的时候，应该假设这些记录不能一次全部放入任一声明过的数组中。</p>
 <ul>
-<li>游标的定义：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL DECLARE &lt;name of cursor&gt; CURSOR FOR</span><br><span class="line">select  &lt;wanted rows&gt;</span><br><span class="line">where  &lt;how to search&gt;</span><br><span class="line">group by  aid ; <span class="comment">//means multiple rows in result set</span></span><br></pre></td></tr></table></figure></li>
-<li>打开游标：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//declaration</span></span><br><span class="line">EXEC  SQL  OPEN  &lt;cursor name&gt; ;</span><br><span class="line"><span class="comment">// After open the cursor, the pointer of the cursor has been placed in the position before the first row in result set. </span></span><br></pre></td></tr></table></figure></li>
+<li>游标的定义：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL DECLARE &lt;name of cursor&gt; CURSOR FOR</span><br><span class="line">select  &lt;wanted rows&gt;</span><br><span class="line">where  &lt;how to search&gt;</span><br><span class="line">group by  aid ; <span class="comment">//means multiple rows in result set</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>打开游标：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//declaration</span></span><br><span class="line">EXEC  SQL  OPEN  &lt;cursor name&gt; ;</span><br><span class="line"><span class="comment">// After open the cursor, the pointer of the cursor has been placed in the position before the first row in result set. </span></span><br></pre></td></tr></table></figure>
+</li>
 <li>游标记录行<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (TRUE) &#123;	<span class="comment">/* loop to fetch rows */</span></span><br><span class="line">  exec  sql  fetch &lt;cursor name&gt;</span><br><span class="line">                   into :agent_id, :dollar_sum; <span class="comment">//host variable</span></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s %11.2f\n&quot;</span>,agent_id,dollar_sum); <span class="comment">//print result</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">/* end fetch loop */</span></span><br></pre></td></tr></table></figure>
 <ol>
 <li>Move the pointer of cursor to the next row, then the next row is current row</li>
@@ -633,15 +684,19 @@
 <li>After close the cursor, it can be <strong>opened again</strong>.</li>
 </ol>
 </li>
-<li>停止fetch循环<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exec sql whenever <span class="keyword">not</span>  found  <span class="keyword">goto</span>  finish;</span><br><span class="line">......</span><br><span class="line"><span class="keyword">while</span> (TRUE) &#123;</span><br><span class="line">  exec  sql  fetch ...... into ......;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line">......</span><br><span class="line">finish:    exec  sql  close  agent_dollars;<span class="comment">//execute this statement after fetch loop when ‘not found’event is occur</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>停止fetch循环<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exec sql whenever <span class="keyword">not</span>  found  <span class="keyword">goto</span>  finish;</span><br><span class="line">......</span><br><span class="line"><span class="keyword">while</span> (TRUE) &#123;</span><br><span class="line">  exec  sql  fetch ...... into ......;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line">......</span><br><span class="line">finish:    exec  sql  close  agent_dollars;<span class="comment">//execute this statement after fetch loop when ‘not found’event is occur</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="条件处理"><a href="#条件处理" class="headerlink" title="条件处理"></a>条件处理</h4><h5 id="Whenever语句"><a href="#Whenever语句" class="headerlink" title="Whenever语句"></a>Whenever语句</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL WHENEVER  condition  action;</span><br></pre></td></tr></table></figure>
+<h4 id="条件处理">条件处理</h4>
+<h5 id="Whenever语句">Whenever语句</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL WHENEVER  condition  action;</span><br></pre></td></tr></table></figure>
 <p>设置一个条件陷阱，对后面所有由EXEC SQL语句所引起的对于数据库系统的调用自动检查它是否满足出错条件，如果存在出错条件，就必须采取相应的动作。比如GOTO。</p>
 <p><em><strong>具体条件</strong></em></p>
 <ul>
 <li>SQLERRO: 编译错误</li>
 <li>NOT FOUND: 检测是否没有记录受到某一条EXEC SQL的语句的影响。</li>
-<li>SQLWARNING: 检测一个不是错误但是应该引起注意的条件<br>It may need: EXEC SQL INCLUDE sqlca ;</li>
+<li>SQLWARNING: 检测一个不是错误但是应该引起注意的条件<br>
+It may need: EXEC SQL INCLUDE sqlca ;</li>
 </ul>
 <p><em><strong>动作</strong></em></p>
 <ul>
@@ -650,23 +705,17 @@
 <li>STOP: 结束程序的运行，撤销当前的事务，并且断开与数据库的连接。</li>
 <li>DO函数，CALL函数：引发一个对已命名的C函数的调用。</li>
 </ul>
-<h4 id="一些通用的嵌入式SQL语句"><a href="#一些通用的嵌入式SQL语句" class="headerlink" title="一些通用的嵌入式SQL语句"></a>一些通用的嵌入式SQL语句</h4><h5 id="Select语句"><a href="#Select语句" class="headerlink" title="Select语句"></a>Select语句</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">SELECT [ ALL | DISTINCT ] expression, ...... </span><br><span class="line">INTO  host-variable [ indicator-variable ], ...... </span><br><span class="line">FROM  tableref [corr-name], ...... </span><br><span class="line">[ WHERE  search-condition ]  ;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Declare-Cursor语句"><a href="#Declare-Cursor语句" class="headerlink" title="Declare Cursor语句"></a>Declare Cursor语句</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">     DECLARE cursor_name CURSOR FOR</span><br><span class="line">	subquery</span><br><span class="line">	[ ORDER BY ...... ]</span><br><span class="line">	[ FOR &#123; READ ONLY |</span><br><span class="line">		   UPDATE [ OF columnname, ...... ] &#125; ]  ;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Delete语句"><a href="#Delete语句" class="headerlink" title="Delete语句"></a>Delete语句</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">     DELETE FROM tablename [ corr_name ]</span><br><span class="line">	[ WHERE search_condition |</span><br><span class="line">	  WHERE CURRENT OF cursor_name ]</span><br></pre></td></tr></table></figure>
-
-<h5 id="Update语句"><a href="#Update语句" class="headerlink" title="Update语句"></a>Update语句</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">     UPDATE tablename [ corr_name ]</span><br><span class="line">	SET columnname = expr, ......</span><br><span class="line">	[ WHERE search_condition |</span><br><span class="line">	  WHERE CURRENT OF cursor_name ]</span><br></pre></td></tr></table></figure>
-
-<h5 id="Insert语句"><a href="#Insert语句" class="headerlink" title="Insert语句"></a>Insert语句</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">    INSERT INTO tablename [ (column_nme, ... ) ]</span><br><span class="line">	VALUES ( expr, ...... )  |  subquery   ;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+<h4 id="一些通用的嵌入式SQL语句">一些通用的嵌入式SQL语句</h4>
+<h5 id="Select语句">Select语句</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">SELECT [ ALL | DISTINCT ] expression, ...... </span><br><span class="line">INTO  host-variable [ indicator-variable ], ...... </span><br><span class="line">FROM  tableref [corr-name], ...... </span><br><span class="line">[ WHERE  search-condition ]  ;</span><br></pre></td></tr></table></figure>
+<h5 id="Declare-Cursor语句">Declare Cursor语句</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">     DECLARE cursor_name CURSOR FOR</span><br><span class="line">	subquery</span><br><span class="line">	[ ORDER BY ...... ]</span><br><span class="line">	[ FOR &#123; READ ONLY |</span><br><span class="line">		   UPDATE [ OF columnname, ...... ] &#125; ]  ;</span><br></pre></td></tr></table></figure>
+<h5 id="Delete语句">Delete语句</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">     DELETE FROM tablename [ corr_name ]</span><br><span class="line">	[ WHERE search_condition |</span><br><span class="line">	  WHERE CURRENT OF cursor_name ]</span><br></pre></td></tr></table></figure>
+<h5 id="Update语句">Update语句</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">     UPDATE tablename [ corr_name ]</span><br><span class="line">	SET columnname = expr, ......</span><br><span class="line">	[ WHERE search_condition |</span><br><span class="line">	  WHERE CURRENT OF cursor_name ]</span><br></pre></td></tr></table></figure>
+<h5 id="Insert语句">Insert语句</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXEC SQL </span><br><span class="line">    INSERT INTO tablename [ (column_nme, ... ) ]</span><br><span class="line">	VALUES ( expr, ...... )  |  subquery   ;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -839,7 +888,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">Ch.1 数据库概论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.</span> <span class="toc-text">数据库用户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-2-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">Ch.2 关系模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CAP%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">CAP数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%84%E9%83%A8%E5%88%86%E7%9A%84%E5%91%BD%E5%90%8D"><span class="toc-number">2.2.</span> <span class="toc-text">数据库各部分的命名</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9F%9F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">域和数据类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A1%A8%E5%92%8C%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">表和关系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%A7%84%E5%88%99"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">关系规则</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%AE%E3%80%81%E8%B6%85%E9%94%AE%E5%92%8C%E7%A9%BA%E5%80%BC"><span class="toc-number">2.2.0.4.</span> <span class="toc-text">键、超键和空值</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">2.2.0.5.</span> <span class="toc-text">关系代数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E4%BE%9D%E8%B5%96"><span class="toc-number">2.2.0.6.</span> <span class="toc-text">运算依赖</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-3-%E5%9F%BA%E6%9C%ACSQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="toc-number">3.</span> <span class="toc-text">Ch.3 基本SQL查询语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">3.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84Select%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.3.</span> <span class="toc-text">简单的Select语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-4-%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%85%B3%E7%B3%BBSQL"><span class="toc-number">4.</span> <span class="toc-text">Ch.4 对象——关系SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E8%A8%80-1"><span class="toc-number">4.1.</span> <span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ORSQL%E7%9A%84%E8%83%BD%E5%8A%9B"><span class="toc-number">4.1.1.</span> <span class="toc-text">ORSQL的能力</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B1%87%E8%81%9A%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.1.1.</span> <span class="toc-text">汇聚类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%92%8CUDF"><span class="toc-number">4.1.1.2.</span> <span class="toc-text">方法和UDF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%A1%A8"><span class="toc-number">4.2.</span> <span class="toc-text">对象和表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ORACLE%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.1.</span> <span class="toc-text">ORACLE中的对象类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-5-%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">Ch.5 访问数据库的程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%B5%8C%E5%85%A5%E5%BC%8FSQL%E4%BB%8B%E7%BB%8D"><span class="toc-number">5.1.</span> <span class="toc-text">C语言中嵌入式SQL介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-number">5.2.</span> <span class="toc-text">条件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Whenever%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.2.1.</span> <span class="toc-text">Whenever语句</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%80%9A%E7%94%A8%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8FSQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.</span> <span class="toc-text">一些通用的嵌入式SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Select%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.1.</span> <span class="toc-text">Select语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Declare-Cursor%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.2.</span> <span class="toc-text">Declare Cursor语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Delete%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.3.</span> <span class="toc-text">Delete语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Update%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.4.</span> <span class="toc-text">Update语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Insert%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.5.</span> <span class="toc-text">Insert语句</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">Ch.1 数据库概论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.</span> <span class="toc-text">数据库用户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-2-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">Ch.2 关系模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CAP%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">CAP数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%84%E9%83%A8%E5%88%86%E7%9A%84%E5%91%BD%E5%90%8D"><span class="toc-number">2.2.</span> <span class="toc-text">数据库各部分的命名</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9F%9F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">域和数据类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A1%A8%E5%92%8C%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">表和关系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%A7%84%E5%88%99"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">关系规则</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%AE%E3%80%81%E8%B6%85%E9%94%AE%E5%92%8C%E7%A9%BA%E5%80%BC"><span class="toc-number">2.2.0.4.</span> <span class="toc-text">键、超键和空值</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">2.2.0.5.</span> <span class="toc-text">关系代数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E4%BE%9D%E8%B5%96"><span class="toc-number">2.2.0.6.</span> <span class="toc-text">运算依赖</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-3-%E5%9F%BA%E6%9C%ACSQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="toc-number">3.</span> <span class="toc-text">Ch.3 基本SQL查询语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">3.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84Select%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.3.</span> <span class="toc-text">简单的Select语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-4-%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%85%B3%E7%B3%BBSQL"><span class="toc-number">4.</span> <span class="toc-text">Ch.4 对象——关系SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E8%A8%80-2"><span class="toc-number">4.1.</span> <span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ORSQL%E7%9A%84%E8%83%BD%E5%8A%9B"><span class="toc-number">4.1.1.</span> <span class="toc-text">ORSQL的能力</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B1%87%E8%81%9A%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.1.1.</span> <span class="toc-text">汇聚类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%92%8CUDF"><span class="toc-number">4.1.1.2.</span> <span class="toc-text">方法和UDF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%A1%A8"><span class="toc-number">4.2.</span> <span class="toc-text">对象和表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ORACLE%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.1.</span> <span class="toc-text">ORACLE中的对象类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ch-5-%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">Ch.5 访问数据库的程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%B5%8C%E5%85%A5%E5%BC%8FSQL%E4%BB%8B%E7%BB%8D"><span class="toc-number">5.1.</span> <span class="toc-text">C语言中嵌入式SQL介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-number">5.2.</span> <span class="toc-text">条件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Whenever%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.2.1.</span> <span class="toc-text">Whenever语句</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%80%9A%E7%94%A8%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8FSQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.</span> <span class="toc-text">一些通用的嵌入式SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Select%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.1.</span> <span class="toc-text">Select语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Declare-Cursor%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.2.</span> <span class="toc-text">Declare Cursor语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Delete%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.3.</span> <span class="toc-text">Delete语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Update%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.4.</span> <span class="toc-text">Update语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Insert%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.3.5.</span> <span class="toc-text">Insert语句</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1024,10 +1073,6 @@
         
         
     
-        
-        
-        
-        
         
         
         
