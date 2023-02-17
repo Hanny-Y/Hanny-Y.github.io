@@ -491,37 +491,30 @@
     <article class="article-entry">
         <p>摘自黄宇《算法设计与分析》、ppt by zcd、CLRS</p>
 <span id="more"></span>
-<h4 id="问题定义">问题定义</h4>
-<p>Given a graph G=(V,E) and a weight function w, for every pair (u,v)∈V×V, find a shortest path from u to v.</p>
+
+<h4 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h4><p>Given a graph G&#x3D;(V,E) and a weight function w, for every pair (u,v)∈V×V, find a shortest path from u to v.</p>
 <p>将单源问题扩展为针对每一个点对的问题。</p>
-<h4 id="每个点来一次单源最短路径？">每个点来一次单源最短路径？</h4>
-<p><strong>对每一个点都跑一次单源最短路径的算法。</strong></p>
+<h4 id="每个点来一次单源最短路径？"><a href="#每个点来一次单源最短路径？" class="headerlink" title="每个点来一次单源最短路径？"></a>每个点来一次单源最短路径？</h4><p><strong>对每一个点都跑一次单源最短路径的算法。</strong></p>
 <p>效果：</p>
-<p>Positive-weight Graphs: Repeating Dijkstra gives $O(n^3lgn)$<br>
-Arbitrary-weight Graphs: Repeating Bellman-Ford gives $O(n^4)$</p>
+<p>Positive-weight Graphs: Repeating Dijkstra gives $O(n^3lgn)$<br>Arbitrary-weight Graphs: Repeating Bellman-Ford gives $O(n^4)$</p>
 <p>为了让第二种情形更快的幼稚的想法：保持最小权值的边，将所有的权值改为正值。（Naive！）</p>
 <p>最短路径仍然有可能改变。</p>
 <p>更好的做法：for every path from u to v, w ̂ change it by same amount!</p>
-<p>w (u,v)=ℎ(u)+w(u,v)−ℎ(v)</p>
+<p>w (u,v)&#x3D;ℎ(u)+w(u,v)−ℎ(v)</p>
 <p>Imagine ℎ(u) is entry gift and ℎ(v) is exit tax for traveling through (u,v)</p>
-<p>Let ℎ(u)=dist(z,u) for some fixed z∈V, then problem emerges, it is possible that we cannot find such z that reaches every node！</p>
+<p>Let ℎ(u)&#x3D;dist(z,u) for some fixed z∈V, then problem emerges, it is possible that we cannot find such z that reaches every node！</p>
 <p>解决：从外部引进一个节点z，其通往图中每一个点的边的权值要设为0.</p>
 <p>这样我们得到一个新的图$H$。</p>
-<h4 id="Johnson’s-algorithm">Johnson’s algorithm</h4>
-<p>👆的做法基本上就是Johnson’s algorithm的思路产生过程。</p>
+<h4 id="Johnson’s-algorithm"><a href="#Johnson’s-algorithm" class="headerlink" title="Johnson’s algorithm"></a>Johnson’s algorithm</h4><p>👆的做法基本上就是Johnson’s algorithm的思路产生过程。</p>
 <p>Strategy: modify edge weights without changing shortest path, so that Dijkstra’s algorithm can work.</p>
-<p>Reweight edges: w '(u,v)=dist(z,u)+w(u,v)−dist(z,v)≥0<br>
-For node pairs in G, addition of z does not create new shortest path.<br>
-For node pairs in G, a path is shortest under w iff this path is shortest under w ’</p>
+<p>Reweight edges: w ‘(u,v)&#x3D;dist(z,u)+w(u,v)−dist(z,v)≥0<br>For node pairs in G, addition of z does not create new shortest path.<br>For node pairs in G, a path is shortest under w iff this path is shortest under w ‘</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">JohnsonAPSP(G):</span><br><span class="line">Create H=(V+&#123;z&#125;,E+&#123;(z,v)|v∈V&#125;) with w(z,v)=<span class="number">0</span> <span class="comment">//添加新节点的新图</span></span><br><span class="line">Bellman-FordSSSP(H,z) to obtain distH <span class="comment">//此时图里还是有负边，所以还是用贝尔曼福德，计算一下每个点的dist</span></span><br><span class="line"><span class="keyword">for</span> (each edge (u,v) in H.E)</span><br><span class="line">  w’(u,v) = distH(z,u)+w(u,v)-distH(z,v) <span class="comment">// 按新策略更改dist</span></span><br><span class="line"><span class="keyword">for</span> (each node u in G.V)</span><br><span class="line">  DijkstraSSSP(G,u) with w’ to obtain distG,w’ <span class="comment">//对原图中的节点按照新的dist用Dijkstra，得到原图此时的dist</span></span><br><span class="line">  <span class="keyword">for</span> (each node v in G.V)</span><br><span class="line">    distG(u,v) = distG,w’(u,v)+distH(z,v)-distH(z,u) <span class="comment">//更新dist</span></span><br></pre></td></tr></table></figure>
+
 <p>Johnson’s algorithm combines Dijkstra and Bellman-Ford,resulting a runtime of $O(n^3lgn)$, for arbitrary weight graphs.</p>
-<h4 id="递归解决？">递归解决？</h4>
-<p>Cycle in the graph can make the recursion never ends!</p>
-<p>Introduce an additional parameter in the recurrence:<br>
-dist(u, v, l): shortest path from u to v that uses at most l edges.</p>
+<h4 id="递归解决？"><a href="#递归解决？" class="headerlink" title="递归解决？"></a>递归解决？</h4><p>Cycle in the graph can make the recursion never ends!</p>
+<p>Introduce an additional parameter in the recurrence:<br>dist(u, v, l): shortest path from u to v that uses at most l edges.</p>
 <ul>
-<li>Evaluate this recurrence easily in a “bottom-up” fashion!
-<ul>
+<li>Evaluate this recurrence easily in a “bottom-up” fashion!<ul>
 <li>dist(⋅,⋅,0) are easy to compute, given input graph.</li>
 <li>dist(⋅,⋅,1) are easy to compute, if dist(⋅,⋅,0) are known.</li>
 <li>dist(⋅,⋅,l+1) are easy to compute, if dist(⋅,⋅,l) are known.</li>
@@ -530,21 +523,17 @@ dist(u, v, l): shortest path from u to v that uses at most l edges.</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RecursiveAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> (u=v) then dist[u,v,<span class="number">0</span>]=<span class="number">0</span> </span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">0</span>]=INF <span class="comment">//递归式子的前两行</span></span><br><span class="line"><span class="keyword">for</span> (l=<span class="number">1</span> to n<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v) <span class="comment">//针对u，面向包括u自身在内的所有点</span></span><br><span class="line">      dist[u,v,l] = dist[u,v,l<span class="number">-1</span>] </span><br><span class="line">      <span class="keyword">for</span> (each edge (x,v) going to v)</span><br><span class="line">        <span class="keyword">if</span> (dist[u,v,l] &gt; dist[u,x,l<span class="number">-1</span>] + w(x,v))</span><br><span class="line">          dist[u,v,l] = dist[u,x,l<span class="number">-1</span>]+w(x,v) <span class="comment">//更新最小值</span></span><br></pre></td></tr></table></figure>
+
 <p>Running time is $O(n^4)$</p>
-<p>This recursion is like “1 and l−1 split” in divide-and-conquer.<br>
-How about “l/2 and l/2 split”?</p>
+<p>This recursion is like “1 and l−1 split” in divide-and-conquer.<br>How about “l&#x2F;2 and l&#x2F;2 split”?</p>
 <p>Start with dist(⋅,⋅,1), then double l each time, until $2^⌈lgn⌉$</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FasterRecursiveAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then dist[u,v,<span class="number">1</span>]=w(u,v)</span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">1</span>]=INF</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span> to Ceil(lg(n)))</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      dist[u,v,i] = INF</span><br><span class="line">      <span class="keyword">for</span> (each node x)</span><br><span class="line">        <span class="keyword">if</span> (dist[u,v,i] &gt; dist[u,x,i<span class="number">-1</span>] + dist[x,v,i<span class="number">-1</span>])</span><br><span class="line">          dist[u,v,i] = dist[u,x,i<span class="number">-1</span>] + dist[x,v,i<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 <p><em><strong>Better</strong></em></p>
-<p>Strategy: recuse on the set of node the shortest paths use.(Previous algorithms recuse on # of edges the shortest paths use.)<br>
-Number nodes arbitrarily: $x_1,x_2,⋯,x_n$;<br>
-Define dist(u,v,r) be length of shortest path from u to v, s.t. only nodes in V_r can be intermediate nodes in paths.Let π(u,v,r) be such a shortest path.</p>
-<h4 id="The-Floyd-Warshall-Algorithm">The Floyd-Warshall Algorithm</h4>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FloydWarshallAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then dist[u,v,<span class="number">0</span>]=w(u,v)</span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">0</span>]=INF</span><br><span class="line"><span class="keyword">for</span> (r=<span class="number">1</span> to n)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      dist[u,v,r] = dist[u,v,r<span class="number">-1</span>]</span><br><span class="line">      <span class="keyword">if</span> (dist[u,v,r] &gt; dist[u,xr,r<span class="number">-1</span>] + dist[xr,v,r<span class="number">-1</span>])</span><br><span class="line">        dist[u,v,r] = dist[u,xr,r<span class="number">-1</span>] + dist[xr,v,r<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p>Strategy: recuse on the set of node the shortest paths use.(Previous algorithms recuse on # of edges the shortest paths use.)<br>Number nodes arbitrarily: $x_1,x_2,⋯,x_n$;<br>Define dist(u,v,r) be length of shortest path from u to v, s.t. only nodes in V_r can be intermediate nodes in paths.Let π(u,v,r) be such a shortest path.</p>
+<h4 id="The-Floyd-Warshall-Algorithm"><a href="#The-Floyd-Warshall-Algorithm" class="headerlink" title="The Floyd-Warshall Algorithm"></a>The Floyd-Warshall Algorithm</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FloydWarshallAPSP(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then dist[u,v,<span class="number">0</span>]=w(u,v)</span><br><span class="line">  <span class="keyword">else</span> dist[u,v,<span class="number">0</span>]=INF</span><br><span class="line"><span class="keyword">for</span> (r=<span class="number">1</span> to n)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      dist[u,v,r] = dist[u,v,r<span class="number">-1</span>]</span><br><span class="line">      <span class="keyword">if</span> (dist[u,v,r] &gt; dist[u,xr,r<span class="number">-1</span>] + dist[xr,v,r<span class="number">-1</span>])</span><br><span class="line">        dist[u,v,r] = dist[u,xr,r<span class="number">-1</span>] + dist[xr,v,r<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+
 <p>Running time is $n^3$</p>
-<h4 id="Application">Application</h4>
-<h5 id="Compute-Transitive-Closure">Compute Transitive Closure</h5>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FloydWarshallTransitiveClosure(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then t[u,v,<span class="number">0</span>] = TRUE</span><br><span class="line">  <span class="keyword">else</span> t[u,v,<span class="number">0</span>] = FALSE</span><br><span class="line"><span class="keyword">for</span> (r=<span class="number">1</span> to n)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      t[u,v,r] = t[u,v,r<span class="number">-1</span>]</span><br><span class="line">      <span class="keyword">if</span> (t[u,xr,r<span class="number">-1</span>] AND t[xr,v,r<span class="number">-1</span>])</span><br><span class="line">        t[u,v,r] = TRUE</span><br></pre></td></tr></table></figure>
+<h4 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h4><h5 id="Compute-Transitive-Closure"><a href="#Compute-Transitive-Closure" class="headerlink" title="Compute Transitive Closure"></a>Compute Transitive Closure</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FloydWarshallTransitiveClosure(G):</span><br><span class="line"><span class="keyword">for</span> (every <span class="built_in">pair</span> (u,v) in V*V)</span><br><span class="line">  <span class="keyword">if</span> ((u,v) in E) then t[u,v,<span class="number">0</span>] = TRUE</span><br><span class="line">  <span class="keyword">else</span> t[u,v,<span class="number">0</span>] = FALSE</span><br><span class="line"><span class="keyword">for</span> (r=<span class="number">1</span> to n)</span><br><span class="line">  <span class="keyword">for</span> (each node u)</span><br><span class="line">    <span class="keyword">for</span> (each node v)</span><br><span class="line">      t[u,v,r] = t[u,v,r<span class="number">-1</span>]</span><br><span class="line">      <span class="keyword">if</span> (t[u,xr,r<span class="number">-1</span>] AND t[xr,v,r<span class="number">-1</span>])</span><br><span class="line">        t[u,v,r] = TRUE</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license -->
     
@@ -890,7 +879,35 @@ Define dist(u,v,r) be length of shortest path from u to v, s.t. only nodes in V_
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1139,7 +1156,7 @@ Define dist(u,v,r) be length of shortest path from u to v, s.t. only nodes in V_
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1153,6 +1170,18 @@ Define dist(u,v,r) be length of shortest path from u to v, s.t. only nodes in V_
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span>
+            <a class="archive-post-title" href="/2023/02/15/%E5%9F%BA%E6%9C%AC%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C/">基本通信操作</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="/2023/02/14/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">并行计算硬件结构基础</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/13</span>

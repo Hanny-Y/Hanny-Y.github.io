@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="Hanny&#39;s Blog">
 <meta property="og:description" content="串行算法的直接并行化；从问题描述开始设计并行算法；借用已有算法求解新问题">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hanny-y.github.io/2023/02/12/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5/1.png">
+<meta property="og:image" content="https://hanny-y.github.io/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5/1.png">
 <meta property="article:published_time" content="2023-02-12T03:14:06.000Z">
 <meta property="article:modified_time" content="2023-02-13T02:41:23.153Z">
 <meta property="article:author" content="Hannydeer">
 <meta property="article:tag" content="并行计算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hanny-y.github.io/2023/02/12/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5/1.png">
+<meta name="twitter:image" content="https://hanny-y.github.io/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5/1.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -339,7 +339,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.4k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.5k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -502,90 +502,50 @@
     <article class="article-entry">
         <p>串行算法的直接并行化；从问题描述开始设计并行算法；借用已有算法求解新问题</p>
 <span id="more"></span>
-<h2 id="串行算法的直接并行化">串行算法的直接并行化</h2>
-<h3 id="intro">intro</h3>
-<h4 id="一些考虑">一些考虑</h4>
-<ul>
-<li>对于具有内在顺序性的一类串行算法，很难直接并行化。<br>
-比如每一步都要用到上一步的结果。</li>
-<li>优秀的串行不代表优秀的并行。<br>
-比如枚举算法，不优秀的串行，并行结果很优秀。</li>
+
+<h2 id="串行算法的直接并行化"><a href="#串行算法的直接并行化" class="headerlink" title="串行算法的直接并行化"></a>串行算法的直接并行化</h2><h3 id="intro"><a href="#intro" class="headerlink" title="intro"></a>intro</h3><h4 id="一些考虑"><a href="#一些考虑" class="headerlink" title="一些考虑"></a>一些考虑</h4><ul>
+<li>对于具有内在顺序性的一类串行算法，很难直接并行化。<br>比如每一步都要用到上一步的结果。</li>
+<li>优秀的串行不代表优秀的并行。<br>比如枚举算法，不优秀的串行，并行结果很优秀。</li>
 </ul>
-<h3 id="快排序的并行化">快排序的并行化</h3>
-<h4 id="串行快排回顾">串行快排回顾</h4>
-<ol>
+<h3 id="快排序的并行化"><a href="#快排序的并行化" class="headerlink" title="快排序的并行化"></a>快排序的并行化</h3><h4 id="串行快排回顾"><a href="#串行快排回顾" class="headerlink" title="串行快排回顾"></a>串行快排回顾</h4><ol>
 <li>最坏情况下的复杂度为$\Omicron(n^2)$，，较好的平均复杂度为$\Theta(nlogn)$。</li>
-<li>算法步骤：<br>
-🍒将两个序列分成两个子序列，其中一个子序列的任意元素都小于等于后一个子序列中的元素；<br>
-🍒分别递归直到两个序列中只有一个元素。</li>
+<li>算法步骤：<br>   🍒将两个序列分成两个子序列，其中一个子序列的任意元素都小于等于后一个子序列中的元素；<br>   🍒分别递归直到两个序列中只有一个元素。</li>
 <li>选择一个主元$x$，一般选择第一个元素</li>
-<li>形式描述</li>
-</ol>
-   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">输入：无序(A_q,...,A_r)</span><br><span class="line">输出：有序(A_q,...,A_r)</span><br><span class="line"></span><br><span class="line">QUICKSORT(A, q, r)</span><br><span class="line">Begin</span><br><span class="line"> if q&lt;r then</span><br><span class="line">     (1)x=A_q</span><br><span class="line">     (2)s=q</span><br><span class="line">     (3)for i=q+1 to r do</span><br><span class="line">         if A_i &lt;= then  </span><br><span class="line">             (i)s=s+1</span><br><span class="line">             (ii)swap(A_s, A_i)</span><br><span class="line">         end if</span><br><span class="line">     (4)swap(A_q, A_s)</span><br><span class="line">     (5)QUICKSORT(A, q, s)</span><br><span class="line">     (6)QUICKSORT(A, s+1, r)</span><br><span class="line"> end if</span><br><span class="line"> End</span><br></pre></td></tr></table></figure>
-<ol start="5">
+<li>形式描述   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">输入：无序(A_q,...,A_r)</span><br><span class="line">输出：有序(A_q,...,A_r)</span><br><span class="line"></span><br><span class="line">QUICKSORT(A, q, r)</span><br><span class="line">Begin</span><br><span class="line"> if q&lt;r then</span><br><span class="line">     (1)x=A_q</span><br><span class="line">     (2)s=q</span><br><span class="line">     (3)for i=q+1 to r do</span><br><span class="line">         if A_i &lt;= then  </span><br><span class="line">             (i)s=s+1</span><br><span class="line">             (ii)swap(A_s, A_i)</span><br><span class="line">         end if</span><br><span class="line">     (4)swap(A_q, A_s)</span><br><span class="line">     (5)QUICKSORT(A, q, s)</span><br><span class="line">     (6)QUICKSORT(A, s+1, r)</span><br><span class="line"> end if</span><br><span class="line"> End</span><br></pre></td></tr></table></figure></li>
 <li>复杂度具体分析</li>
-<li>长度为n的序列，$t(n)=t(n-1)+\Theta(n)$，其解为$t(n)=\Theta(n^2)$，理想的情况是两个划分的序列相等，运行时间长为$t(n)=2t(n/2)+\Theta(n)$，其解为$t(n)=\Theta(nlogn)$</li>
+<li>长度为n的序列，$t(n)&#x3D;t(n-1)+\Theta(n)$，其解为$t(n)&#x3D;\Theta(n^2)$，理想的情况是两个划分的序列相等，运行时间长为$t(n)&#x3D;2t(n&#x2F;2)+\Theta(n)$，其解为$t(n)&#x3D;\Theta(nlogn)$</li>
 </ol>
-<h4 id="快排并行化">快排并行化</h4>
-<ol>
+<h4 id="快排并行化"><a href="#快排并行化" class="headerlink" title="快排并行化"></a>快排并行化</h4><ol>
 <li>要划分的是步而非时间</li>
-<li>PRAM-CRCW上快排序：
-<ul>
+<li>PRAM-CRCW上快排序：<ul>
 <li>构造一棵二叉树，其中主元是根，小于等于主元的元素处于左子树，大于主元的元素处于右子树。</li>
 <li>选取子序列中的主元可以并行执行，构造好二叉树所有的元素都可以归位，得到有序数列。</li>
-<li>具体：<br>
-🍒令处理器$P_i$保存元素$A_i$，$LC[1:n]$和$RC[1:n]$分别记录给定主元的左儿子和右儿子，$f_i$中存有其元素是主元的处理器号（每个处理器都有一个$f_i$）。<br>
-🍒开始时所有处理器将处理器号写入$root$，最终只留下一个。$A_{root}$是第一个主元，$root$复制给每个处理器的$f_i$。<br>
-🍒元素小于$A_{f_i}$的处理器的号码写入$LC_{f_i}$，大于的写入$RC_{f_i}$。</li>
+<li>具体：<br>   🍒令处理器$P_i$保存元素$A_i$，$LC[1:n]$和$RC[1:n]$分别记录给定主元的左儿子和右儿子，$f_i$中存有其元素是主元的处理器号（每个处理器都有一个$f_i$）。<br>   🍒开始时所有处理器将处理器号写入$root$，最终只留下一个。$A_{root}$是第一个主元，$root$复制给每个处理器的$f_i$。<br>   🍒元素小于$A_{f_i}$的处理器的号码写入$LC_{f_i}$，大于的写入$RC_{f_i}$。</li>
 </ul>
 </li>
 </ol>
-<h3 id="从问题描述开始设计并行算法">从问题描述开始设计并行算法</h3>
-<h4 id="串匹配算法">串匹配算法</h4>
-<p>一篇看得懂的KMP详解👉：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52622200/article/details/110563434">https://blog.csdn.net/weixin_52622200/article/details/110563434</a><br>
-关键点：前缀和后缀的最大相同段对齐。</p>
-<h4 id="串匹配算法-2">串匹配算法</h4>
-<ol>
-<li>定义失配见证函数<br>
-对于给定的$j(1\leq j\leq m/2)$，如果$P[j:m]\neq P[1:m-j+1]$，则存在某个$w(1\leq w\leq m-j+1)$，使得$P(w)\neq P(s)$，其中$s=j-1+w$，记$WIT(j)=w$<br>
-🍒对于所有$2\leq j\leq m/2$，当且仅当$WIT(j)\neq 0$则串是非周期的；若存在某个$j$使得$WIT(j)=0$则串是周期的。</li>
-<li>非周期串匹配的研究<br>
-🍒引入竞争函数$duel(p,q)$，在p位置匹配时在q位置一定不匹配（非周期）。<br>
-🍒竞争函数的范围从小到大，比如截取的一段从2-&gt;4-&gt;6…<br>
-🍒例子：</li>
+<h3 id="从问题描述开始设计并行算法"><a href="#从问题描述开始设计并行算法" class="headerlink" title="从问题描述开始设计并行算法"></a>从问题描述开始设计并行算法</h3><h4 id="串匹配算法"><a href="#串匹配算法" class="headerlink" title="串匹配算法"></a>串匹配算法</h4><p>一篇看得懂的KMP详解👉：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52622200/article/details/110563434">https://blog.csdn.net/weixin_52622200/article/details/110563434</a><br>关键点：前缀和后缀的最大相同段对齐。</p>
+<h4 id="串匹配算法-1"><a href="#串匹配算法-1" class="headerlink" title="串匹配算法"></a>串匹配算法</h4><ol>
+<li>定义失配见证函数<br>对于给定的$j(1\leq j\leq m&#x2F;2)$，如果$P[j:m]\neq P[1:m-j+1]$，则存在某个$w(1\leq w\leq m-j+1)$，使得$P(w)\neq P(s)$，其中$s&#x3D;j-1+w$，记$WIT(j)&#x3D;w$<br>🍒对于所有$2\leq j\leq m&#x2F;2$，当且仅当$WIT(j)\neq 0$则串是非周期的；若存在某个$j$使得$WIT(j)&#x3D;0$则串是周期的。</li>
+<li>非周期串匹配的研究<br>🍒引入竞争函数$duel(p,q)$，在p位置匹配时在q位置一定不匹配（非周期）。<br>🍒竞争函数的范围从小到大，比如截取的一段从2-&gt;4-&gt;6…<br>🍒例子：</li>
 </ol>
-<p><img src="/2023/02/12/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5/1.png" alt="1"></p>
+<p><img src="/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5/1.png" alt="1"></p>
 <pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DUEL</span><br><span class="line"></span><br><span class="line">输入：WIT[1:n-m+1],1&lt;=p&lt;q&lt;=n-m+1,(q-p)&lt;m/2</span><br><span class="line">输出：竞争者幸存位置或null</span><br><span class="line"></span><br><span class="line">DUEL(p,q)</span><br><span class="line">    if p=null then duel=q else</span><br><span class="line">        if q=null then duel=p else</span><br><span class="line">            j=q-p+1</span><br><span class="line">            w=WIT(j)</span><br><span class="line">            if T(q+w-1)!=P(w) then</span><br><span class="line">                WIT(q)=w</span><br><span class="line">                duel=p</span><br><span class="line">            else</span><br><span class="line">                WIT(p)=q-p+1</span><br><span class="line">                duel=q</span><br><span class="line">            endif</span><br><span class="line">        endif</span><br><span class="line">    endif</span><br></pre></td></tr></table></figure>
 </code></pre>
-<h3 id="借有已有算法求解新问题">借有已有算法求解新问题</h3>
-<p>找出求解某个问题和某个旖解决问题之间的联系。</p>
-<h4 id="利用矩阵乘法求所有点对间最短路径">利用矩阵乘法求所有点对间最短路径</h4>
-<ol>
-<li>
-<p>原理<br>
-🍒有向图$G=(V,E)$，边权矩阵$W=(w_{ij})<em>{n\times n}$。<br>
-🍒最短路径长度矩阵$D=(d</em>{ij})<em>{n\times n}$，$d</em>{ij}$为$v_i$到$v_j$的最短路径长度。<br>
-🍒记$d^{(k)}_{ij}$为$v_i$到$v_j$至多有$k-1$个中间节点的最短路径长。</p>
+<h3 id="借有已有算法求解新问题"><a href="#借有已有算法求解新问题" class="headerlink" title="借有已有算法求解新问题"></a>借有已有算法求解新问题</h3><p>找出求解某个问题和某个旖解决问题之间的联系。</p>
+<h4 id="利用矩阵乘法求所有点对间最短路径"><a href="#利用矩阵乘法求所有点对间最短路径" class="headerlink" title="利用矩阵乘法求所有点对间最短路径"></a>利用矩阵乘法求所有点对间最短路径</h4><ol>
+<li><p>原理<br>🍒有向图$G&#x3D;(V,E)$，边权矩阵$W&#x3D;(w_{ij})<em>{n\times n}$。<br>🍒最短路径长度矩阵$D&#x3D;(d</em>{ij})<em>{n\times n}$，$d</em>{ij}$为$v_i$到$v_j$的最短路径长度。<br>🍒记$d^{(k)}_{ij}$为$v_i$到$v_j$至多有$k-1$个中间节点的最短路径长。</p>
 <ul>
-<li>$d^{(1)}<em>{ij}=w</em>{ij}，当i\neq j(如果v_i到v_j之间无边存在记为\infty)$（即中间没有经过其他节点）<br>
-$d^{(1)}_{ij}=0，当i=j$。</li>
-<li>无负权回路$\rightarrow d_{ij}=d^{n-1}_{ij}$(至多经过$n-2$个节点)</li>
-<li>利用最优性原理：$d^{(k)}<em>{ij}=min</em>{1\leq l\leq n}{d^{k/2}<em>{il}+d^{k/2}</em>{lj}}$;<br>
-$“+”\rightarrow “\times”，“min”\rightarrow “\Sigma”$：$d^{(k)}<em>{ij}=\Sigma</em>{1\leq l\leq n}{d^{k/2}<em>{il}\times d^{k/2}</em>{lj}}$。</li>
-<li>应用矩阵乘法：$D^1\rightarrow D^2\rightarrow …\rightarrow D^{2^{logn}}(=D^n)$。</li>
+<li>$d^{(1)}<em>{ij}&#x3D;w</em>{ij}，当i\neq j(如果v_i到v_j之间无边存在记为\infty)$（即中间没有经过其他节点）<br>$d^{(1)}_{ij}&#x3D;0，当i&#x3D;j$。</li>
+<li>无负权回路$\rightarrow d_{ij}&#x3D;d^{n-1}_{ij}$(至多经过$n-2$个节点)</li>
+<li>利用最优性原理：$d^{(k)}<em>{ij}&#x3D;min</em>{1\leq l\leq n}{d^{k&#x2F;2}<em>{il}+d^{k&#x2F;2}</em>{lj}}$;<br>$”+”\rightarrow “\times”，“min”\rightarrow “\Sigma”$：$d^{(k)}<em>{ij}&#x3D;\Sigma</em>{1\leq l\leq n}{d^{k&#x2F;2}<em>{il}\times d^{k&#x2F;2}</em>{lj}}$。</li>
+<li>应用矩阵乘法：$D^1\rightarrow D^2\rightarrow …\rightarrow D^{2^{logn}}(&#x3D;D^n)$。</li>
 </ul>
 </li>
-<li>
-<p>代码<br>
-假定$n^3$个处理器排成$n\times n\times n$的立方体，每个处理器有$A(i,j,k),B(i,j,k),C(i,j,k)$三个寄存器。i是中间有几个点。<br>
-开始时$A(0,j,k)=w_{jk}(0\leq j, k\leq n-1)$，图的权矩阵开始时存放在A寄存器中。</p>
+<li><p>代码<br>假定$n^3$个处理器排成$n\times n\times n$的立方体，每个处理器有$A(i,j,k),B(i,j,k),C(i,j,k)$三个寄存器。i是中间有几个点。<br>开始时$A(0,j,k)&#x3D;w_{jk}(0\leq j, k\leq n-1)$，图的权矩阵开始时存放在A寄存器中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">   (1)构筑矩阵D^1，并存入A和B的寄存器中</span><br><span class="line">    for j=0 to n-1 par-do //每个处理器即每个点</span><br><span class="line">        for k=0 to n-1 par-do //对图中的任意一个点</span><br><span class="line">            if j!= k &amp; A(0,j,k)=0 then //jk之间不存在边</span><br><span class="line">                B(0,j,k)=∞</span><br><span class="line">            endif</span><br><span class="line">            else</span><br><span class="line">            B(0,j,k)=A(0,j,k) //设为之间边的权值</span><br><span class="line">        endfor</span><br><span class="line">    endfor</span><br><span class="line"></span><br><span class="line">（2）调用DNS算法构筑矩阵D^2,...,D^n-1</span><br><span class="line"></span><br><span class="line">for i=1 to [log(n-1)] do //计数：若i=1</span><br><span class="line">    DNS MULTIPLICATION(A,B,C) //相乘得到C</span><br><span class="line">    for j=0 to n-1 par-do //每个点</span><br><span class="line">        for k=0 to n-1 par-do //对图中每个点</span><br><span class="line">            A(0,j,k)=C(0,j,k)</span><br><span class="line">            B(0,j,k)=C(0,j,k)</span><br><span class="line">        endfor</span><br><span class="line">    endfor</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure></li>
+<li><p>时间复杂度<br>$\Omicron(log^2n)$<br>算法第二步重复$\Omicron(logn)$次每次乘法时间也为$\Omicron(logn)$，而$p(n)&#x3D;\Omicron(n^3)$</p>
 </li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">   (1)构筑矩阵D^1，并存入A和B的寄存器中</span><br><span class="line">    for j=0 to n-1 par-do //每个处理器即每个点</span><br><span class="line">        for k=0 to n-1 par-do //对图中的任意一个点</span><br><span class="line">            if j!= k &amp; A(0,j,k)=0 then //jk之间不存在边</span><br><span class="line">                B(0,j,k)=∞</span><br><span class="line">            endif</span><br><span class="line">            else</span><br><span class="line">            B(0,j,k)=A(0,j,k) //设为之间边的权值</span><br><span class="line">        endfor</span><br><span class="line">    endfor</span><br><span class="line"></span><br><span class="line">（2）调用DNS算法构筑矩阵D^2,...,D^n-1</span><br><span class="line"></span><br><span class="line">for i=1 to [log(n-1)] do //计数：若i=1</span><br><span class="line">    DNS MULTIPLICATION(A,B,C) //相乘得到C</span><br><span class="line">    for j=0 to n-1 par-do //每个点</span><br><span class="line">        for k=0 to n-1 par-do //对图中每个点</span><br><span class="line">            A(0,j,k)=C(0,j,k)</span><br><span class="line">            B(0,j,k)=C(0,j,k)</span><br><span class="line">        endfor</span><br><span class="line">    endfor</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>时间复杂度<br>
-$\Omicron(log^2n)$<br>
-算法第二步重复$\Omicron(logn)$次每次乘法时间也为$\Omicron(logn)$，而$p(n)=\Omicron(n^3)$</li>
 </ol>
 
     </article>
@@ -759,7 +719,7 @@ $\Omicron(log^2n)$<br>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%B4%E6%8E%A5%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">串行算法的直接并行化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#intro"><span class="toc-number">1.1.</span> <span class="toc-text">intro</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%80%83%E8%99%91"><span class="toc-number">1.1.1.</span> <span class="toc-text">一些考虑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%8E%92%E5%BA%8F%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">快排序的并行化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E5%BF%AB%E6%8E%92%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.1.</span> <span class="toc-text">串行快排回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E6%8E%92%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">快排并行化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%E5%BC%80%E5%A7%8B%E8%AE%BE%E8%AE%A1%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">从问题描述开始设计并行算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">串匹配算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">串匹配算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%9F%E6%9C%89%E5%B7%B2%E6%9C%89%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E6%96%B0%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">借有已有算法求解新问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E6%B1%82%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E9%97%B4%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">利用矩阵乘法求所有点对间最短路径</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%B4%E6%8E%A5%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">串行算法的直接并行化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#intro"><span class="toc-number">1.1.</span> <span class="toc-text">intro</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%80%83%E8%99%91"><span class="toc-number">1.1.1.</span> <span class="toc-text">一些考虑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%8E%92%E5%BA%8F%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">快排序的并行化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E5%BF%AB%E6%8E%92%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.1.</span> <span class="toc-text">串行快排回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E6%8E%92%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">快排并行化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%E5%BC%80%E5%A7%8B%E8%AE%BE%E8%AE%A1%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">从问题描述开始设计并行算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">串匹配算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">串匹配算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%9F%E6%9C%89%E5%B7%B2%E6%9C%89%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E6%96%B0%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">借有已有算法求解新问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E6%B1%82%E6%89%80%E6%9C%89%E7%82%B9%E5%AF%B9%E9%97%B4%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">利用矩阵乘法求所有点对间最短路径</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -933,7 +893,35 @@ $\Omicron(log^2n)$<br>
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1182,7 +1170,7 @@ $\Omicron(log^2n)$<br>
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1196,6 +1184,18 @@ $\Omicron(log^2n)$<br>
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span>
+            <a class="archive-post-title" href="/2023/02/15/%E5%9F%BA%E6%9C%AC%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C/">基本通信操作</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="/2023/02/14/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">并行计算硬件结构基础</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/13</span>

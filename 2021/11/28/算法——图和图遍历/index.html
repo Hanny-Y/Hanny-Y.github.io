@@ -328,7 +328,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">746</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">747</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -491,32 +491,27 @@
     <article class="article-entry">
         <p>源自黄宇书、zcd ppt</p>
 <span id="more"></span>
-<h4 id="图">图</h4>
-<ul>
+
+<h4 id="图"><a href="#图" class="headerlink" title="图"></a>图</h4><ul>
 <li>图用于表示集合中元素的二元关系。</li>
-<li>给定图$G=(V, E)$，$V$是顶点集，边集$E$表示顶点之间的某种二元关系。</li>
+<li>给定图$G&#x3D;(V, E)$，$V$是顶点集，边集$E$表示顶点之间的某种二元关系。</li>
 <li>若$E$是一种对称关系，则称$G$是无向图；如果$E$是非对称关系，称$G$是有向图。</li>
 </ul>
-<h5 id="用于图表示的数据结构">用于图表示的数据结构</h5>
-<ul>
+<h5 id="用于图表示的数据结构"><a href="#用于图表示的数据结构" class="headerlink" title="用于图表示的数据结构"></a>用于图表示的数据结构</h5><ul>
 <li>邻接链表</li>
 <li>邻接矩阵</li>
 </ul>
-<h4 id="图的广度优先遍历-BFS">图的广度优先遍历(BFS)</h4>
-<h5 id="基本思路">基本思路</h5>
-<p>当遍历一个节点时，首先处理该节点指向其邻居的所有边，发现每个未被访问的邻居，但是不处理它们，然后该节点的自身的处理结束。下一个被遍历的节点从所有被发现但是尚未处理的点中选出。选择的标准是，先被发现的节点先被遍历。</p>
+<h4 id="图的广度优先遍历-BFS"><a href="#图的广度优先遍历-BFS" class="headerlink" title="图的广度优先遍历(BFS)"></a>图的广度优先遍历(BFS)</h4><h5 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h5><p>当遍历一个节点时，首先处理该节点指向其邻居的所有边，发现每个未被访问的邻居，但是不处理它们，然后该节点的自身的处理结束。下一个被遍历的节点从所有被发现但是尚未处理的点中选出。选择的标准是，先被发现的节点先被遍历。</p>
 <p>基于队列这一数据结构可以很容易被实现。（FIFO Queue）</p>
 <p>在被发现到完成处理之间，节点首先被放置到队尾，然后等前面的节点依次被取出后，它最终被处理。这一过程中，节点的状态为灰色。</p>
 <p>与DFS的不同：BFS中当一个节点开始被处理后，就会一直处理完，后续遍历中不会再处理该节点（直接出列）；而在DFS中，算法可能会多次回到一个灰色节点进行处理。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BFS(G):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.c = WHITE, u.d = INF, u.p = NIL</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  <span class="keyword">if</span> (u.c == WHITE)</span><br><span class="line">    u.c = GRAY, u.d = <span class="number">0</span>, u.p = NIL</span><br><span class="line">    Q.enque(u)</span><br><span class="line">    <span class="keyword">while</span> (!Q.empty())</span><br><span class="line">      v = Q.dequeue()</span><br><span class="line">      v.c = BLACK</span><br><span class="line">      <span class="keyword">for</span> (each edge (v,w) in E)</span><br><span class="line">        <span class="keyword">if</span> (w.c == WHITE)</span><br><span class="line">          w.c = GRAY</span><br><span class="line">          w.d = v.d+<span class="number">1</span></span><br><span class="line">          w.p = v</span><br><span class="line">          Q.enque(w)</span><br></pre></td></tr></table></figure>
-<h5 id="应用">应用</h5>
-<ul>
+
+<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5><ul>
 <li>判断二分图</li>
 <li>寻找k度子图</li>
 </ul>
-<h4 id="图的深度优先遍历">图的深度优先遍历</h4>
-<h5 id="基本思路-2">基本思路</h5>
-<p>从某一个节点出发，如果它有未探索的邻居节点，则选择其中某一个深入探索（其他同样可以探索的节点暂时不管），每到一个新节点则递归地进行上面的深入探索的过程。当探索无法继续时（因为当前节点所有的邻居节点已经在前面的探索过程中被处理过），则沿着探索的路径回退。每回退到一个节点时，由于前面采用的是“深入探索”的方式，所以该节点可能还有其他节点未被探索过。此时同样需要递归地对该邻居节点进行深入探索。</p>
+<h4 id="图的深度优先遍历"><a href="#图的深度优先遍历" class="headerlink" title="图的深度优先遍历"></a>图的深度优先遍历</h4><h5 id="基本思路-1"><a href="#基本思路-1" class="headerlink" title="基本思路"></a>基本思路</h5><p>从某一个节点出发，如果它有未探索的邻居节点，则选择其中某一个深入探索（其他同样可以探索的节点暂时不管），每到一个新节点则递归地进行上面的深入探索的过程。当探索无法继续时（因为当前节点所有的邻居节点已经在前面的探索过程中被处理过），则沿着探索的路径回退。每回退到一个节点时，由于前面采用的是“深入探索”的方式，所以该节点可能还有其他节点未被探索过。此时同样需要递归地对该邻居节点进行深入探索。</p>
 <ul>
 <li>为了在图不联通时仍然能遍历所有节点，我们需要一个深度优先遍历的调度算法(wrapper)，它能够在针对图的某个联通片的遍历结束时，继续针对其他未被遍历结束时，继续针对其他未遍历的联通片开始新一轮遍历。</li>
 <li>如果限定针对每个节点和每条边的处理都至多包含常数个简单操作，则代价为$O(n+m)$</li>
@@ -693,7 +688,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">图</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%9B%BE%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">用于图表示的数据结构</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86-BFS"><span class="toc-number">2.</span> <span class="toc-text">图的广度优先遍历(BFS)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-number">2.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86"><span class="toc-number">3.</span> <span class="toc-text">图的深度优先遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.1.</span> <span class="toc-text">基本思路</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">图</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%9B%BE%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">用于图表示的数据结构</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86-BFS"><span class="toc-number">2.</span> <span class="toc-text">图的广度优先遍历(BFS)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-number">2.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86"><span class="toc-number">3.</span> <span class="toc-text">图的深度优先遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-1"><span class="toc-number">3.1.</span> <span class="toc-text">基本思路</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -867,7 +862,35 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1116,7 +1139,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1130,6 +1153,18 @@
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span>
+            <a class="archive-post-title" href="/2023/02/15/%E5%9F%BA%E6%9C%AC%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C/">基本通信操作</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="/2023/02/14/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">并行计算硬件结构基础</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/13</span>

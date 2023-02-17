@@ -496,129 +496,100 @@
 <p>算法，我的爹。上课的时候，我的内心be like：“哇！好神奇！” ”原来如此。“，课后写PS和OJ的时候我的内心只剩下mmp。</p>
 <p>探究如何用一把螺丝刀造出大火箭。</p>
 <span id="more"></span>
-<h3 id="Basic-Data-Structures">Basic Data Structures</h3>
-<h4 id="data-structures">data structures</h4>
-<p>定义：a way to store and organize data in order to facilitate access and modifications.</p>
+
+<h3 id="Basic-Data-Structures"><a href="#Basic-Data-Structures" class="headerlink" title="Basic Data Structures"></a>Basic Data Structures</h3><h4 id="data-structures"><a href="#data-structures" class="headerlink" title="data structures"></a>data structures</h4><p> 定义：a way to store and organize data in order to facilitate access and modifications.</p>
 <p>例如：数组和链表</p>
 <ul>
 <li>不同的数据类型需要不同的数据结构。</li>
 <li>一种数据可以用不同的数据结构来表示。</li>
 </ul>
-<h4 id="ADT">ADT</h4>
-<p>数据结构的接口：抽象数据类型</p>
+<h4 id="ADT"><a href="#ADT" class="headerlink" title="ADT"></a>ADT</h4><p>数据结构的接口：抽象数据类型</p>
 <p>具像化一种数据结构能做什么和应该做什么。但不会交代怎么去做。</p>
 <p>例如：</p>
 <p>ADT：列表，支持get, set, add, remove, …</p>
 <p>Data Structure: 数组，链表</p>
 <p>ADT是一种逻辑上的抽象描述，数据结构是具体的执行。</p>
-<h5 id="Queue队列">Queue队列</h5>
-<ul>
-<li>支持操作：
-<ul>
+<h5 id="Queue队列"><a href="#Queue队列" class="headerlink" title="Queue队列"></a>Queue队列</h5><ul>
+<li>支持操作：<ul>
 <li>Add(x): add x to the queue.</li>
 <li>Remove(): remove the next item y from queue, return y.(由队列的类型决定移除哪一个元素）</li>
 </ul>
 </li>
 </ul>
-<h5 id="FIFO">FIFO</h5>
-<ul>
-<li>
-<p>队列支持操作：</p>
+<h5 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h5><ul>
+<li><p>队列支持操作：</p>
 <p>Add(x): add x to the queue.</p>
 <p>Remove(): remove the next item y from queue, return y.</p>
 <p>（items are removed in the same order they are added.）</p>
 </li>
-<li>
-<p>支持操作：</p>
+<li><p>支持操作：</p>
 <p>Enqueue(x): add x to the end of the queue.</p>
 <p>Dequeue(): remove the first item from the queue.</p>
 </li>
 </ul>
-<h5 id="LIFO-Stack">LIFO: Stack</h5>
-<ul>
-<li>
-<p>支持操作：</p>
+<h5 id="LIFO-Stack"><a href="#LIFO-Stack" class="headerlink" title="LIFO: Stack"></a>LIFO: Stack</h5><ul>
+<li><p>支持操作：</p>
 <p>Push(x): add x to the top of the stack.</p>
 <p>Pop(): remove the item at the top of the stack.</p>
 </li>
 </ul>
-<h5 id="Dequeue">Dequeue</h5>
-<p>represents a sequence of items with a front and a back.</p>
+<h5 id="Dequeue"><a href="#Dequeue" class="headerlink" title="Dequeue"></a>Dequeue</h5><p>represents a sequence of items with a front and a back.</p>
 <p>既可以当作FIFO使用，也可以当作Stack使用。</p>
 <ul>
-<li>
-<p>FIFO：Enqueue(x) = AddLast(x)</p>
-<p>​			Dequeue() = Removefirst()</p>
+<li><p>FIFO：Enqueue(x) &#x3D; AddLast(x)</p>
+<p>​			Dequeue() &#x3D; Removefirst()</p>
 </li>
-<li>
-<p>Stack：Push(x) = AddLast(x)</p>
-<p>​			  Pop() = RemoveLast()</p>
+<li><p>Stack：Push(x) &#x3D; AddLast(x)</p>
+<p>​			  Pop() &#x3D; RemoveLast()</p>
 </li>
 </ul>
-<h5 id="列表">列表</h5>
-<ul>
-<li>
-<p>支持操作：</p>
+<h5 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h5><ul>
+<li><p>支持操作：</p>
 <ul>
 <li>Size(): return n, the length of the list</li>
 <li>Get(i): return x_i</li>
-<li>Add(i,x): set x_j+1=x_j for n≥j≥i, set x_i=x, increase list size by 1</li>
-<li>Remove(i): set x_j=x_j+1 for i≤j≤n−1, decrease list size by 1</li>
+<li>Add(i,x): set x_j+1&#x3D;x_j for n≥j≥i, set x_i&#x3D;x, increase list size by 1</li>
+<li>Remove(i): set x_j&#x3D;x_j+1 for i≤j≤n−1, decrease list size by 1</li>
 </ul>
 </li>
-<li>
-<p>List can implement Deque:</p>
-<p>AddFirst(x) = Add(1, x)</p>
-<p>AddLast(x) = Add(Size() + 1, x)</p>
-<p>RemoveFirst() = Remove(1)</p>
-<p>RemoveLast() = Remove(Size())</p>
+<li><p>List can implement Deque:</p>
+<p>AddFirst(x) &#x3D; Add(1, x)</p>
+<p>AddLast(x) &#x3D; Add(Size() + 1, x)</p>
+<p>RemoveFirst() &#x3D; Remove(1)</p>
+<p>RemoveLast() &#x3D; Remove(Size())</p>
 </li>
 </ul>
-<h5 id="数组实现列表">数组实现列表</h5>
-<h5 id="Circular-Array实现Dequeue">Circular Array实现Dequeue</h5>
-<h3 id="Sorting">Sorting</h3>
-<h4 id="Characteristics-of-sorting-algorithms">Characteristics of sorting algorithms</h4>
-<ul>
-<li>
-<p><em><strong>In-place:</strong></em></p>
+<h5 id="数组实现列表"><a href="#数组实现列表" class="headerlink" title="数组实现列表"></a>数组实现列表</h5><h5 id="Circular-Array实现Dequeue"><a href="#Circular-Array实现Dequeue" class="headerlink" title="Circular Array实现Dequeue"></a>Circular Array实现Dequeue</h5><h3 id="Sorting"><a href="#Sorting" class="headerlink" title="Sorting"></a>Sorting</h3><h4 id="Characteristics-of-sorting-algorithms"><a href="#Characteristics-of-sorting-algorithms" class="headerlink" title="Characteristics of sorting algorithms"></a>Characteristics of sorting algorithms</h4><ul>
+<li><p><em><strong>In-place:</strong></em></p>
 <p>只需要$O(1)$的额外的空间。</p>
 </li>
-<li>
-<p><em><strong>Stability:</strong></em></p>
+<li><p><em><strong>Stability:</strong></em></p>
 <p>相同大小的元素的相对位置没有改变。</p>
 </li>
 </ul>
-<h4 id="Selection-Sort">Selection Sort</h4>
-<ul>
-<li>
-<p>思路</p>
+<h4 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h4><ul>
+<li><p>思路</p>
 <ol>
 <li>找出最小的元素。</li>
 <li>对剩下的元素递归执行第一步。</li>
 <li>当只剩一个元素时，直接返回该元素，递归终止。</li>
 </ol>
 </li>
-<li>
-<p>Correctness</p>
+<li><p>Correctness</p>
 <p>循环不变式：After the ith iteration, the first i items are sorted, and they are the i smallest elements in the original array.</p>
 </li>
-<li>
-<p>时间复杂度</p>
+<li><p>时间复杂度</p>
 <p>$\Theta(n^2)$</p>
 </li>
-<li>
-<p>空间复杂度</p>
+<li><p>空间复杂度</p>
 <p>$O(1)$,thus in place.</p>
 </li>
-<li>
-<p>Stability</p>
+<li><p>Stability</p>
 <p>Not stable.Swap operation canmess up relative order.</p>
 </li>
 </ul>
-<h4 id="Bubble-Sort">Bubble Sort</h4>
-<ul>
-<li>
-<p>思路</p>
+<h4 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h4><ul>
+<li><p>思路</p>
 <ol>
 <li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
 <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。</li>
@@ -626,40 +597,30 @@
 <li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
 </ol>
 </li>
-<li>
-<p>Correctness</p>
+<li><p>Correctness</p>
 </li>
-<li>
-<p>时间复杂度</p>
+<li><p>时间复杂度</p>
 <p>$\Theta(n^2)$</p>
 </li>
-<li>
-<p>空间复杂度</p>
+<li><p>空间复杂度</p>
 <p>$O(1)$</p>
 </li>
-<li>
-<p>Stability</p>
+<li><p>Stability</p>
 <p>Stable</p>
 </li>
-<li>
-<p>Improvement</p>
+<li><p>Improvement</p>
 <ul>
-<li>
-<p>在迭代过程中可能在某一次迭代时就已经完成了排序，那么后面接下来的迭代可能就不再有必要，试图通过设置一个bool值来避免部分迭代的过程。</p>
+<li><p>在迭代过程中可能在某一次迭代时就已经完成了排序，那么后面接下来的迭代可能就不再有必要，试图通过设置一个bool值来避免部分迭代的过程。</p>
 <p>在数组本就有序的最好情况下，只需要$O(n)$即可得到结果，避免了无用功。</p>
 <p>但是在最坏情况下时间复杂度仍然是$\Theta(n^2)$，即若数组是逆序的话，经历所有迭代避无可避。</p>
 </li>
-<li>
-<p>在n的值的改变上再贪心一点，因为每轮内层循环的时候，最后一次交换之后的元素一定是排好序的，所以可以将下一轮循环的范围缩小更多。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BubbleSortImprovedAgain(A):</span><br><span class="line">n=A.length</span><br><span class="line">repeat</span><br><span class="line">  lastSwapIdx=<span class="number">-1</span></span><br><span class="line">  <span class="keyword">for</span> (j=<span class="number">1</span> to n<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">if</span> (A[j]&gt;A[j+<span class="number">1</span>])</span><br><span class="line">      Swap(A[j],A[j+<span class="number">1</span>])</span><br><span class="line">      lastSwapIdx=j+<span class="number">1</span> <span class="comment">//记录最后一次交换的位置</span></span><br><span class="line">  n=lastSwapIdx<span class="number">-1</span></span><br><span class="line">until (n&lt;=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>在n的值的改变上再贪心一点，因为每轮内层循环的时候，最后一次交换之后的元素一定是排好序的，所以可以将下一轮循环的范围缩小更多。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BubbleSortImprovedAgain(A):</span><br><span class="line">n=A.length</span><br><span class="line">repeat</span><br><span class="line">  lastSwapIdx=<span class="number">-1</span></span><br><span class="line">  <span class="keyword">for</span> (j=<span class="number">1</span> to n<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">if</span> (A[j]&gt;A[j+<span class="number">1</span>])</span><br><span class="line">      Swap(A[j],A[j+<span class="number">1</span>])</span><br><span class="line">      lastSwapIdx=j+<span class="number">1</span> <span class="comment">//记录最后一次交换的位置</span></span><br><span class="line">  n=lastSwapIdx<span class="number">-1</span></span><br><span class="line">until (n&lt;=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
-<h4 id="Quick-Sort">Quick Sort</h4>
-<ul>
-<li>
-<p>思路</p>
+<h4 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h4><ul>
+<li><p>思路</p>
 <ol>
 <li>挑选基准值：从数列中挑出一个元素，称为“基准”（pivot）。</li>
 <li>分割：重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（与基准值相等的数可以到任何一边）。在这个分割结束之后，对基准值的排序就已经完成。</li>
@@ -667,146 +628,112 @@
 <li>一般使用最后一个数字作为pivot。</li>
 </ol>
 </li>
-<li>
-<p>伪代码</p>
+<li><p>伪代码</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="built_in">GetPivot</span>(A)</span><br><span class="line">&lt;B,C&gt; = <span class="built_in">Partition</span>(A,x)</span><br><span class="line"><span class="built_in">QuickSortAbs</span>(B)</span><br><span class="line"><span class="built_in">QuickSortAbs</span>(C)</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Concatenate</span>(B,x,C)</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>The Partition Procedure</p>
+<li><p>The Partition Procedure</p>
 <ol>
-<li>
-<p>开一个新数组。</p>
+<li><p>开一个新数组。</p>
 </li>
-<li>
-<p>扫描数组，将小于基准的放在左半边，大于基准的放在右半边。</p>
+<li><p>扫描数组，将小于基准的放在左半边，大于基准的放在右半边。</p>
 </li>
-<li>
-<p>最后把基准数放在最后留下的位置上。</p>
+<li><p>最后把基准数放在最后留下的位置上。</p>
 <ul>
-<li>
-<p>时间复杂度：$\Theta(n)$</p>
+<li><p>时间复杂度：$\Theta(n)$</p>
 </li>
-<li>
-<p>空间复杂度：$\Theta(n)$</p>
+<li><p>空间复杂度：$\Theta(n)$</p>
 </li>
-<li>
-<p>Stability：unstable.</p>
+<li><p>Stability：unstable.</p>
 </li>
-<li>
-<p>伪代码</p>
+<li><p>伪代码</p>
 <figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = A[n], l = <span class="number">1</span>, r = n</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span> <span class="keyword">to</span> n-<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">if</span> (A[i]&lt;=x)</span><br><span class="line">    B[l] = A[i]</span><br><span class="line">    l++</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    B[r] = A[i]</span><br><span class="line">    r--</span><br><span class="line">B[l]=x</span><br><span class="line">return &lt;B,l&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>Improvement（CLRS）</p>
+<li><p>Improvement（CLRS）</p>
 <p>不开新数组，直接在A上进行操作。</p>
-<p>use swap operations to move small items to the left part of A; thus the right part of A naturally contains large items.</p>
+<p> use swap operations to move small items to the left part of A; thus the right part of A naturally contains large items.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = A[r], i=p<span class="number">-1</span></span><br><span class="line"><span class="keyword">for</span> (j=p to r<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">if</span> (A[j]&lt;=x)</span><br><span class="line">    i=i+<span class="number">1</span></span><br><span class="line">    Swap(A[i],A[j])</span><br><span class="line">Swap(A[i+<span class="number">1</span>],A[r])</span><br><span class="line"><span class="keyword">return</span> i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
 <p>Correctness：看视频</p>
 </li>
 </ul>
 </li>
 </ol>
 </li>
-<li>
-<p>优化后最终伪代码</p>
+<li><p>优化后最终伪代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">InplacePartition(A, p, r):</span><br><span class="line">x = A[r], i=p<span class="number">-1</span></span><br><span class="line"><span class="keyword">for</span> (j=p to r<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">if</span> (A[j]&lt;=x)</span><br><span class="line">    i=i+<span class="number">1</span></span><br><span class="line">    Swap(A[i],A[j])</span><br><span class="line">Swap(A[i+<span class="number">1</span>],A[r])</span><br><span class="line"><span class="keyword">return</span> i+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">QuickSort(A, p, r):</span><br><span class="line"><span class="keyword">if</span> (p&lt;r)</span><br><span class="line">  q = InplacePartition(A,p,r)</span><br><span class="line">  QuickSort(A,p,q<span class="number">-1</span>)</span><br><span class="line">  QuickSort(A,q+<span class="number">1</span>,r)</span><br></pre></td></tr></table></figure>
+
 <p>Θ(|r−p|) time (i.e., linear time); O(1) space; unstable.</p>
 </li>
-<li>
-<p>Randomized Quick Sort</p>
+<li><p>Randomized Quick Sort</p>
 <p><em><strong>Choose pivot (uniformly) at random!</strong></em></p>
 <ul>
-<li>
-<p>伪代码</p>
+<li><p>伪代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RndQuickSort(A, p, r):</span><br><span class="line"><span class="keyword">if</span> (p&lt;r)</span><br><span class="line">  i = Random(p,r)</span><br><span class="line">  Swap(A[r],A[i])</span><br><span class="line">  q = InplacePartition(A,p,r)</span><br><span class="line">  RndQuickSort(A,p,q<span class="number">-1</span>)</span><br><span class="line">  RndQuickSort(A,q+<span class="number">1</span>,r)</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>时间复杂度</p>
+<li><p>时间复杂度</p>
 <p>$O(nlgn)$</p>
 </li>
-<li>
-<p>In an execution of RndQuickSort, the cost isO(n)+O(total number of comparisons).</p>
+<li><p>In an execution of RndQuickSort, the cost isO(n)+O(total number of comparisons).</p>
 </li>
-<li>
-<p>Each node can be pivot at most once!</p>
+<li><p>Each node can be pivot at most once!</p>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="Upper-bound-and-Lower-bond">Upper bound and Lower bond</h4>
+<h4 id="Upper-bound-and-Lower-bond"><a href="#Upper-bound-and-Lower-bond" class="headerlink" title="Upper bound and Lower bond"></a>Upper bound and Lower bond</h4><ul>
+<li><p>**<em>Upper bound:</em> **</p>
 <ul>
-<li>
-<p>**<em>Upper bound:</em> **</p>
-<ul>
-<li>
-<p>how fast can we solve the problem?</p>
+<li><p>how fast can we solve the problem?</p>
 </li>
-<li>
-<p>针对算法本身，指对某种算法在最坏情况下需要的时间复杂度。</p>
+<li><p>针对算法本身，指对某种算法在最坏情况下需要的时间复杂度。</p>
 </li>
-<li>
-<p>每一种算法都有一个upper bound。</p>
+<li><p>每一种算法都有一个upper bound。</p>
 </li>
 </ul>
 </li>
-<li>
-<p><em><strong>Lower bound:</strong></em></p>
+<li><p><em><strong>Lower bound:</strong></em></p>
 <ul>
-<li>
-<p>how slow solving the problem has to be?</p>
+<li><p>how slow solving the problem has to be?</p>
 </li>
-<li>
-<p>针对问题本身，指针对该问题最快的算法在最坏的情况下需要的时间复杂度。</p>
+<li><p>针对问题本身，指针对该问题最快的算法在最坏的情况下需要的时间复杂度。</p>
 </li>
-<li>
-<p>任何算法都至少要花这么多时间去解决这个问题。</p>
+<li><p>任何算法都至少要花这么多时间去解决这个问题。</p>
 </li>
-<li>
-<p>Larger lower bound is a stronger lower bound.(On the other hand, smaller upper bound is better.）</p>
+<li><p>Larger lower bound is a stronger lower bound.(On the other hand, smaller upper bound is better.）</p>
 </li>
-<li>
-<p>how do we prove a lower bound?!<strong>rely on structures/properties of the problem itself…</strong></p>
+<li><p>how do we prove a lower bound?!<strong>rely on structures&#x2F;properties of the problem itself…</strong></p>
 <p>留空，等会看视频。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="Bucket-Sort">Bucket Sort</h4>
-<ul>
-<li>
-<p>思路：</p>
+<h4 id="Bucket-Sort"><a href="#Bucket-Sort" class="headerlink" title="Bucket Sort"></a>Bucket Sort</h4><ul>
+<li><p>思路：</p>
 <ol>
 <li>创建“桶”。</li>
 <li>扫描待排序的数组，插入到对应的“桶”的尾部。</li>
 <li>按“桶”的标号按序输出“桶”内的数字。</li>
 </ol>
 </li>
-<li>
-<p>时间复杂度</p>
+<li><p>时间复杂度</p>
 <p>$\Theta(n)$</p>
 </li>
-<li>
-<p><strong>不是一个基于比较的排序算法</strong></p>
+<li><p><strong>不是一个基于比较的排序算法</strong></p>
 </li>
-<li>
-<p>扩大“桶”的容量：在combine之前先对每个“桶”内的内容进行排序</p>
-<p>时间复杂度：$O(n+k+(n^2/k))$</p>
+<li><p>扩大“桶”的容量：在combine之前先对每个“桶”内的内容进行排序</p>
+<p>时间复杂度：$O(n+k+(n^2&#x2F;k))$</p>
 </li>
-<li>
-<p>stable</p>
+<li><p>stable</p>
 </li>
 </ul>
-<h4 id="Radix-Sort">Radix Sort</h4>
-<ul>
-<li>
-<p>思路：</p>
+<h4 id="Radix-Sort"><a href="#Radix-Sort" class="headerlink" title="Radix Sort"></a>Radix Sort</h4><ul>
+<li><p>思路：</p>
 <ol>
 <li>将所有数字的位数统一（高位补0）。</li>
 <li>从最低位开始向高位依次进行排序。</li>
 </ol>
 </li>
-<li>
-<p>Correctness（归纳法证明循环不变式）</p>
+<li><p>Correctness（归纳法证明循环不变式）</p>
 <p>Claim: after ith iteration, items are sorted by their rightmost i bits.</p>
 <p>Use induction to prove the claim.</p>
 <p>[Basis] The claim holds after the first iteration.</p>
@@ -815,23 +742,19 @@
 <ul>
 <li>W.l.o.g., assume a appears before b. Thus, a[k]≤b[k].</li>
 <li>If a[k]&lt;b[k], then it must be a[k…1]&lt;b[k…1].</li>
-<li>If a[k]=b[k], since we use stable sort, it must be a[(k−1)…1]≤b[(k−1)…1]. Again, a[k…1]≤b[k…1].</li>
+<li>If a[k]&#x3D;b[k], since we use stable sort, it must be a[(k−1)…1]≤b[(k−1)…1]. Again, a[k…1]≤b[k…1].</li>
 </ul>
 </li>
-<li>
-<p>对每一位进行排序采用Bucket sort：</p>
+<li><p>对每一位进行排序采用Bucket sort：</p>
 <p>时间复杂度：$O(dn)$</p>
 <p>因为是十进制数，所以需要十个桶就足够：$\Theta(1)$</p>
 </li>
 </ul>
-<h3 id="Trees">Trees</h3>
-<h4 id="Introduction">Introduction</h4>
-<p>a tree is either empty, or has a root connecting to the roots of zero or more non-empty subtrees.</p>
+<h3 id="Trees"><a href="#Trees" class="headerlink" title="Trees"></a>Trees</h3><h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>a tree is either empty, or has a root connecting to the roots of zero or more non-empty subtrees.</p>
 <p>连接的、非循环的无向图。</p>
 <p>我们常使用的树是有根树。</p>
 <ul>
-<li>
-<p><em><strong>树的递归定义</strong></em></p>
+<li><p><em><strong>树的递归定义</strong></em></p>
 <p>A tree is either empty, or has a root r that connects to the roots of zero or more non-empty (sub)trees.</p>
 <ul>
 <li>Root of each subtree is a child of r, and r is the parent of each subtree’s root.</li>
@@ -840,12 +763,10 @@
 <li>If a node v is on the path from r to u, then v is an ancestor of u,and u is a descendant of v.</li>
 </ul>
 </li>
-<li>
-<p><em><strong>More terminology</strong></em></p>
+<li><p><em><strong>More terminology</strong></em></p>
 <ul>
 <li>The depth of a node u is the length of the path from u to r.</li>
-<li>The height of a node u is the length of the longest path from u to one of its descendants.
-<ul>
+<li>The height of a node u is the length of the longest path from u to one of its descendants.<ul>
 <li>Height of a leaf node is zero.</li>
 <li>Height of a non-leaf node is the maxheight of its children plus one.</li>
 </ul>
@@ -853,99 +774,77 @@
 </ul>
 </li>
 </ul>
-<h4 id="Binary-Trees">Binary Trees</h4>
-<p>每个节点至多有两个子节点。left child and right child</p>
+<h4 id="Binary-Trees"><a href="#Binary-Trees" class="headerlink" title="Binary Trees"></a>Binary Trees</h4><p>每个节点至多有两个子节点。left child and right child</p>
 <ul>
-<li>
-<p><em><strong>full binary tree</strong></em></p>
+<li><p><em><strong>full binary tree</strong></em></p>
 <p>对于每个节点，要么没有子节点，要么有两个子节点。</p>
 <p>满二叉树要么只有一个根节点，要么根的两个子树都是满二叉树。</p>
 </li>
-<li>
-<p><em><strong>complete binary tree</strong></em></p>
+<li><p><em><strong>complete binary tree</strong></em></p>
 <p>除了最后一层每一层都有最多的节点，且最后一层尽可能的在树的左半边。</p>
 <p>可以用数组表示。</p>
 </li>
-<li>
-<p><em><strong>Perfect binary tree</strong></em></p>
+<li><p><em><strong>Perfect binary tree</strong></em></p>
 <p>所有的非叶子的节点都有两个子节点，并且所有的叶子节点都有相同的深度。</p>
 <p>ps：CLRS call perfect binary trees as complete binary trees.</p>
 </li>
-<li>
-<p><em><strong>Representing binary trees</strong></em></p>
+<li><p><em><strong>Representing binary trees</strong></em></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">  Data data; <span class="comment">//保存的数据</span></span><br><span class="line">  Node *parent; <span class="comment">//父节点的指针</span></span><br><span class="line">  Node *left; <span class="comment">//指向左边子节点的指针</span></span><br><span class="line">  Node *right; <span class="comment">//指向右边子节点的指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p><em><strong>Representing general trees</strong></em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">  Data data;</span><br><span class="line">  Node *parent;</span><br><span class="line">  Node *firstChild; <span class="comment">//指向从左往右的第一个子节点的指针</span></span><br><span class="line">  Node *nextSibling; <span class="comment">//节点本身下一个兄弟节点的指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li><p><em><strong>Representing general trees</strong></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">  Data data;</span><br><span class="line">  Node *parent;</span><br><span class="line">  Node *firstChild; <span class="comment">//指向从左往右的第一个子节点的指针</span></span><br><span class="line">  Node *nextSibling; <span class="comment">//节点本身下一个兄弟节点的指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="Tree-Traversal">Tree Traversal</h4>
-<ul>
-<li>
-<p><em><strong>Preorder traversal</strong></em></p>
+<h4 id="Tree-Traversal"><a href="#Tree-Traversal" class="headerlink" title="Tree Traversal"></a>Tree Traversal</h4><ul>
+<li><p><em><strong>Preorder traversal</strong></em></p>
 <p>从根部节点开始访问，然后访问子节点下的子树。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PreorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  Visit(r) <span class="comment">//访问root</span></span><br><span class="line">  <span class="keyword">for</span> (each child u of r)</span><br><span class="line">    PreorderTrav(u) <span class="comment">//对子节点下子树进行递归</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p><em><strong>Postorder traversal</strong></em></p>
+<li><p><em><strong>Postorder traversal</strong></em></p>
 <p>先访问子节点下的子树，然后访问根部节点。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PostorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  <span class="keyword">for</span> (each child u of r)</span><br><span class="line">    PostorderTrav(u)</span><br><span class="line">  Visit(r)</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p><em><strong>Inorder traversal</strong></em></p>
+<li><p><em><strong>Inorder traversal</strong></em></p>
 <p>先访问左子节点下的子树，接着访问根部节点，最后访问右边子节点下的子树。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">InorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  InorderTrav(r.left)</span><br><span class="line">  Visit(r)</span><br><span class="line">  InorderTrav(r.right)</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">InorderTrav(r):</span><br><span class="line"><span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">  InorderTrav(r.left)</span><br><span class="line">  Visit(r)</span><br><span class="line">  InorderTrav(r.right)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="Complexity-of-recursive-traversal">Complexity of recursive traversal</h4>
-<ul>
-<li>
-<p><em><strong>Time complexity</strong></em></p>
+<h4 id="Complexity-of-recursive-traversal"><a href="#Complexity-of-recursive-traversal" class="headerlink" title="Complexity of recursive traversal"></a>Complexity of recursive traversal</h4><ul>
+<li><p><em><strong>Time complexity</strong></em></p>
 <p>$\Theta(n)$ to process every node.</p>
 </li>
-<li>
-<p><em><strong>Space complexity</strong></em></p>
+<li><p><em><strong>Space complexity</strong></em></p>
 <p>$O(n)$ as the most depth of call stack is $\Theta(n)$</p>
 </li>
 </ul>
-<h4 id="Directory-Listing">Directory Listing</h4>
-<p>Application of preorder traversal.</p>
+<h4 id="Directory-Listing"><a href="#Directory-Listing" class="headerlink" title="Directory Listing"></a>Directory Listing</h4><p>Application of preorder traversal.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ListDir(obj, depth):</span><br><span class="line"><span class="keyword">if</span> (obj != <span class="literal">NULL</span>)</span><br><span class="line">  PrintName(obj,depth)</span><br><span class="line">  <span class="keyword">if</span> (IsDirectory(obj))</span><br><span class="line">    <span class="keyword">for</span> (each obj in directory)</span><br><span class="line">      ListDir(obj,depth+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="Iterative-tree-traversal">Iterative tree traversal</h4>
-<p>simulate the recursive process with the help of a <strong>stack</strong>.</p>
+
+<h4 id="Iterative-tree-traversal"><a href="#Iterative-tree-traversal" class="headerlink" title="Iterative tree traversal"></a>Iterative tree traversal</h4><p>simulate the recursive process with the help of a <strong>stack</strong>.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Frame</span> &#123;</span></span><br><span class="line">  Node *node;</span><br><span class="line">  <span class="keyword">bool</span> visit; <span class="comment">//设定bool值记录是否被访问过</span></span><br><span class="line">  Frame(Node* n,<span class="keyword">bool</span> v) &#123;</span><br><span class="line">    node = n;</span><br><span class="line">    visit = v;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PreorderTravIter(root):</span><br><span class="line">Stack s</span><br><span class="line">s.push(Frame(root,<span class="literal">false</span>))</span><br><span class="line"><span class="keyword">while</span> (!s.empty())</span><br><span class="line">  f = s.pop()</span><br><span class="line">  <span class="keyword">if</span> (f.node != <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">if</span> (f.visit)</span><br><span class="line">      Visit(f.node)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">for</span> (each child u of f.node)</span><br><span class="line">        s.push(Frame(u,<span class="literal">false</span>))</span><br><span class="line">      s.push(Frame(f.node,<span class="literal">true</span>))</span><br><span class="line">        </span><br><span class="line">InorderTravIter(root):</span><br><span class="line">Stack s</span><br><span class="line">s.push(Frame(root,<span class="literal">false</span>))</span><br><span class="line"><span class="keyword">while</span> (!s.empty())</span><br><span class="line">  f = s.pop()</span><br><span class="line">  <span class="keyword">if</span> (f.node != <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">if</span> (f.visit)</span><br><span class="line">      Visit(f.node)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      s.push(Frame(f.node-&gt;right,<span class="literal">false</span>))</span><br><span class="line">      s.push(Frame(f.node,<span class="literal">true</span>))</span><br><span class="line">      s.push(Frame(f.node-&gt;left,<span class="literal">false</span>))</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>
-<p><em><strong>Time complexity</strong></em></p>
+<li><p><em><strong>Time complexity</strong></em></p>
 <p>$\Theta(n)$</p>
 </li>
-<li>
-<p><em><strong>Space complexity</strong></em></p>
+<li><p><em><strong>Space complexity</strong></em></p>
 <p>$O(n)$</p>
 <p>录音</p>
 </li>
 </ul>
-<h4 id="Level-order-traversal-of-trees">Level-order traversal of trees</h4>
-<p>联想归并排序：Iterative MergeSort is somewhat like a level-order traversal of the recursion tree, but bottom-up…</p>
+<h4 id="Level-order-traversal-of-trees"><a href="#Level-order-traversal-of-trees" class="headerlink" title="Level-order traversal of trees"></a>Level-order traversal of trees</h4><p>联想归并排序：Iterative MergeSort is somewhat like a level-order traversal of the recursion tree, but bottom-up… </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LevelorderTrav(r):</span><br><span class="line">Queue q</span><br><span class="line">q.add(r)</span><br><span class="line"><span class="keyword">while</span> (!q.empty())</span><br><span class="line">  node = q.remove()</span><br><span class="line">  <span class="keyword">if</span> (node != <span class="literal">NULL</span>)</span><br><span class="line">    Visit(node)</span><br><span class="line">    q.add(node-&gt;left)</span><br><span class="line">    q.add(node-&gt;right)</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>
-<p><em><strong>Time complexity</strong></em></p>
+<li><p><em><strong>Time complexity</strong></em></p>
 <p>$\Theta(n)$</p>
 </li>
-<li>
-<p><em><strong>Space comlexity</strong></em></p>
+<li><p><em><strong>Space comlexity</strong></em></p>
 <p>$\Theta(n)$ in the worst case.</p>
 </li>
 </ul>
-<h3 id="Search-Trees">Search Trees</h3>
-<h4 id="Set-ADT">Set ADT</h4>
-<p>used to represent a set of elements with (usually distinct) key values.</p>
+<h3 id="Search-Trees"><a href="#Search-Trees" class="headerlink" title="Search Trees"></a>Search Trees</h3><h4 id="Set-ADT"><a href="#Set-ADT" class="headerlink" title="Set ADT"></a>Set ADT</h4><p>used to represent a set of elements with (usually distinct) key values.</p>
 <p>Each element has a <em>key</em> field and a <em>data</em> field.</p>
 <ul>
-<li>
-<p><em><strong>Operation</strong></em></p>
+<li><p><em><strong>Operation</strong></em></p>
 <ul>
 <li>Search(S, k): Find an element in S with key value k.</li>
 <li>Insert(S, x): Add x to S. (What if element with same key exists?)</li>
@@ -954,68 +853,55 @@
 </ul>
 <p>如果是有序元素：</p>
 <ul>
-<li>Min(S)\Max(S): Find minimum/maximum element in S.</li>
+<li>Min(S)\Max(S): Find minimum&#x2F;maximum element in S.</li>
 <li>Successor(S, x) or Successor(S, k): Find smallest element in S that is larger than x.key (or key k).</li>
 <li>Predecessor(S, x) or Predecessor(S, k): Find largest element in S that is smaller than x.key (or key k).</li>
 </ul>
 </li>
 </ul>
-<h4 id="Binary-Search-Tree">Binary Search Tree</h4>
-<p>每个节点存储一个元素且满足BST propertity。</p>
-<h4 id="Search-in-BST">Search in BST</h4>
-<p>有一个BST根部节点$x$和key $k$，如何通过$k$找到一个元素。</p>
+<h4 id="Binary-Search-Tree"><a href="#Binary-Search-Tree" class="headerlink" title="Binary Search Tree"></a>Binary Search Tree</h4><p>每个节点存储一个元素且满足BST propertity。</p>
+<h4 id="Search-in-BST"><a href="#Search-in-BST" class="headerlink" title="Search in BST"></a>Search in BST</h4><p>有一个BST根部节点$x$和key $k$，如何通过$k$找到一个元素。</p>
 <ul>
-<li>如果$x.key = k$就直接返回$x$</li>
+<li>如果$x.key &#x3D; k$就直接返回$x$</li>
 <li>如果$x.key&gt;k$就在$x.left$下的子树下进行递归。</li>
 <li>如果$x.key&lt;k$就在$x.right$下的子树下进行递归。</li>
 </ul>
 <p>是一个尾递归的过程，所以可以用迭代表示出来。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">BSTSearch(x,k):</span><br><span class="line"><span class="keyword">if</span> (x==<span class="literal">NULL</span> <span class="keyword">or</span> x.key==k) <span class="comment">//根部为空或者就是要找的元素</span></span><br><span class="line">  <span class="keyword">return</span> x</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (x.key&gt;k) <span class="comment">//根据BST property选择一边进行递归</span></span><br><span class="line">  <span class="keyword">return</span> BSTSearch(x.left,k)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="keyword">return</span> BSTSearch(x.right,k)</span><br><span class="line">  </span><br><span class="line">BSTSearchIter(x,k):</span><br><span class="line"><span class="keyword">while</span> (x!=<span class="literal">NULL</span> <span class="keyword">and</span> x.key!=k)</span><br><span class="line">  <span class="keyword">if</span> (x.key&gt;k)</span><br><span class="line">    x = x.left</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    x = x.right</span><br><span class="line"><span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>
-<p><em><strong>Complexity</strong></em></p>
+<li><p><em><strong>Complexity</strong></em></p>
 <p>$\Theta(h)$ where ℎ is the height of the BST.</p>
 <ul>
-<li>
-<p>How large can h be in an n-node BST?</p>
+<li><p>How large can h be in an n-node BST?</p>
 <p>$\Theta(n)$ When BST is like a path\line.</p>
 </li>
-<li>
-<p>How small can h be in an n-node BST?</p>
+<li><p>How small can h be in an n-node BST?</p>
 <p>$\Theta(logn)$ When BST is well-balanced.</p>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="Min-and-Max-in-BST">Min and Max in BST</h4>
-<ul>
-<li>
-<p><em><strong>Find a min</strong></em></p>
+<h4 id="Min-and-Max-in-BST"><a href="#Min-and-Max-in-BST" class="headerlink" title="Min and Max in BST"></a>Min and Max in BST</h4><ul>
+<li><p><em><strong>Find a min</strong></em></p>
 <p>向左走到底。</p>
 </li>
-<li>
-<p><em><strong>Find a max</strong></em></p>
+<li><p><em><strong>Find a max</strong></em></p>
 <p>向右走到底。</p>
 </li>
-<li>
-<p><em><strong>Time complexity</strong></em></p>
+<li><p><em><strong>Time complexity</strong></em></p>
 <p>$\Theta(h)$ In the worst case.</p>
 </li>
 </ul>
-<h4 id="Successor-in-BST">Successor in BST</h4>
-<ul>
-<li>
-<p><em><strong>BSTSuccessor(x)</strong></em></p>
+<h4 id="Successor-in-BST"><a href="#Successor-in-BST" class="headerlink" title="Successor in BST"></a>Successor in BST</h4><ul>
+<li><p><em><strong>BSTSuccessor(x)</strong></em></p>
 <p>Find the smallest element in the BST with key value larger than x.key.</p>
 <ul>
-<li>
-<p>如果右边子树非空，右边子树中最小的元素就是结果。</p>
+<li><p>如果右边子树非空，右边子树中最小的元素就是结果。</p>
 </li>
-<li>
-<p>如果右边子树为空，结果就是离x最近而且左子节点也是x祖先节点的祖先节点。</p>
+<li><p>如果右边子树为空，结果就是离x最近而且左子节点也是x祖先节点的祖先节点。</p>
 </li>
-<li>
-<pre><code class="language-c">BSTSuccessor(x):
+<li><pre><code class="c">BSTSuccessor(x):
 if (x.right!=NULL)
   return BSTMin(x.right)
 y = x.parent
@@ -1027,71 +913,56 @@ return y
 </li>
 </ul>
 </li>
-<li>
-<p><em><strong>Time complexity</strong></em></p>
+<li><p><em><strong>Time complexity</strong></em></p>
 <p>$\Theta(h)$ in the worst case.</p>
 </li>
 </ul>
-<h4 id="Insert-in-BST">Insert in BST</h4>
-<ul>
-<li>
-<p><em><strong>BSTInsert(T, z)</strong></em></p>
+<h4 id="Insert-in-BST"><a href="#Insert-in-BST" class="headerlink" title="Insert in BST"></a>Insert in BST</h4><ul>
+<li><p><em><strong>BSTInsert(T, z)</strong></em></p>
 <p>搜索在叶子结点处结束，将z作为叶子结点的左右子节点。</p>
 </li>
-<li>
-<p><em><strong>Time complexity</strong></em></p>
+<li><p><em><strong>Time complexity</strong></em></p>
 <p>$\Theta(h)$</p>
 </li>
 </ul>
-<h4 id="Remove-in-BST">Remove in BST</h4>
+<h4 id="Remove-in-BST"><a href="#Remove-in-BST" class="headerlink" title="Remove in BST"></a>Remove in BST</h4><ul>
+<li><p><em><strong>BSTRemove(T, z)</strong></em></p>
 <ul>
-<li>
-<p><em><strong>BSTRemove(T, z)</strong></em></p>
-<ul>
-<li>
-<p>Case 1: z没有子节点。</p>
+<li><p>Case 1: z没有子节点。</p>
 <p>直接移除z节点。($\Theta(1)$)</p>
 </li>
-<li>
-<p>Case 2: z只有一个子节点。</p>
+<li><p>Case 2: z只有一个子节点。</p>
 <p>Elevate subtree rooted at z’s single child to take z’s position.($O(h)$)</p>
 </li>
-<li>
-<p>Case 3: z有两个子节点。</p>
+<li><p>Case 3: z有两个子节点。</p>
 <ul>
 <li>Case a: z的右节点的左节点为空</li>
 <li>Case b: z的右节点的左节点非空</li>
 </ul>
-<p>Replace node z with min value node in subtree rooted at z.rigℎt.</p>
+<p>Replace node z with min value node in subtree rooted at z.rigℎt.</p>
 <p>Replace node z with <strong>BSTSuccessor(z)</strong></p>
-<p>BSTSuccessor(z) can be: r if r.left=NULL; BSTMin(r.left) if r.left≠NULL</p>
+<p>BSTSuccessor(z) can be: r if r.left&#x3D;NULL; BSTMin(r.left) if r.left≠NULL</p>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="Height-of-BST">Height of BST</h4>
-<p>The expected height of a randomly built BST is O(logn).</p>
-<h4 id="Treap">Treap</h4>
-<p>A Treap is a binary tree in which each node has a key value, and a priority value.</p>
+<h4 id="Height-of-BST"><a href="#Height-of-BST" class="headerlink" title="Height of BST"></a>Height of BST</h4><p>The expected height of a randomly built BST is O(logn).</p>
+<h4 id="Treap"><a href="#Treap" class="headerlink" title="Treap"></a>Treap</h4><p>A Treap is a binary tree in which each node has a key value, and a priority value.</p>
 <ul>
-<li>
-<p>The key values must satisfy the BST-property</p>
+<li><p>The key values must satisfy the BST-property</p>
 <p>左边小于右边。</p>
 </li>
-<li>
-<p>The priority values must satisfy the MinHeap-property</p>
+<li><p>The priority values must satisfy the MinHeap-property</p>
 <p>顶部最小。</p>
 </li>
-<li>
-<p><em><strong>Insert in Treap</strong></em></p>
+<li><p><em><strong>Insert in Treap</strong></em></p>
 <ul>
 <li>给待添加节点分配随机权重。</li>
 <li>根据BST-property插入节点。</li>
 <li>维护Min-heap的性质</li>
 </ul>
 </li>
-<li>
-<p><em><strong>Remove in Treap</strong></em></p>
+<li><p><em><strong>Remove in Treap</strong></em></p>
 <ul>
 <li>将节点下沉直到成为叶子节点。</li>
 <li>移除叶子。</li>
@@ -1444,7 +1315,35 @@ return y
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1693,7 +1592,7 @@ return y
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1707,6 +1606,18 @@ return y
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span>
+            <a class="archive-post-title" href="/2023/02/15/%E5%9F%BA%E6%9C%AC%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C/">基本通信操作</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="/2023/02/14/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">并行计算硬件结构基础</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/13</span>

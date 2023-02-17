@@ -492,9 +492,8 @@
         <p>由于PA2需要，阅读一些riscv手册。</p>
 <p>时间紧迫，先从中文版开始阅读，后续会阅读官方手册。</p>
 <span id="more"></span>
-<h3 id="Chapter-2-RV32I基础整数指令集">Chapter 2 RV32I基础整数指令集</h3>
-<h4 id="指令格式">指令格式</h4>
-<p>六种基本指令格式：</p>
+
+<h3 id="Chapter-2-RV32I基础整数指令集"><a href="#Chapter-2-RV32I基础整数指令集" class="headerlink" title="Chapter 2 RV32I基础整数指令集"></a>Chapter 2 RV32I基础整数指令集</h3><h4 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h4><p>六种基本指令格式：</p>
 <ul>
 <li>用于寄存器-寄存器操作的R型指令</li>
 <li>用于短立即数和访存load操作的I型指令</li>
@@ -508,33 +507,25 @@
 <p>要读写的寄存器的标识符总是在同一位置</p>
 <p>这些格式的立即数字段总是符号扩展</p>
 <p>所有位都是0或1的指令是非法指令</p>
-<h4 id="寄存器">寄存器</h4>
-<p>有31寄存器加上一个值恒为0的x0寄存器</p>
-<h4 id="整数计算">整数计算</h4>
-<ol>
-<li>
-<p>简单的算术指令从寄存器读取两个32位的值，并将32位结果写入目标寄存器。RV32I还提供了这些指令的立即数版本，立即数总是进行符号扩展，故如果需要我们可以用立即数表示负数，也因此不需要立即数版本的sub(subi)。</p>
+<h4 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h4><p>有31寄存器加上一个值恒为0的x0寄存器</p>
+<h4 id="整数计算"><a href="#整数计算" class="headerlink" title="整数计算"></a>整数计算</h4><ol>
+<li><p>简单的算术指令从寄存器读取两个32位的值，并将32位结果写入目标寄存器。RV32I还提供了这些指令的立即数版本，立即数总是进行符号扩展，故如果需要我们可以用立即数表示负数，也因此不需要立即数版本的sub(subi)。</p>
 </li>
-<li>
-<p>提供当小于时置位的指令。有符号版本stl，无符号版本stlu，立即数版本stli和stliu。</p>
+<li><p>提供当小于时置位的指令。有符号版本stl，无符号版本stlu，立即数版本stli和stliu。</p>
 </li>
-<li>
-<p>剩下的两条整数计算指令主要用于构造大的常量数值和链接。lui加载立即数到高位，将20位常量加载到寄存器的高20位，接着便可以利用标准的立即指令来创建32位常量；auipc向pc高位加上立即数，仅用两条指令便可以基于当前pc以任何偏移量转移控制流或者访问数据</p>
+<li><p>剩下的两条整数计算指令主要用于构造大的常量数值和链接。lui加载立即数到高位，将20位常量加载到寄存器的高20位，接着便可以利用标准的立即指令来创建32位常量；auipc向pc高位加上立即数，仅用两条指令便可以基于当前pc以任何偏移量转移控制流或者访问数据</p>
 <p>获取pc：当前的pc可以通过将auipc的U立即数字段设置为0来获得。对于x86则复杂得多。</p>
 </li>
 </ol>
-<h4 id="Load和Store">Load和Store</h4>
-<ol>
+<h4 id="Load和Store"><a href="#Load和Store" class="headerlink" title="Load和Store"></a>Load和Store</h4><ol>
 <li>32位字的加载和存储：lw，sw</li>
 <li>加载有符号和无符号字节和半字：lb，lbu，lh，lhu</li>
 <li>存储字节和半字：sb，sh</li>
 </ol>
 <p>有符号字节和半字符号扩展为32位再写入目的寄存器。在文本和无符号整数中常用的无符号字节和半字在写入目的寄存器前都被无符号扩展到32位。</p>
 <p>加载和储存的支持的唯一的寻址方式是符号扩展12位立即数到基地址寄存器，即x86中的位偏移寻址模式。</p>
-<h4 id="条件分支">条件分支</h4>
-<p>相等beq，不相等bne，大于等于bge，小于blt，最后两种也有无符号版本bgeu和bltu。</p>
-<h4 id="无条件跳转">无条件跳转</h4>
-<p>跳转并链接指令jal具有双重功能。若将下一条指令PC+4的地址保存到目标寄存器中，通常是返回地址寄存器ra，可以用它来实现过程调用。如果使用零寄存器替换ra作为目标寄存器，则可以实现无条件跳转，因为x0不能更改。jal将其20位分支地址乘以2，进行符号扩展后再添加到pc上，便得到了跳转地址。</p>
+<h4 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h4><p>相等beq，不相等bne，大于等于bge，小于blt，最后两种也有无符号版本bgeu和bltu。</p>
+<h4 id="无条件跳转"><a href="#无条件跳转" class="headerlink" title="无条件跳转"></a>无条件跳转</h4><p>跳转并链接指令jal具有双重功能。若将下一条指令PC+4的地址保存到目标寄存器中，通常是返回地址寄存器ra，可以用它来实现过程调用。如果使用零寄存器替换ra作为目标寄存器，则可以实现无条件跳转，因为x0不能更改。jal将其20位分支地址乘以2，进行符号扩展后再添加到pc上，便得到了跳转地址。</p>
 <p>其寄存器版本jalr。可以调用地址是动态计算出来的函数，或者也可以实现调用返回（只需ra作为源寄存器，零寄存器作为目的寄存器。Switch和case语句的跳转，也可以实现jalr指令，目的寄存器设为x0。</p>
 
     </article>
@@ -867,7 +858,35 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1116,7 +1135,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1130,6 +1149,18 @@
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span>
+            <a class="archive-post-title" href="/2023/02/15/%E5%9F%BA%E6%9C%AC%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C/">基本通信操作</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="/2023/02/14/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">并行计算硬件结构基础</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/13</span>

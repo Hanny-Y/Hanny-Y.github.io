@@ -491,8 +491,8 @@
     <article class="article-entry">
         <p>摘自黄宇《算法设计与分析》、ppt by bad bad zcd</p>
 <span id="more"></span>
-<h4 id="最短路径问题">最短路径问题</h4>
-<p><strong>Q：</strong> 给出一张地图，从点s到t的最短路径是什么？</p>
+
+<h4 id="最短路径问题"><a href="#最短路径问题" class="headerlink" title="最短路径问题"></a>最短路径问题</h4><p><strong>Q：</strong> 给出一张地图，从点s到t的最短路径是什么？</p>
 <p>考虑一张图和给边赋值的函数，找出权值最小的路径。</p>
 <p><em>要考虑的问题有：</em></p>
 <ul>
@@ -501,11 +501,9 @@
 <li>权值可以是负数。</li>
 <li>不可以有负循环。</li>
 </ul>
-<h4 id="单位带权值图中的单源最短路径问题">单位带权值图中的单源最短路径问题</h4>
-<p>按层遍历？先访问distance值为d的节点，然后访问d+1的。</p>
+<h4 id="单位带权值图中的单源最短路径问题"><a href="#单位带权值图中的单源最短路径问题" class="headerlink" title="单位带权值图中的单源最短路径问题"></a>单位带权值图中的单源最短路径问题</h4><p>按层遍历？先访问distance值为d的节点，然后访问d+1的。</p>
 <p>简单来说就是用BFS。</p>
-<h4 id="带正权值图中的单源最短路径问题">带正权值图中的单源最短路径问题</h4>
-<p>随机的正权值。</p>
+<h4 id="带正权值图中的单源最短路径问题"><a href="#带正权值图中的单源最短路径问题" class="headerlink" title="带正权值图中的单源最短路径问题"></a>带正权值图中的单源最短路径问题</h4><p>随机的正权值。</p>
 <p>在前面的算法的基础上延伸：</p>
 <p>在边上构造一些虚拟的点使得图成为单位带权图。</p>
 <p>然后用BFS。</p>
@@ -518,44 +516,38 @@
 </ul>
 <p>以上过程其实就是在模仿BFS的过程。</p>
 <p>在任何时间，$T_u$的值是对u点到s点的距离的估计。并且$T_u\geq dist(s,u)$</p>
-<h4 id="Dijkstra’s-algorithm">Dijkstra’s algorithm</h4>
-<p>上面提到的使用闹钟的方法👆</p>
+<h4 id="Dijkstra’s-algorithm"><a href="#Dijkstra’s-algorithm" class="headerlink" title="Dijkstra’s algorithm"></a>Dijkstra’s algorithm</h4><p>上面提到的使用闹钟的方法👆</p>
 <p><em>要怎么实现闹钟这一功能？</em></p>
 <p>最短路径树。</p>
 <p>（similar to bfs）</p>
 <p><em>用一个优先队列（如二叉堆）</em></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">DijkstraSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">Build priority <span class="built_in">queue</span> Q based on dist <span class="comment">//alarm</span></span><br><span class="line"><span class="keyword">while</span> (!Q.empty())</span><br><span class="line">  u = Q.ExtractMin() <span class="comment">//逻辑上最小的闹钟对应的节点</span></span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br><span class="line">      Q.DecreaseKey(v)</span><br></pre></td></tr></table></figure>
+
 <p>正确性：证明类似于BFS。</p>
 <p>时间复杂性：$O((n+m)logn)$</p>
-<h4 id="相关推论">相关推论</h4>
-<p><strong>Q：</strong> 如何确定扩展到哪个点？</p>
+<h4 id="相关推论"><a href="#相关推论" class="headerlink" title="相关推论"></a>相关推论</h4><p><strong>Q：</strong> 如何确定扩展到哪个点？</p>
 <p>考虑一条从s经过u到v的最短路径。</p>
 <ul>
-<li>
-<p>$dist(s,v)=dist(s,u)+w(u,v)$<br>
-因此最短路径存在最优子结构（最短路径的子路径也一定是最短的）。</p>
+<li><p>$dist(s,v)&#x3D;dist(s,u)+w(u,v)$<br>因此最短路径存在最优子结构（最短路径的子路径也一定是最短的）。</p>
 </li>
-<li>
-<p>$dist(s,v)&gt;dist(s,u)$<br>
-因为我们目前考虑的图的边的权值都为正。</p>
+<li><p>$dist(s,v)&gt;dist(s,u)$<br>因为我们目前考虑的图的边的权值都为正。</p>
 </li>
 </ul>
 <p><strong>A：</strong> 找到d值更新后最小的那个值</p>
 <p>通过优先队列实现。</p>
-<h4 id="负权值最短路径问题">负权值最短路径问题</h4>
-<p>为什么Dijkstra不管用了？</p>
+<h4 id="负权值最短路径问题"><a href="#负权值最短路径问题" class="headerlink" title="负权值最短路径问题"></a>负权值最短路径问题</h4><p>为什么Dijkstra不管用了？</p>
 <p>“Shortest path from s to any node v must pass exclusively through nodes that are closer than v” no longer holds!</p>
 <p><em><strong>Algorithm: simply Update all edges, for  n-1 times!</strong></em></p>
-<h5 id="The-Bellman-Ford-Algorithm">The Bellman-Ford Algorithm</h5>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BellmanFordSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">repeat n<span class="number">-1</span> times:</span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br></pre></td></tr></table></figure>
+<h5 id="The-Bellman-Ford-Algorithm"><a href="#The-Bellman-Ford-Algorithm" class="headerlink" title="The Bellman-Ford Algorithm"></a>The Bellman-Ford Algorithm</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BellmanFordSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">repeat n<span class="number">-1</span> times:</span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br></pre></td></tr></table></figure>
+
 <p>如果有负循环？</p>
 <p>After n−1 repetitions of “Update all edges”,some node v still has v.dist&gt;u.dist+w(u,v)。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">  <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">    <span class="keyword">return</span> “Negative Cycle”</span><br></pre></td></tr></table></figure>
-<h4 id="DAG中的单源最短路径">DAG中的单源最短路径</h4>
-<p>按照拓扑顺序（用DFS计算）</p>
+
+<h4 id="DAG中的单源最短路径"><a href="#DAG中的单源最短路径" class="headerlink" title="DAG中的单源最短路径"></a>DAG中的单源最短路径</h4><p>按照拓扑顺序（用DFS计算）</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DAGSSSP(G,s):</span><br><span class="line"><span class="keyword">for</span> (each u in V)</span><br><span class="line">  u.dist=INF, u.parent=NIL</span><br><span class="line">s.dist = <span class="number">0</span></span><br><span class="line">Run DFS to obtain topological order</span><br><span class="line"><span class="keyword">for</span> (each node u in topological order)</span><br><span class="line">  <span class="keyword">for</span> (each edge (u,v) in E)</span><br><span class="line">    <span class="keyword">if</span> (v.dist &gt; u.dist + w(u,v))</span><br><span class="line">      v.dist = u.dist + w(u,v)</span><br><span class="line">      v.parent = u</span><br></pre></td></tr></table></figure>
-<h5 id="应用：">应用：</h5>
-<p>Computing Critical Path</p>
+
+<h5 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h5><p>Computing Critical Path</p>
 
     </article>
     <!-- license -->
@@ -902,7 +894,35 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1151,7 +1171,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1165,6 +1185,18 @@
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span>
+            <a class="archive-post-title" href="/2023/02/15/%E5%9F%BA%E6%9C%AC%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C/">基本通信操作</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="/2023/02/14/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">并行计算硬件结构基础</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">02/13</span>
